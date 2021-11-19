@@ -1,19 +1,18 @@
 "use strict";
 
-class RecipeException{
-    constructor(errorMesage){
-        this.errorMessage = errorMesage;
-    }
-}
-
 function generateUUID() {
     return 'xxxx-xxxx-4xxx-yxxx'.replace(/[xy]/g, c => {
     let r = Math.random() * 16 | 0;
     let v = c == 'x' ? r : (r & 0x3 | 0x8);
     return v.toString(16);
     });
+}   
+
+class RecipeException{
+    constructor(errorMesage){
+        this.errorMessage = errorMesage;
+    }
 }
-console.log(generateUUID());
 const Category = {
 	PLATILLO: "Platillo",
 	BEBIDA: "Bebida",
@@ -116,5 +115,4 @@ class Recipe{
         }
     }
 }
-
 module.exports = Recipe;

@@ -1,7 +1,6 @@
 "use strcit";
 
-const fs = require("fs");
-const Recipe = require("./recipe");
+const Receta = require("./recipe");
 
 const recipes = [];
 
@@ -16,13 +15,25 @@ function getRecipeById(rid){
 function createRecipe(recipe){
     let p = undefined;
     if(typeof recipe == "string") {
-        p = Recipe.createFromJSON(recipe);
+        p = Receta.createFromJSON(recipe);
     }
     else {
-        p = Recipe.createFromObject(recipe);
+        p = Receta.createFromObject(recipe);
     }
     recipes.push(p);
-    //let newRecipes = JSON.stringify(recipe)
-    // fs.writeFileSync("./app/Data/products.json" , newProducts);
+   // let newRecipes = JSON.stringify(recipe)
+    //fs.writeFileSync("./app/Data/products.json" , newProducts);
     return p;
 }
+
+let reci = `{
+    "name": "Pollo",
+    "estimatedTime": "1 hora",
+    "ingredients": ["aguacates", "pollo"],
+    "category": "platillo",
+    "rating" : 5,
+    "portions": 2,
+    "imageUrl": "aaaaaa"
+}`;
+createRecipe(reci);
+console.log(getRecipes());
