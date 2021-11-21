@@ -17,7 +17,14 @@ const Category = {
 	PLATILLO: "Platillo",
 	BEBIDA: "Bebida",
 	POSTRE: "Postre",
-	ACOMPAÑAMIENTO: "Acompañamiento",
+	APERITIVO: "Aperitivo",
+    ENTRADA: "Entrada",
+};
+
+const Times = {
+    Time1: "5 - 20 min",
+    Time2: "20 - 60 min",
+    Time3: "60+ min",
 };
 
 class Recipe{
@@ -42,7 +49,7 @@ class Recipe{
         return this._estimatedTime;
     }
     get ingredients(){
-        return this._estimatedTime;
+        return this._ingredients;
     }
     get category(){
         return this._category;
@@ -66,16 +73,17 @@ class Recipe{
     }
     set estimatedTime(value){
         if(value == "" || typeof value != "string") throw new RecipeException("The recipe's estimated time must be a valid string");
+        if(Object.values(Times).indexOf(value) < 0) throw new RecipeException("the recipe's times must be in one of the 3 valid options");
         this._estimatedTime = value;
     }
     set ingredients(value){
         if(!Array.isArray(value)) throw new RecipeException("The recipe's ingredients mut be an ingredient array");
-        this._ingredients;
+        this._ingredients = value;
     }
     set category(value){
         if(value == "" || typeof value != "string") throw new RecipeException("The recipe's category must be a valid string");
-        if(Object.values(Category).indexOf(value) < 0) throw new RecipeException("the recipe's category muy be in one of the 4 valid options");
-        this._catogory = value;
+        if(Object.values(Category).indexOf(value) < 0) throw new RecipeException("the recipe's category must be in one of the 5 valid options");
+        this._category = value;
     }
     set rating(value){
         if(typeof value != "number" || value < 0 || value > 5) throw new RecipeException("The recipe's rating must be a number between 0 and 5");
@@ -87,6 +95,7 @@ class Recipe{
     }
     set imageUrl(value){
         if(typeof value != "string" || value == "") throw new RecipeException("The recipe's portions must be a positive number");
+        this._imageUrl = value;
     }
 
     //Methods
@@ -110,6 +119,12 @@ class Recipe{
             let flag = 0;
             for(let property in recipeProperties){
                 if(prop == recipeProperties[property])flag = 1;
+                if(prop = "_estimatedTime"){
+                    if(Object.values(Times).indexOf(obj[prop]) < 0) flag = 0;
+                }
+                if(prop = "_category"){
+                    if(Object.values(Category).indexOf(obj[prop]) < 0) flag = 0;
+                }
             }
             if(!flag) delete obj[prop];
         }

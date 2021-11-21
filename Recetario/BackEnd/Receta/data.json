@@ -1,8 +1,1 @@
-[{"_name": "Pollo",
-    "_estimatedTime": "1 hora",
-    "_ingredients": ["aguacates", "pollo"],
-    "_category": "Platillo",
-    "_rating" : 5,
-    "_portions": 2,
-    "_imageUrl": "aaaaaa"
-}]
+[{"_rid":"099f-7e5b-447e-8790","_name":"Pollo","_estimatedTime":"5 - 20 min","_ingredients":["aguacates","pollo"],"_category":"Platillo","_rating":5,"_portions":2,"_imageUrl":"aaaaaa"},{"_rid":"8aa4-c13f-47c7-9a75","_name":"Ensalada","_estimatedTime":"60+ min","_ingredients":["aguacates","lechuga"],"_category":"Entrada","_rating":3,"_portions":2,"_imageUrl":"aaaaaa"}]

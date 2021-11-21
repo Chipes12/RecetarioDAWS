@@ -26,10 +26,11 @@ function createRecipe(recipe){
 function updateRecipe(rid, updatedRecipe){
     if(getRecipeById(rid) != undefined){
         Receta.cleanObject(updatedRecipe);
-        let index = recipes.findIndex(recipe => recipe.rid == rid);
-        if(index < 0){
+        let index = recipes.findIndex(recipe => recipe._rid == rid);
+        if(index > -1){
             Object.assign(recipes[index], updatedRecipe);
-            let newRecipes = JSON.stringify(recipes)
+            let newRecipes = JSON.stringify(recipes);
+            console.log(recipes);
             fs.writeFileSync("./BackEnd/Receta/data.json", newRecipes);
         }
     }
@@ -37,13 +38,28 @@ function updateRecipe(rid, updatedRecipe){
 
 function deleteRecipe(rid){
     let index = recipes.findIndex(recipe => recipe.rid == rid);
-    if(index < 0) products.splice(i , 1);
+    if(index > -1) recipes.splice(index , 1);
     let newRecipes = JSON.stringify(recipes)
     fs.writeFileSync("./BackEnd/Receta/data.json" , newRecipes);
 }
 
+function firltRecipes(time, type, rate){
+    let firlteredArray = Array.from(recipes);
+    if(time != undefined){
+        firlteredArray = firlteredArray.filter(el => {return el._estimatedTime == time});
+    }
+    if(type != undefined){
+        firlteredArray = firlteredArray.filter(el => {return el._category == type});
+    }
+    if(rate != undefined){
+        firlteredArray = firlteredArray.filter(el => {return el._rating == rate});
+    }
+    return firlteredArray;
+}
 
+exports.createRecipe = createRecipe;
 exports.getRecipeById = getRecipeById;
 exports.getRecipes = getRecipes;
 exports.updateRecipe = updateRecipe;
 exports.deleteRecipe = deleteRecipe;
+exports.firltRecipes = firltRecipes;
