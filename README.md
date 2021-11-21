@@ -10,6 +10,6 @@ Muestra algunas recetas con cards, con información básica:
 
 # Funcionamiento 
 Es necesario que descargues express, cors, y nodemon así:
--npm i -s express
--npm i --s cors
--npm i -nodemon
+- npm i -s express
+- npm i --s cors
+- npm i -nodemon
