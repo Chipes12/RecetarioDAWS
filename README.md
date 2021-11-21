@@ -8,8 +8,8 @@ Muestra algunas recetas con cards, con información básica:
 - Popularidad
 - Categorías
 
-#Funcionamiento 
-Es necesario que descargues express, cors, y nodemon 
-npm i -s express
-npm i --s cors
-npm i -nodemon
+# Funcionamiento 
+Es necesario que descargues express, cors, y nodemon así:
+-npm i -s express
+-npm i --s cors
+-npm i -nodemon
