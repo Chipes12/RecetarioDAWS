@@ -126,3 +126,20 @@ a.page-link {
 	color: black;
 	border-color: rgba(92, 48, 31, 0.662);
 }
+
+/* Lista favs */
+#mainContainerFavs span.container h1{
+	font-family: "Helvetica";
+	font-weight: 400;
+	font-size: 55px;
+	color: white;
+	text-shadow: 3px 5px 10px rgba(92, 48, 31, 0.662);
+}
+
+#mainContainerFavs div.media {
+	border-color: rgba(92, 48, 31, 0.662)!important;
+	border-width: 3px!important;
+	max-width: 550px;
+	background-image: radial-gradient(rgba(195, 190, 190, 0.848),rgba(215, 186, 150, 0.91));
+}
+
