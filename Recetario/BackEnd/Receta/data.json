@@ -1,0 +1,8 @@
+[{"_name": "Pollo",
+    "_estimatedTime": "1 hora",
+    "_ingredients": ["aguacates", "pollo"],
+    "_category": "Platillo",
+    "_rating" : 5,
+    "_portions": 2,
+    "_imageUrl": "aaaaaa"
+}]
