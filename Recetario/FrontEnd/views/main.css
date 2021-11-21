@@ -85,3 +85,44 @@ button.btn-secondary:hover {
 .carousel-item img {
 	max-width: 50%;
 }
+
+/* Cards */
+.card-img-top {
+	height: 200px;
+	width: 230px;
+	object-fit: cover;
+}
+
+.card-body {
+	max-width: 230px;
+}
+
+.card {
+	background-image: radial-gradient(white, rgba(214, 110, 69, 0.662));
+}
+
+.card a.btn {
+	background-color: rgb(70, 157, 210);
+	border-color: rgb(70, 157, 210);
+}
+
+.card a.btn:hover {
+	background-color: cadetblue;
+}
+
+/* Paginación */
+li.active a.page-link {
+	background-color: rgba(92, 48, 31, 0.662) !important;
+	color: black;
+	border-color: rgba(92, 48, 31, 0.662) !important;
+}
+
+li.disabled a.page-link {
+	background-color: rgb(188, 182, 172) !important;
+}
+
+a.page-link {
+	background-color: rgba(214, 110, 69, 0.662);
+	color: black;
+	border-color: rgba(92, 48, 31, 0.662);
+}
