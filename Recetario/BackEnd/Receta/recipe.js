@@ -100,16 +100,16 @@ class Recipe{
         Object.assign(newRecipe, obj);
         Recipe.cleanObject(newRecipe);
         let recipe = new Recipe(newRecipe._name, newRecipe._estimatedTime, newRecipe._ingredients, newRecipe._category, newRecipe._rating, newRecipe._portions, newRecipe._imageUrl);
-        if(newProduct._rid != undefined) product._rid = newProduct._rid;
-        return product;
+        if(newRecipe._rid != undefined) recipe._rid = newRecipe._rid;
+        return recipe;
     }
 
     static cleanObject(obj){
-        const productProperties = ['_rid', '_name', '_estimatedTime', '_imageUrl', '_ingredients', '_category', '_rating', '_portions'];
+        const recipeProperties = ['_rid', '_name', '_estimatedTime', '_imageUrl', '_ingredients', '_category', '_rating', '_portions'];
         for (let prop in obj){
             let flag = 0;
-            for(let property in productProperties){
-                if(prop == productProperties[property])flag = 1;
+            for(let property in recipeProperties){
+                if(prop == recipeProperties[property])flag = 1;
             }
             if(!flag) delete obj[prop];
         }
