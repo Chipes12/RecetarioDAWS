@@ -21,6 +21,9 @@ Muestra los detalles para llevar a cabo el platillo. Permite calificar y agregar
 - Procedimiento
 - Video demostrativo
 
+## Página de historial (historial.html)
+Muestra las recetas visitadas recientemente en forma de lista, como en la página de favoritos.
+
 ## Funcionamiento 
 Es necesario que descargues express, cors, y nodemon así:
 - npm i -s express
