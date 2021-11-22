@@ -1,0 +1,94 @@
+/* Body de página admin */
+body {
+	background: -webkit-gradient(linear, left top, left bottom, from(#e2a791a0), to(#794d39be)) fixed;
+}
+
+/* Barra de navegación admin */
+.navbar-collapse .tabs {
+	margin-top: 40px !important;
+}
+
+.navbar {
+	height: auto;
+	background-color: #784e33c5;
+	font-family: "Advent Pro";
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 1.3;
+}
+
+.navbar-nav {
+	color: white;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 8px 8px 0px 0px;
+	font-family: "Helvetica";
+	font-weight: 400;
+	font-size: 14px;
+}
+
+#btnSearch {
+	background-color: rgb(241, 130, 85);
+}
+
+#inputSearch,
+#inputSearch::placeholder {
+	background: none;
+	color: white;
+}
+
+#inputSearch:focus {
+	background-color: white;
+	color: black;
+}
+
+#page-icon {
+	width: auto;
+	max-width: 65px;
+}
+
+div[aria-labelledby="dropdownId"]:nth-child(n+1) {
+	background-color: rosybrown;
+	color: white;
+}
+
+/* Cards */
+.card-img-top {
+	height: 200px;
+	width: 230px;
+	object-fit: cover;
+}
+
+.card-body {
+	max-width: 230px;
+}
+
+.card {
+	background-image: radial-gradient(white, rgba(214, 110, 69, 0.662));
+}
+
+.card a.btn {
+	background-color: rgb(70, 157, 210);
+	border-color: rgb(70, 157, 210);
+}
+
+.card a.btn:hover {
+	background-color: cadetblue;
+}
+
+/* Paginación */
+li.active a.page-link {
+	background-color: rgba(92, 48, 31, 0.662) !important;
+	color: black;
+	border-color: rgba(92, 48, 31, 0.662) !important;
+}
+
+li.disabled a.page-link {
+	background-color: rgb(188, 182, 172) !important;
+}
+
+a.page-link {
+	background-color: rgba(214, 110, 69, 0.662);
+	color: black;
+	border-color: rgba(92, 48, 31, 0.662);
+}
