@@ -1,6 +1,7 @@
 "use strict"
 
-//Agregar requiere para la handler de recetas
+//Agregar require para la handler de recetas
+const Receta = require("../recipe");
 
 //Función para generar id´s
 function generateUUID() {
@@ -20,14 +21,14 @@ class UserException {
 //Falta ver lo del admin
 class User {
     //Class constructor
-    constructor(name, lastName, email, password, date, telephone) {
-        this.uid = User.generateUUID();
+    constructor(name, lastName, email, password, date, sex) {
+        this._uid = User.generateUUID();
         this.name = name
         this.lastName = lastName
         this.email = email
         this.password = password
         this.registerDate = date
-        this.telephone = telephone
+        this.sex = sex
         this.favouriteRecipes = [];
     }
 
@@ -103,15 +104,15 @@ class User {
         this._registerDate = value;
     }
 
-    get telephone() {
-        return this._telephone;
+    get sex() {
+        return this._sex;
     }
 
-    set telephone(value) {
+    set sex(value) {
         if (typeof value !== "string" || value === "") {
-            throw new UserException("User telephone cannot be empty")
+            throw new UserException("User sex cannot be empty")
         }
-        this._telephone = value;
+        this._sex = value;
     }
 
     //Methods for creation
@@ -127,14 +128,14 @@ class User {
 
         User.cleanObject(newUser);
 
-        let user = new User(newUser._name, newUser._lastname, newUser._email, newUser._password, newUser._registerDate, newUser._telephone);
+        let user = new User(newUser._name, newUser._lastname, newUser._email, newUser._password, newUser._registerDate, newUser._sex);
 
         if (newUser._uid != undefined) user._uid = newUser._uid;
         return user;
     }
 
     static cleanObject(obj) {
-        const userProps = ['_uid', '_name', '_lastname', '_email', '_password', '_registerDate', '_telephone'];
+        const userProps = ['_uid', '_name', '_lastname', '_email', '_password', '_registerDate', '_sex'];
         for (let prop in obj) {
             let flag = 0;
             for (let property in userProps) {
