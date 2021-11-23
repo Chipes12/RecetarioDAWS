@@ -53,16 +53,108 @@
     </nav>
     <!-- Datos a agregar -->
     <div class="container">
-        <div class="column">
-            <div class="form-group">
-              <label for=""></label>
-              <input type="text"
-                class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
-              <small id="helpId" class="form-text text-muted">Help text</small>
+        <div class="row">
+            <div class="col border">
+                <div class="title border-bottom border-white">
+                    <h4>Información básica</h4>
+                </div>
+                <div class="content">
+                    <label for="name">Nombre: </label>
+                    <input type="text" name="name" placeholder="Nombre"><br>
+                    <label for="description">Descripción: </label>
+                    <textarea placeholder="Descripción de receta"></textarea><br>
+                    <label for="">Porciones: </label>
+                    <input type="number" value="1"><br>
+                    <label for="">Tipo: </label>
+                    <select id="recipeType" name="tipoReceta">
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                    </select><br>
+                    <label for="dificultad">Dificultad: </label>
+                    <select id="recipeDificult" name="dificultad">
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                    </select><br>
+                    <label for="">Tiempo: </label>
+                    <input type="number"><br>
+                </div>
+            </div>
+            <div class="col border">
+                <div class="title border-bottom border-white">
+                    <h4>Información preparación</h4>
+                </div>
+                <div class="content">
+                    <label for="nameIngredientes">Ingredientes: </label>
+                    <a id="addIngredient"><i class="fas fa-plus-circle"></i></a><br>
+                    <select id="ingredients" name="nameIngredients">
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                    </select><br>
+                    <label for="cantidad">Cantidad: </label>
+                    <input id="totalIngredients" name="cantidad" type="number" value="1"><br>
+                    <label for="procedure">Procedimiento: </label>
+                    <textarea id="recipeProcedure" name="procedure"
+                        placeholder="Procedimiento de receta"></textarea><br>
+                </div>
+            </div>
+
+            <div class="col border">
+                <div class="title border-bottom border-white">
+                    <h4>Imagen</h4>
+                </div>
+                <div class="content">
+                    <label for="image">Agregar imagen: </label>
+                    <button id="btnUploadImg" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#uploadImage">
+                        Subir Imagen
+                    </button>
+                </div>
             </div>
         </div>
     </div>
+    <!-- Modal upload image -->
+    <div class="modal fade" id="uploadImage" tabindex="-1" role="dialog" aria-labelledby="uploadImage"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Seleccionar imagen</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="form-group">
+                                <label for="url">URL </label>
+                                <input id="urlImg" type="text" placeholder="Ingresa url"><br>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <input id="fileImg" type="file" accept="image/png, .jpeg, .jpg, image/gif">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button id="btnSaveImg" type="button" class="btn btn-success">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Optional JavaScript -->
+    <!-- <script>
+        $('#exampleModal').on('show.bs.modal', event => {
+            var button = $(event.relatedTarget);
+            var modal = $(this);
+            // Use above variables to manipulate the DOM
+            
+        });
+    </script> -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">

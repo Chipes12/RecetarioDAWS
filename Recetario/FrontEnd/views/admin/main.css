@@ -1,94 +1,190 @@
 /* Body de página admin */
 body {
-	background: -webkit-gradient(linear, left top, left bottom, from(#e2a791a0), to(#794d39be)) fixed;
+    background: -webkit-gradient(linear, left top, left bottom, from(#e2a791a0), to(#794d39be)) fixed;
 }
 
 /* Barra de navegación admin */
 .navbar-collapse .tabs {
-	margin-top: 40px !important;
+    margin-top: 40px !important;
 }
 
 .navbar {
-	height: auto;
-	background-color: #784e33c5;
-	font-family: "Advent Pro";
-	font-weight: 400;
-	font-size: 14px;
-	line-height: 1.3;
+    height: auto;
+    background-color: #784e33c5;
+    font-family: "Advent Pro";
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.3;
 }
 
 .navbar-nav {
-	color: white;
-	border-width: 1px;
-	border-style: solid;
-	border-radius: 8px 8px 0px 0px;
-	font-family: "Helvetica";
-	font-weight: 400;
-	font-size: 14px;
+    color: white;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 8px 8px 0px 0px;
+    font-family: "Helvetica";
+    font-weight: 400;
+    font-size: 14px;
 }
 
 #btnSearch {
-	background-color: rgb(241, 130, 85);
+    background-color: rgb(241, 130, 85);
 }
 
 #inputSearch,
 #inputSearch::placeholder {
-	background: none;
-	color: white;
+    background: none;
+    color: white;
 }
 
 #inputSearch:focus {
-	background-color: white;
-	color: black;
+    background-color: white;
+    color: black;
 }
 
 #page-icon {
-	width: auto;
-	max-width: 65px;
+    width: auto;
+    max-width: 65px;
 }
 
 div[aria-labelledby="dropdownId"]:nth-child(n+1) {
-	background-color: rosybrown;
-	color: white;
+    background-color: rosybrown;
+    color: white;
 }
 
 /* Cards */
 .card-img-top {
-	height: 200px;
-	width: 230px;
-	object-fit: cover;
+    height: 200px;
+    width: 230px;
+    object-fit: cover;
 }
 
 .card-body {
-	max-width: 230px;
+    max-width: 230px;
 }
 
 .card {
-	background-image: radial-gradient(white, rgba(214, 110, 69, 0.662));
+    background-image: radial-gradient(white, rgba(214, 110, 69, 0.662));
 }
 
 .card a.btn {
-	background-color: rgb(70, 157, 210);
-	border-color: rgb(70, 157, 210);
+    background-color: rgb(70, 157, 210);
+    border-color: rgb(70, 157, 210);
 }
 
 .card a.btn:hover {
-	background-color: cadetblue;
+    background-color: cadetblue;
 }
 
 /* Paginación */
 li.active a.page-link {
-	background-color: rgba(92, 48, 31, 0.662) !important;
-	color: black;
-	border-color: rgba(92, 48, 31, 0.662) !important;
+    background-color: rgba(92, 48, 31, 0.662) !important;
+    color: black;
+    border-color: rgba(92, 48, 31, 0.662) !important;
 }
 
 li.disabled a.page-link {
-	background-color: rgb(188, 182, 172) !important;
+    background-color: rgb(188, 182, 172) !important;
 }
 
 a.page-link {
-	background-color: rgba(214, 110, 69, 0.662);
-	color: black;
-	border-color: rgba(92, 48, 31, 0.662);
+    background-color: rgba(214, 110, 69, 0.662);
+    color: black;
+    border-color: rgba(92, 48, 31, 0.662);
+}
+
+/* Contenido nueva receta y editar receta */
+.container {
+    margin-top: 10em;
+}
+
+div.row div.col {
+    border-color: white !important;
+    border-width: 3px !important;
+    margin-right: 20px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.content {
+    padding-left: 5px;
+}
+
+#addIngredient {
+    color: rgb(12, 108, 181);
+    cursor: pointer;
+    padding-left: 20px;
+}
+
+div.col div.title {
+    background-color: rgb(101, 82, 69);
+    color: white;
+    text-shadow: 3px 5px 10px rgba(174, 157, 150, 0.662);
+    text-align: center;
+    border-width: inherit;
+    padding-bottom: 5px;
+    padding-top: 10px;
+    margin-bottom: 15px;
+}
+
+label {
+    color: white;
+    font-size: 20px;
+    text-shadow: 3px 5px 10px rgba(92, 48, 31, 0.662);
+    width: 130px;
+    display: inline-block;
+}
+
+textarea {
+    width: 300px;
+    resize: none !important;
+}
+
+input,
+textarea {
+    background-color: rgba(224, 190, 151, 0.814);
+}
+
+#recipeProcedure {
+    width: 300px;
+    height: 200px;
+}
+
+#btnUploadImg {
+    background-color: rgba(226, 187, 136, 0.689);
+	border-style: none;
+	color: white;
+    text-align: center;
+	font-size: 15px;
+    font-style: oblique;
+	width: 150px;
+	height: 40px;
+	box-shadow: 3px 5px 10px rgba(92, 48, 31, 0.662);
+}
+
+/* columnas del form */
+.col {
+    padding-bottom: 30px;
+    box-shadow: 3px 5px 10px rgba(92, 48, 31, 0.662);
+    background-color: rgba(156, 111, 85, 0.855);
+}
+
+
+/* Modal */
+.modal-content {
+    background-image: linear-gradient(rgb(241, 130, 85), rgb(164, 146, 146));
+}
+
+.modal-content input::placeholder {
+    background-color: rgba(188, 182, 182, 0.779);
+    color: rgb(62, 56, 56);
+}
+
+button.btn-success {
+    background-color: rgb(56, 161, 63);
+}
+
+button.btn-secondary,
+button.btn-secondary:hover {
+    background-color: rgb(202, 62, 62);
 }
