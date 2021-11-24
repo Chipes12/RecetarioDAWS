@@ -1,2 +1,4 @@
 node_modules
+*.json
 Server/DB/connectdb.js
+Server/DB/schemas.js
