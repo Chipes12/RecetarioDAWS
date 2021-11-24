@@ -14,21 +14,21 @@ class RecipeException{
     }
 }
 const Category = {
-	PLATILLO: "Platillo",
-	BEBIDA: "Bebida",
-	POSTRE: "Postre",
-	APERITIVO: "Aperitivo",
-    ENTRADA: "Entrada",
+	"type1": "Platillo",
+	"type2": "Bebida",
+	"type3": "Postre",
+	"type4": "Aperitivo",
+    "type5": "Entrada",
 };
 
 const Times = {
-    Time1: "5 - 20 min",
-    Time2: "20 - 60 min",
-    Time3: "60+ min",
+    "Time1" : "5 - 20 min",
+    "Time2": "20 - 60 min",
+    "Time3": "60+ min",
 };
 
 class Recipe{
-    constructor(name, estimatedTime, ingredients, category, rating, portions, imageUrl){
+    constructor(name, estimatedTime, ingredients, category, rating, portions, imageUrl, preparation){
         this._rid = generateUUID();
         this.name = name;
         this.estimatedTime=  estimatedTime;
@@ -37,6 +37,7 @@ class Recipe{
         this.rating = rating;
         this.portions =  portions
         this.imageUrl = imageUrl;
+        this.preparation = preparation;
     }
     //Getters
     get rid(){
@@ -63,6 +64,9 @@ class Recipe{
     get imageUrl(){
         return this._imageUrl;
     }
+    get preparation(){
+        return this._preparation;
+    }
     //Setters
     set rid(value){
         throw new RecipeException("You can't add the recipe id");
@@ -72,18 +76,18 @@ class Recipe{
         this._name = value;
     }
     set estimatedTime(value){
-        if(value == "" || typeof value != "string") throw new RecipeException("The recipe's estimated time must be a valid string");
-        if(Object.values(Times).indexOf(value) < 0) throw new RecipeException("the recipe's times must be in one of the 3 valid options");
-        this._estimatedTime = value;
+        if(value > 3 || typeof value != "number" || value < 1) throw new RecipeException("The recipe's estimated time must be a number between 1 y 3");
+        let time = "Time" + value;
+        this._estimatedTime = Times[time];
     }
     set ingredients(value){
         if(!Array.isArray(value)) throw new RecipeException("The recipe's ingredients mut be an ingredient array");
         this._ingredients = value;
     }
     set category(value){
-        if(value == "" || typeof value != "string") throw new RecipeException("The recipe's category must be a valid string");
-        if(Object.values(Category).indexOf(value) < 0) throw new RecipeException("the recipe's category must be in one of the 5 valid options");
-        this._category = value;
+        if(value < 1 || value > 5 || typeof value != "number") throw new RecipeException("the recipe's category must be a number between 1 and 5");
+        let type = "type" + value;
+        this._category = Category[type];
     }
     set rating(value){
         if(typeof value != "number" || value < 0 || value > 5) throw new RecipeException("The recipe's rating must be a number between 0 and 5");
@@ -97,6 +101,10 @@ class Recipe{
         if(typeof value != "string" || value == "") throw new RecipeException("The recipe's portions must be a positive number");
         this._imageUrl = value;
     }
+    set preparation(value){
+        if(typeof value != "string" || value ==="") throw new RecipeException("The recipe's preparation indications but be a string");
+        this._preparation = value;
+    }
 
     //Methods
     static createFromJSON(jsonValue){
@@ -108,26 +116,28 @@ class Recipe{
         let newRecipe = {};
         Object.assign(newRecipe, obj);
         Recipe.cleanObject(newRecipe);
-        let recipe = new Recipe(newRecipe._name, newRecipe._estimatedTime, newRecipe._ingredients, newRecipe._category, newRecipe._rating, newRecipe._portions, newRecipe._imageUrl);
+        let recipe = new Recipe(newRecipe._name, newRecipe._estimatedTime, newRecipe._ingredients, newRecipe._category, newRecipe._rating, newRecipe._portions, newRecipe._imageUrl, newRecipe._preparation);
         if(newRecipe._rid != undefined) recipe._rid = newRecipe._rid;
         return recipe;
     }
 
     static cleanObject(obj){
-        const recipeProperties = ['_rid', '_name', '_estimatedTime', '_imageUrl', '_ingredients', '_category', '_rating', '_portions'];
+        const recipeProperties = ['_rid', '_name', '_estimatedTime', '_imageUrl', '_ingredients', '_category', '_rating', '_portions', '_preparation'];
         for (let prop in obj){
             let flag = 0;
             for(let property in recipeProperties){
                 if(prop == recipeProperties[property])flag = 1;
                 if(prop = "_estimatedTime"){
-                    if(Object.values(Times).indexOf(obj[prop]) < 0) flag = 0;
+                    if(obj[prop] < 1 || obj[prop] > 3) flag = 0;
                 }
-                if(prop = "_category"){
-                    if(Object.values(Category).indexOf(obj[prop]) < 0) flag = 0;
+                else if(prop = "_category"){
+                    if(obj[prop] < 1 || obj[prop] > 5) flag = 0;
                 }
             }
             if(!flag) delete obj[prop];
         }
     }
 }
-module.exports = Recipe;
+exports.Recipe = Recipe;
+exports.Times = Times;
+exports.Category = Category;

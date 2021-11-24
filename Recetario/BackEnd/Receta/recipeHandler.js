@@ -3,7 +3,7 @@
 const fs = require("fs");
 const Receta = require("./recipe");
 let content = fs.readFileSync("./BackEnd/Receta/data.json");
-const recipes = JSON.parse(content).map(Receta.createFromObject);
+const recipes = JSON.parse(content).map(Receta.Recipe.createFromObject);
 
 function getRecipes(){
     return recipes;
@@ -15,7 +15,7 @@ function getRecipeById(rid){
 
 function createRecipe(recipe){
     let p = undefined;
-    if(typeof recipe == "string") p = Receta.createFromJSON(recipe);
+    if(typeof recipe == "string") p = Receta.Recipe.createFromJSON(recipe);
     else p = Receta.createFromObject(recipe);
     recipes.push(p);
     let newRecipes = JSON.stringify(recipe)
@@ -25,12 +25,11 @@ function createRecipe(recipe){
 
 function updateRecipe(rid, updatedRecipe){
     if(getRecipeById(rid) != undefined){
-        Receta.cleanObject(updatedRecipe);
+        Receta.Recipe.cleanObject(updatedRecipe);
         let index = recipes.findIndex(recipe => recipe._rid == rid);
         if(index > -1){
             Object.assign(recipes[index], updatedRecipe);
             let newRecipes = JSON.stringify(recipes);
-            console.log(recipes);
             fs.writeFileSync("./BackEnd/Receta/data.json", newRecipes);
         }
     }
@@ -45,11 +44,13 @@ function deleteRecipe(rid){
 
 function firltRecipes(time, type, rate){
     let firlteredArray = Array.from(recipes);
-    if(time != undefined){
-        firlteredArray = firlteredArray.filter(el => {return el._estimatedTime == time});
+    if(time != undefined && (time > 0 && time < 4)){
+        let ti = "Time" + time;
+        firlteredArray = firlteredArray.filter(el => {return el._estimatedTime == Receta.Times[ti]});
     }
-    if(type != undefined){
-        firlteredArray = firlteredArray.filter(el => {return el._category == type});
+    if(type != undefined && (type > 0 && type < 6)){
+        let ty = "type" + type;
+        firlteredArray = firlteredArray.filter(el => {return el._category == Receta.Category[ty]});
     }
     if(rate != undefined){
         firlteredArray = firlteredArray.filter(el => {return el._rating == rate});
