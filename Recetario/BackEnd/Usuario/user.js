@@ -1,6 +1,7 @@
 "use strict"
 
-//Agregar requiere para la handler de recetas
+//Agregar require para la handler de recetas
+const Receta = require("../recipe");
 
 //Función para generar id´s
 function generateUUID() {
@@ -17,18 +18,30 @@ class UserException {
     }
 }
 
+class RecipeProxy {
+    constructor(rid) {
+        this.rid = rid;
+    }
+}
+
+const userTypes = {
+    COMUN: "Comun",
+    ADMIN: "Admin"
+};
+
 //Falta ver lo del admin
 class User {
     //Class constructor
-    constructor(name, lastName, email, password, date, telephone) {
-        this.uid = User.generateUUID();
+    constructor(name, lastName, email, password, date, sex, status) {
+        this._uid = User.generateUUID();
         this.name = name
         this.lastName = lastName
         this.email = email
         this.password = password
         this.registerDate = date
-        this.telephone = telephone
-        this.favouriteRecipes = [];
+        this.sex = sex
+        this.status = status;
+        this._favouriteRecipes = [];
     }
 
     //Getter & Setters
@@ -103,15 +116,25 @@ class User {
         this._registerDate = value;
     }
 
-    get telephone() {
-        return this._telephone;
+    get sex() {
+        return this._sex;
     }
 
-    set telephone(value) {
+    set sex(value) {
         if (typeof value !== "string" || value === "") {
-            throw new UserException("User telephone cannot be empty")
+            throw new UserException("User sex cannot be empty")
         }
-        this._telephone = value;
+        this._sex = value;
+    }
+
+    get status() {
+        return this._status;
+    }
+
+    set status(value) {
+        if (value == "" || typeof value != "string") throw new UserException("User status cannot be empty");
+        if (Object.values(userTypes).indexOf(value) < 0) throw new UserException("The user type must be in one of the valid options ");
+        this._status = value;
     }
 
     //Methods for creation
@@ -127,31 +150,35 @@ class User {
 
         User.cleanObject(newUser);
 
-        let user = new User(newUser._name, newUser._lastname, newUser._email, newUser._password, newUser._registerDate, newUser._telephone);
+        let user = new User(newUser._name, newUser._lastname, newUser._email, newUser._password, newUser._registerDate, newUser._sex, newUser._status);
 
         if (newUser._uid != undefined) user._uid = newUser._uid;
         return user;
     }
 
     static cleanObject(obj) {
-        const userProps = ['_uid', '_name', '_lastname', '_email', '_password', '_registerDate', '_telephone'];
+        const userProps = ['_uid', '_name', '_lastname', '_email', '_password', '_registerDate', '_sex', '_status'];
         for (let prop in obj) {
             let flag = 0;
             for (let property in userProps) {
                 if (prop == userProps[property]) flag = 1;
+                if (prop = "_status") {
+                    if (Object.values(userTypes).indexOf(obj[prop]) < 0) flag = 0;
+                }
             }
             if (!flag) delete obj[prop];
         }
     }
 
     //Methods for favourite recipes
-    addItem(recipeId, name, estimatedTime, ingredients, category, rating, portions, imageUrl) {
+    //Falta ver si lo hacemos como los proxies
+    addItem(recipeId) {
 
         //find existing item and update or create new 
-        if (!this._favouriteRecipes.find(element => element.rid == recipeId) && getRecipeById(productUuid) != undefined) {
-            this._favouriteRecipes.push(new Recipe(name, estimatedTime, ingredients, category, rating, portions, imageUrl));
+        if (!this._favouriteRecipes.find(element => element.rid == recipeId) && getRecipeById(recipeId) != undefined) {
+            this._favouriteRecipes.push(new RecipeProxy(recipeId));
 
-        } else if (getRecipeById(recipeId) != undefined) {
+        } else {
             throw new UserException("Recipe already exist in favourites")
         }
     }
