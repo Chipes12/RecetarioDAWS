@@ -1,1 +1,19 @@
-[{"_rid":"099f-7e5b-447e-8790","_name":"Pollo","_estimatedTime":"5 - 20 min","_ingredients":["aguacates","pollo"],"_category":"Platillo","_rating":5,"_portions":2,"_imageUrl":"aaaaaa"},{"_rid":"8aa4-c13f-47c7-9a75","_name":"Ensalada","_estimatedTime":"60+ min","_ingredients":["aguacates","lechuga"],"_category":"Entrada","_rating":3,"_portions":2,"_imageUrl":"aaaaaa"}]
+[
+    {"_rid":"099f-7e5b-447e-8790",
+    "_name":"Pollo",
+    "_estimatedTime": 2,
+    "_ingredients":["aguacates","pollo"],
+    "_category":1,
+    "_rating":5,
+    "_portions":2,
+    "_imageUrl":"https://www.elespectador.com/resizer/bDTQsp0uz7EL5OpVkZDinXzDd2E=/1200x675/filters:format(jpeg)/cloudfront-us-east-1.images.arcpublishing.com/elespectador/2F4WF2CH7BC4DCCLMRBGS34KVQ.jpg",
+    "_preparation": "Cocinar con aguacate por 15 minutos"},
+    {"_rid":"8aa4-c13f-47c7-9a75",
+    "_name":"Ensalada",
+    "_estimatedTime": 1,
+    "_ingredients":["aguacates","lechuga"],
+    "_category":5,
+    "_rating":3,
+    "_portions":2,
+    "_imageUrl":"https://www.hola.com/imagenes/cocina/noticiaslibros/20210805194067/ensaladas-con-tres-cuatro-ingredientes/0-981-971/ingredientes-adobe-m.jpg",
+    "_preparation" : "Cortar lechuga y revolver von aguacate"}]
