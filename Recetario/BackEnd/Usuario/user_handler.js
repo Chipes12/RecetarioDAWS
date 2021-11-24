@@ -11,7 +11,7 @@ function getUsers() {
 }
 
 function getUserById(uid) {
-    return users.find(user => user.uid == uid);
+    return users.find(user => user._uid == uid);
 }
 
 function createUser(user) {

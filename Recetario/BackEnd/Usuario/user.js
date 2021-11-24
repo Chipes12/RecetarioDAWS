@@ -67,7 +67,7 @@ class User {
 
     set name(value) {
         if (typeof value !== "string" || value === "") {
-            throw new UserException("User name cannot be empty")
+            throw new UserException("User name cannot be empty");
         }
         this._name = value;
     }
@@ -78,7 +78,7 @@ class User {
 
     set lastName(value) {
         if (typeof value !== "string" || value === "") {
-            throw new UserException("User lastname cannot be empty")
+            throw new UserException("User lastname cannot be empty");
         }
         this._lastname = value;
     }
@@ -150,7 +150,7 @@ class User {
 
         User.cleanObject(newUser);
 
-        let user = new User(newUser._name, newUser._lastname, newUser._email, newUser._password, newUser._registerDate, newUser._sex, newUser._status);
+        let user = new User(newUser._name, newUser._lastName, newUser._email, newUser._password, newUser._registerDate, newUser._sex, newUser._status);
 
         if (newUser._uid != undefined) user._uid = newUser._uid;
         return user;
