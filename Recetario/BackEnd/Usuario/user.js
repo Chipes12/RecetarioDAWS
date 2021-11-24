@@ -1,11 +1,11 @@
 "use strict"
 
 //Agregar require para la handler de recetas
-const Receta = require("../recipe");
+const Receta = require("../Receta/recipeHandler");
 
 //Función para generar id´s
 function generateUUID() {
-    return 'xxxx-xxxx-4xxx-yxxx'.replace(/[xy]/g, c => {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
         let r = Math.random() * 16 | 0;
         let v = c == 'x' ? r : (r & 0x3 | 0x8);
         return v.toString(16);
@@ -25,15 +25,15 @@ class RecipeProxy {
 }
 
 const userTypes = {
-    COMUN: "Comun",
-    ADMIN: "Admin"
+    "User1": "Comun",
+    "User2": "Admin"
 };
 
 //Falta ver lo del admin
 class User {
     //Class constructor
     constructor(name, lastName, email, password, date, sex, status) {
-        this._uid = User.generateUUID();
+        this._uid = generateUUID();
         this.name = name
         this.lastName = lastName
         this.email = email
@@ -67,7 +67,7 @@ class User {
 
     set name(value) {
         if (typeof value !== "string" || value === "") {
-            throw new UserException("User name cannot be empty")
+            throw new UserException("User name cannot be empty");
         }
         this._name = value;
     }
@@ -78,7 +78,7 @@ class User {
 
     set lastName(value) {
         if (typeof value !== "string" || value === "") {
-            throw new UserException("User lastname cannot be empty")
+            throw new UserException("User lastname cannot be empty");
         }
         this._lastname = value;
     }
@@ -132,9 +132,9 @@ class User {
     }
 
     set status(value) {
-        if (value == "" || typeof value != "string") throw new UserException("User status cannot be empty");
-        if (Object.values(userTypes).indexOf(value) < 0) throw new UserException("The user type must be in one of the valid options ");
-        this._status = value;
+        if (value > 2 || typeof value != "number" || value < 1) throw new RecipeException("The user's status must be a number between 1 y 2");
+        let type = "User" + value;
+        this._status = userTypes[type];
     }
 
     //Methods for creation
@@ -150,7 +150,7 @@ class User {
 
         User.cleanObject(newUser);
 
-        let user = new User(newUser._name, newUser._lastname, newUser._email, newUser._password, newUser._registerDate, newUser._sex, newUser._status);
+        let user = new User(newUser._name, newUser._lastName, newUser._email, newUser._password, newUser._registerDate, newUser._sex, newUser._status);
 
         if (newUser._uid != undefined) user._uid = newUser._uid;
         return user;
@@ -163,7 +163,7 @@ class User {
             for (let property in userProps) {
                 if (prop == userProps[property]) flag = 1;
                 if (prop = "_status") {
-                    if (Object.values(userTypes).indexOf(obj[prop]) < 0) flag = 0;
+                    if (obj[prop] < 1 || obj[prop] > 2) flag = 0;
                 }
             }
             if (!flag) delete obj[prop];
@@ -175,7 +175,7 @@ class User {
     addItem(recipeId) {
 
         //find existing item and update or create new 
-        if (!this._favouriteRecipes.find(element => element.rid == recipeId) && getRecipeById(recipeId) != undefined) {
+        if (!this._favouriteRecipes.find(element => element.rid == recipeId) && Receta.getRecipeById(recipeId) != undefined) {
             this._favouriteRecipes.push(new RecipeProxy(recipeId));
 
         } else {
@@ -194,4 +194,5 @@ class User {
 
 
 }
-module.exports = User;
+exports.User = User;
+exports.userTypes = userTypes;

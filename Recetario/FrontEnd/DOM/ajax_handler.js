@@ -1,6 +1,6 @@
 "use strict";
 
-const recipeBookRoute = "http://localhost:3000/recipebook/recipes/";
+const recipeBookRoute = "http://localhost:8080/recipebook/recipes/";
 
 
 async function loadRecipes(url){

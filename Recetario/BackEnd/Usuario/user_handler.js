@@ -3,7 +3,7 @@
 const User = require("./user");
 const fs = require("fs");
 let content = fs.readFileSync("./BackEnd/Usuario/data.json");
-const users = JSON.parse(content).map(User.createFromObject);
+const users = JSON.parse(content).map(User.User.createFromObject);
 
 
 function getUsers() {
@@ -11,15 +11,15 @@ function getUsers() {
 }
 
 function getUserById(uid) {
-    return users.find(user => user.uid == uid);
+    return users.find(user => user._uid == uid);
 }
 
 function createUser(user) {
     let p = undefined;
     if (typeof user == "string") {
-        p = User.createFromJSON(user);
+        p = User.User.createFromJSON(user);
     } else {
-        p = User.createFromObject(user);
+        p = User.User.createFromObject(user);
     }
     users.push(p);
     let newUser = JSON.stringify(user)
@@ -29,7 +29,7 @@ function createUser(user) {
 
 function updateUser(uid, updatedUser) {
     if (getUserById(uid) != undefined) {
-        User.cleanObject(updatedUser);
+        User.User.cleanObject(updatedUser);
         let index = users.findIndex(user => user._uid == uid);
         if (index > -1) {
             Object.assign(users[index], updateUser);

@@ -3,6 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const userHandler = require('../../BackEnd/Usuario/user_handler');
+//console.log(userHandler.getUsers());
 
 router.route('/')
     .post((req, res) => {
@@ -41,4 +42,6 @@ router.route('/:uid').get((req, res) => {
         } else {
             res.status(404).type('text/plain').send(`User with id: ${uid} doesn't exist`);
         }
-    })
+    });
+
+    module.exports = router;
