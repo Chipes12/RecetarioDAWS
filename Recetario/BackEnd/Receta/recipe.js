@@ -1,6 +1,6 @@
 "use strict";
 
-function generateUUID() {
+function generateRID() {
     return 'xxxx-xxxx-4xxx-yxxx'.replace(/[xy]/g, c => {
     let r = Math.random() * 16 | 0;
     let v = c == 'x' ? r : (r & 0x3 | 0x8);
@@ -29,7 +29,7 @@ const Times = {
 
 class Recipe{
     constructor(name, estimatedTime, ingredients, category, rating, portions, imageUrl, preparation){
-        this._rid = generateUUID();
+        this._rid = generateRID();
         this.name = name;
         this.estimatedTime=  estimatedTime;
         this.ingredients = ingredients;
