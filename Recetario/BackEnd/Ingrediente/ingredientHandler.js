@@ -9,24 +9,24 @@ function getIngredients(){
     return ingredients;
 }
 
-function getIngredientById(iid){
-    return ingredients.find(ing => ing._iid == iid);
+function getIngredientByName(name){
+    return ingredients.find(ing => ing._name == name);
 }
 
-function createIngridient(ingredient){
+function createIngredient(ingredient){
     let p = undefined;
-    if(typeof ingredient == "string") p = Ingrediente.createFromJSON(recipe);
-    else p = Ingrediente.createFromObject(recipe);
+    if(typeof ingredient == "string") p = Ingrediente.createFromJSON(ingredient);
+    else p = Ingrediente.createFromObject(ingredient);
     ingredients.push(p);
     let newIngredients = JSON.stringify(ingredients)
     fs.writeFileSync("./BackEnd/Ingrediente/data.json" , newIngredients);
     return p;
 }
 
-function updateIngredient(iid, updatedIngredient){
-    if(getIngredientById(iid) != undefined){
+function updateIngredient(name, updatedIngredient){
+    if(getIngredientByName(name) != undefined){
         Ingrediente.cleanObject(updatedIngredient);
-        let index = ingredients.findIndex(ing => ing._iid == iid);
+        let index = ingredients.findIndex(ing => ing._name == name);
         if(index > -1){
             Object.assign(ingredients[index], updatedIngredient);
             let newIngredients = JSON.stringify(ingredients);
@@ -35,8 +35,8 @@ function updateIngredient(iid, updatedIngredient){
     }
 }
 
-function deleteIngredient(iid){
-    let index = ingredients.findIndex(ing => ing._rid == rid);
+function deleteIngredient(name){
+    let index = ingredients.findIndex(ing => ing._name == name);
     if(index > -1) ingredients.splice(index , 1);
     let newIngredients = JSON.stringify(ingredients);
     fs.writeFileSync("./BackEnd/Ingrediente/data.json" , newIngredients);
@@ -44,6 +44,6 @@ function deleteIngredient(iid){
 
 exports.deleteIngredient = deleteIngredient;
 exports.updateIngredient = updateIngredient;
-exports.createIngridient = createIngridient;
-exports.getIngredientById = getIngredientById;
+exports.createIngredient = createIngredient;
+exports.getIngredientByName = getIngredientByName;
 exports.getIngredients = getIngredients;
