@@ -10,7 +10,7 @@ function getRecipes(){
 }
 
 function getRecipeById(rid){
-    return recipes.find(recipe => recipe.rid == rid);
+    return recipes.find(recipe => recipe._rid == rid);
 }
 
 function createRecipe(recipe){
@@ -18,7 +18,7 @@ function createRecipe(recipe){
     if(typeof recipe == "string") p = Receta.Recipe.createFromJSON(recipe);
     else p = Receta.createFromObject(recipe);
     recipes.push(p);
-    let newRecipes = JSON.stringify(recipe)
+    let newRecipes = JSON.stringify(recipes)
     fs.writeFileSync("./BackEnd/Receta/data.json" , newRecipes);
     return p;
 }
@@ -36,9 +36,9 @@ function updateRecipe(rid, updatedRecipe){
 }
 
 function deleteRecipe(rid){
-    let index = recipes.findIndex(recipe => recipe.rid == rid);
+    let index = recipes.findIndex(recipe => recipe._rid == rid);
     if(index > -1) recipes.splice(index , 1);
-    let newRecipes = JSON.stringify(recipes)
+    let newRecipes = JSON.stringify(recipes);
     fs.writeFileSync("./BackEnd/Receta/data.json" , newRecipes);
 }
 
