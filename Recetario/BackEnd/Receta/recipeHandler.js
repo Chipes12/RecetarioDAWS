@@ -15,8 +15,9 @@ function getRecipeById(rid){
 
 function createRecipe(recipe){
     let p = undefined;
+    console.log(recipe);
     if(typeof recipe == "string") p = Receta.Recipe.createFromJSON(recipe);
-    else p = Receta.createFromObject(recipe);
+    else p = Receta.Recipe.createFromObject(recipe);
     recipes.push(p);
     let newRecipes = JSON.stringify(recipes)
     fs.writeFileSync("./BackEnd/Receta/data.json" , newRecipes);
@@ -29,6 +30,8 @@ function updateRecipe(rid, updatedRecipe){
         let index = recipes.findIndex(recipe => recipe._rid == rid);
         if(index > -1){
             Object.assign(recipes[index], updatedRecipe);
+            recipes[index]['_estimatedTime'] = Receta.Times[`Time${recipes[index]['_estimatedTime']}`];
+            recipes[index]['_category'] = Receta.Category[`type${recipes[index]['_category']}`];
             let newRecipes = JSON.stringify(recipes);
             fs.writeFileSync("./BackEnd/Receta/data.json", newRecipes);
         }

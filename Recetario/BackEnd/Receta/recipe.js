@@ -76,7 +76,7 @@ class Recipe{
         this._name = value;
     }
     set estimatedTime(value){
-        if(value > 3 || typeof value != "number" || value < 1) throw new RecipeException("The recipe's estimated time must be a number between 1 y 3");
+        if((typeof value == "number" && (value > 3 || value < 1)) || (Object.values(Times).indexOf(value) == -1 && typeof value =="string")) throw new RecipeException("The recipe's estimated time must be a number between 1 y 3");
         let time = "Time" + value;
         this._estimatedTime = Times[time];
     }
@@ -85,7 +85,7 @@ class Recipe{
         this._ingredients = value;
     }
     set category(value){
-        if(value < 1 || value > 5 || typeof value != "number") throw new RecipeException("the recipe's category must be a number between 1 and 5");
+        if((typeof calue == "number" && (value < 1 || value > 5)) ||(Object.values(Category).indexOf(value) == -1 && typeof value == "string")) throw new RecipeException("the recipe's category must be a number between 1 and 5");
         let type = "type" + value;
         this._category = Category[type];
     }

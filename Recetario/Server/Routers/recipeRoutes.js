@@ -8,7 +8,7 @@ router.route('/')//Post
 .post(validateAdmin, (req, res) => {
     let recipe = req.body;
     try{
-       recipe =  recipeHandler.createRecipe(recipe);
+        recipe =  recipeHandler.createRecipe(recipe);
         res.status(201).json(recipe);
     }
     catch(e) {
