@@ -1,9 +1,8 @@
 "use strict";
 
 const mongoose = require('mongoose');
-const schema = mongoose.Schema;
 
-schema = {
+const schemaRecipe = mongoose.Schema({
     rid: {
         type: String,
         required: true
@@ -22,13 +21,14 @@ schema = {
         required: true
     },
     category: {
-        type: String,
-        enum: [1,2,3,4,5],
+        type: Number,
+        enum: ["type1","type2","type3","type4","type5"],
         required: true
     },
     rating: {
         type: Number,
-        enum: [0,1,2,3,4,5]
+        min: 0,
+        max: 5
     },
     portions: {
         type: Number,
@@ -42,6 +42,48 @@ schema = {
         type: String,
         required: true
     }
-}
+});
 
-module.exports = recipeSchema;
+const schemaUser = mongoose.Schema({
+    uid: {
+        type: String,
+        required: true
+    },
+    name: {
+        type: String,
+        required: true
+    },
+    lastName: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    registerDate: {
+        type: Date,
+    },
+    sex: {
+        type: String,
+        enum: ['H','M']
+    },
+    status: {
+        type: String,
+        enum: ['User1','User2'],
+        required: true
+    },
+    favouriteRecipes: {
+        type: Array,
+    }
+});
+
+let Receta = mongoose.model('recipeSch',schemaRecipe);
+let User = mongoose.model('userSch',schemaUser);
+
+module.exports = Receta;
+module.exports = User;
