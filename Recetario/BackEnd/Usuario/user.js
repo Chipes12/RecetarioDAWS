@@ -140,7 +140,7 @@ class User {
     //Methods for creation
     static createFromJSON(jsonValue) {
         let rec = JSON.parse(jsonValue);
-        return Recipe.createFromObject(rec);
+        return User.createFromObject(rec);
     }
 
     static createFromObject(obj) {

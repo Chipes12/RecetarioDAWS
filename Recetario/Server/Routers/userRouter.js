@@ -4,8 +4,8 @@ const express = require('express');
 const router = express.Router();
 const userHandler = require('../../BackEnd/Usuario/user_handler');
 const recipeHandler = require('../../BackEnd/Receta/recipeHandler');
-//const User = require("./user");
-//console.log(userHandler.getUsers());
+const User = require("../../BackEnd/Usuario/user");
+console.log(userHandler.getUsers());
 
 router.route('/')
     .post((req, res) => {
@@ -15,6 +15,13 @@ router.route('/')
             res.status(201).json(user);
         } catch (e) {
             res.status(400).send(e.errorMessage);
+        }
+    })
+    .get((req, res) => {
+
+        if (req.query.filter == undefined) {
+            res.status(200).json(userHandler.getUsers());
+
         }
     });
 
