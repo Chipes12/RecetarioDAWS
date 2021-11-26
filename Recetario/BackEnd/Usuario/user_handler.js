@@ -22,7 +22,7 @@ function createUser(user) {
         p = User.User.createFromObject(user);
     }
     users.push(p);
-    let newUser = JSON.stringify(user)
+    let newUser = JSON.stringify(users)
     fs.writeFileSync("./BackEnd/Usuario/data.json", newUser);
     return p;
 }
