@@ -4,13 +4,13 @@ let recipesContainer = document.getElementById("recipeContainer");
 
 function recipeToHTML(recipe){
     return `
-        <div class="card mr-2">
+        <div class="card mr-2" id="${recipe._rid}">
             <img class="card-img-top" src="${recipe._imageUrl}" alt="${recipe._name}" style="	width: 230px;">
             <div class="card-body">
                 <h4 class="card-title">${recipe._name}</h4>
                 <p class="card-text">${recipe._category}</p>
             </div>
-            <a class="btn btn-info mb-3" href="#" data-toggle="modal" data-target="#addToCart">Seguir receta</a>
+            <a class="btn btn-info mb-3" href="#" onclick="viewRecipe(event)">Seguir receta</a>
         </div>
     `
 }
@@ -21,8 +21,8 @@ function recipesListToHTML(recipesList){
 
 var page = 1;
 function load(){
-        loadRecipes(recipeBookRoute).then(reciepes => {
-        recipesListToHTML(reciepes.slice(4 * (page - 1), 4*page));
+        loadRecipes(recipeBookRoute).then(recipes => {
+        recipesListToHTML(recipes.slice(4 * (page - 1), 4*page));
     });
 }
 
@@ -57,6 +57,15 @@ function changePage(event){
     }
     pages[page].setAttribute("class", "page-item active");
     load();
+}
+
+function viewRecipe(event){
+    let recipeButton = event.target.parentNode;
+     let recipe = loadRecipeData(recipeBookRoute, recipeButton.getAttribute("id"));
+     recipe.then(element => {
+        writeRecipeStorage(element);
+        window.location.href = 'recetas.html';
+     }); 
 }
 
 load();

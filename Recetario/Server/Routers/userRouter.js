@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 const userHandler = require('../../BackEnd/Usuario/user_handler');
 const recipeHandler = require('../../BackEnd/Receta/recipeHandler');
-const User = require("./user");
+//const User = require("./user");
 //console.log(userHandler.getUsers());
 
 router.route('/')

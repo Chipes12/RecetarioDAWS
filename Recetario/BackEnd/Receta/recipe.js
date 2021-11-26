@@ -28,7 +28,7 @@ const Times = {
 };
 
 class Recipe{
-    constructor(name, estimatedTime, ingredients, category, rating, portions, imageUrl, preparation){
+    constructor(name, estimatedTime, ingredients, category, rating, portions, imageUrl, preparation, video){
         this._rid = generateRID();
         this.name = name;
         this.estimatedTime=  estimatedTime;
@@ -38,6 +38,7 @@ class Recipe{
         this.portions =  portions
         this.imageUrl = imageUrl;
         this.preparation = preparation;
+        this.video = video;
     }
     //Getters
     get rid(){
@@ -67,6 +68,9 @@ class Recipe{
     get preparation(){
         return this._preparation;
     }
+    get video(){
+        return this._video;
+    }
     //Setters
     set rid(value){
         throw new RecipeException("You can't add the recipe id");
@@ -76,18 +80,30 @@ class Recipe{
         this._name = value;
     }
     set estimatedTime(value){
-        if((typeof value == "number" && (value > 3 || value < 1)) || (Object.values(Times).indexOf(value) == -1 && typeof value =="string")) throw new RecipeException("The recipe's estimated time must be a number between 1 y 3");
-        let time = "Time" + value;
-        this._estimatedTime = Times[time];
+        if(typeof value == "number" && (value > 3 || value < 1)) throw new RecipeException("The recipe's estimated time must be a number between 1 y 3");
+        else if(typeof value == "number") {
+            let time = "Time" + value;
+            this._estimatedTime = Times[time];
+        }
+        else {
+            if (Object.values(Times).indexOf(value) == -1) throw new RecipeException("The recipe's estimated time must be one of the valid options");
+            else this._estimatedTime = value;
+        }
     }
     set ingredients(value){
         if(!Array.isArray(value)) throw new RecipeException("The recipe's ingredients mut be an ingredient array");
         this._ingredients = value;
     }
     set category(value){
-        if((typeof calue == "number" && (value < 1 || value > 5)) ||(Object.values(Category).indexOf(value) == -1 && typeof value == "string")) throw new RecipeException("the recipe's category must be a number between 1 and 5");
-        let type = "type" + value;
-        this._category = Category[type];
+        if(typeof value == "number" && (value < 1 || value > 5)) throw new RecipeException("the recipe's category must be a number between 1 and 5");
+        else if(typeof value == "number"){
+            let type = "type" + value;
+            this._category = Category[type];
+        }
+        else {
+            if (Object.values(Category).indexOf(value) == -1) throw new RecipeException("the recipe's category must be one of the valid strings");
+            else this._category = value;
+        }
     }
     set rating(value){
         if(typeof value != "number" || value < 0 || value > 5) throw new RecipeException("The recipe's rating must be a number between 0 and 5");
@@ -105,7 +121,10 @@ class Recipe{
         if(typeof value != "string" || value ==="") throw new RecipeException("The recipe's preparation indications but be a string");
         this._preparation = value;
     }
-
+    set video(value){
+        if(typeof value != "string" || value ==="") throw new RecipeException("The recipe's video indications but be a string");
+        this._video = value;
+    }
     //Methods
     static createFromJSON(jsonValue){
         let rec = JSON.parse(jsonValue);
@@ -116,22 +135,24 @@ class Recipe{
         let newRecipe = {};
         Object.assign(newRecipe, obj);
         Recipe.cleanObject(newRecipe);
-        let recipe = new Recipe(newRecipe._name, newRecipe._estimatedTime, newRecipe._ingredients, newRecipe._category, newRecipe._rating, newRecipe._portions, newRecipe._imageUrl, newRecipe._preparation);
+        let recipe = new Recipe(newRecipe._name, newRecipe._estimatedTime, newRecipe._ingredients, newRecipe._category, newRecipe._rating, newRecipe._portions, newRecipe._imageUrl, newRecipe._preparation, newRecipe._video);
         if(newRecipe._rid != undefined) recipe._rid = newRecipe._rid;
         return recipe;
     }
 
     static cleanObject(obj){
-        const recipeProperties = ['_rid', '_name', '_estimatedTime', '_imageUrl', '_ingredients', '_category', '_rating', '_portions', '_preparation'];
+        const recipeProperties = ['_rid', '_name', '_estimatedTime', '_imageUrl', '_ingredients', '_category', '_rating', '_portions', '_preparation', '_video'];
         for (let prop in obj){
             let flag = 0;
             for(let property in recipeProperties){
                 if(prop == recipeProperties[property])flag = 1;
-                if(prop = "_estimatedTime"){
-                    if(obj[prop] < 1 || obj[prop] > 3) flag = 0;
+                if(prop == "_estimatedTime"){
+                    if(typeof obj[prop] == "number" && (obj[prop] > 3 || obj[prop] < 1)) flag = 0;
+                    else if(Object.values(Times).indexOf(obj[prop]) == -1 && typeof obj[prop] =="string") flag = 0;
                 }
-                else if(prop = "_category"){
-                    if(obj[prop] < 1 || obj[prop] > 5) flag = 0;
+                if(prop == "_category"){
+                    if(typeof obj[prop] == "number" && (obj[prop] > 5 || obj[prop] < 1)) flag = 0;
+                    else if(Object.values(Category).indexOf(obj[prop]) == -1 && typeof obj[prop] =="string") flag = 0;
                 }
             }
             if(!flag) delete obj[prop];
