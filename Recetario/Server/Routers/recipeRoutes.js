@@ -8,14 +8,15 @@ Receta.find({}, res => console.log(res))
 
 router.route('/')//Post
 .post(validateAdmin, (req, res) => {
-    let recipe = req.body;
-    try{
-        recipe =  recipeHandler.createRecipe(recipe);
-        res.status(201).json(recipe);
-    }
-    catch(e) {
-        res.status(400).send(e.errorMessage);
-    }
+    recipeHandler.createRecipe(req, res);
+    
+    // try{
+    //     recipe =  recipeHandler.createRecipe(recipe);
+    //     res.status(201).json(recipe);
+    // }
+    // catch(e) {
+    //     res.status(400).send(e.errorMessage);
+    // }
 })
 .get((req, res) =>{
     //  if(req.query.time == undefined && req.query.type == undefined && req.query.rate == undefined){
@@ -38,25 +39,25 @@ router.route('/')//Post
     //   }
  })
  .put(validateAdmin, (req, res) => {
-     let rid = req.params.rid;
-     let recipeUpdated = req.body;
-     if(typeof recipeHandler.getRecipeById(rid)  != 'undefined'){
-          recipeHandler.updateRecipe(rid, recipeUpdated);
-          res.status(200).json(recipeHandler.getRecipeById(rid));
-      }
-      else{
-          res.status(404).type('text/plain').send(`Recipe with id: ${rid} don't exist`);
-      }
+     recipeHandler.updateRecipe(req, res);
+    //  if(typeof recipeHandler.getRecipeById(rid)  != 'undefined'){
+    //       recipeHandler.updateRecipe(rid, recipeUpdated);
+    //       res.status(200).json(recipeHandler.getRecipeById(rid));
+    //   }
+    //   else{
+    //       res.status(404).type('text/plain').send(`Recipe with id: ${rid} don't exist`);
+    //   }
  })
  .delete(validateAdmin, (req, res) => {
-     let rid = req.params.rid;
-     if(typeof recipeHandler.getRecipeById(rid) != 'undefined'){
-          recipeHandler.deleteRecipe(rid);
-         res.status(200).type('text/plain').send(`Recipe with id: ${rid} was successfully deleted`);
-     }
-     else{
-         res.status(404).type('text/plain').send(`Recipe with id: ${rid} don't exist`);
-     }
+     recipeHandler.deleteRecipe(req,res);
+    //  let rid = req.params.rid;
+    //  if(typeof recipeHandler.getRecipeById(rid) != 'undefined'){
+    //       recipeHandler.deleteRecipe(rid);
+    //      res.status(200).type('text/plain').send(`Recipe with id: ${rid} was successfully deleted`);
+    //  }
+    //  else{
+    //      res.status(404).type('text/plain').send(`Recipe with id: ${rid} don't exist`);
+    //  }
  })
 
 

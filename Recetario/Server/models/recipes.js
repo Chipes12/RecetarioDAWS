@@ -14,16 +14,16 @@ const schemaRecipe = mongoose.Schema({
         required: true
     },
     estimatedTime: {
-        type: Number,
+        type: String,
         enum: ["Time1","Time2","Time3"],
         required: true
     },
     ingredients: {
-        type: String,
+        type: Array,
         required: true
     },
     category: {
-        type: Number,
+        type: String,
         enum: ["type1","type2","type3","type4","type5"],
         required: true
     },
@@ -41,6 +41,10 @@ const schemaRecipe = mongoose.Schema({
         required: true
     },
     preparation: {
+        type: String,
+        required: true
+    },
+    videoUrl: {
         type: String,
         required: true
     }

@@ -4,11 +4,11 @@ let recipesContainer = document.getElementById("recipeContainer");
 
 function recipeToHTML(recipe){
     return `
-        <div class="card mr-2" id="${recipe._rid}">
-            <img class="card-img-top" src="${recipe._imageUrl}" alt="${recipe._name}" style="	width: 230px;">
+        <div class="card mr-2" id="${recipe._id}">
+            <img class="card-img-top" src="${recipe.imageUrl}" alt="${recipe.name}" style="	width: 230px;">
             <div class="card-body">
-                <h4 class="card-title">${recipe._name}</h4>
-                <p class="card-text">${recipe._category}</p>
+                <h4 class="card-title">${recipe.name}</h4>
+                <p class="card-text">${recipe.category}</p>
             </div>
             <a class="btn btn-info mb-3" href="#" onclick="viewRecipe(event)">Seguir receta</a>
         </div>
