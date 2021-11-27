@@ -205,3 +205,6 @@ div.embed-responsive {
 	margin-bottom: 200px !important;
 }
 
+.imgRounded{
+	border-radius: 10%;
+}

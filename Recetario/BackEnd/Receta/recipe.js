@@ -28,7 +28,7 @@ const Times = {
 };
 
 class Recipe{
-    constructor(name, estimatedTime, ingredients, category, rating, portions, imageUrl, preparation, video){
+    constructor(name, estimatedTime, ingredients, category, rating, portions, imageUrl, preparation, video, description){
         this._rid = generateRID();
         this.name = name;
         this.estimatedTime=  estimatedTime;
@@ -39,6 +39,7 @@ class Recipe{
         this.imageUrl = imageUrl;
         this.preparation = preparation;
         this.video = video;
+        this.description = description;
     }
     //Getters
     get rid(){
@@ -70,6 +71,9 @@ class Recipe{
     }
     get video(){
         return this._video;
+    }
+    get description(){
+        return this._description;
     }
     //Setters
     set rid(value){
@@ -125,6 +129,10 @@ class Recipe{
         if(typeof value != "string" || value ==="") throw new RecipeException("The recipe's video indications but be a string");
         this._video = value;
     }
+    set description(value){
+        if(typeof value != "string" || value ==="") throw new RecipeException("The recipe's description but be a string");
+        this._description = value;
+    }
     //Methods
     static createFromJSON(jsonValue){
         let rec = JSON.parse(jsonValue);
@@ -135,13 +143,13 @@ class Recipe{
         let newRecipe = {};
         Object.assign(newRecipe, obj);
         Recipe.cleanObject(newRecipe);
-        let recipe = new Recipe(newRecipe._name, newRecipe._estimatedTime, newRecipe._ingredients, newRecipe._category, newRecipe._rating, newRecipe._portions, newRecipe._imageUrl, newRecipe._preparation, newRecipe._video);
+        let recipe = new Recipe(newRecipe._name, newRecipe._estimatedTime, newRecipe._ingredients, newRecipe._category, newRecipe._rating, newRecipe._portions, newRecipe._imageUrl, newRecipe._preparation, newRecipe._video, newRecipe._description);
         if(newRecipe._rid != undefined) recipe._rid = newRecipe._rid;
         return recipe;
     }
 
     static cleanObject(obj){
-        const recipeProperties = ['_rid', '_name', '_estimatedTime', '_imageUrl', '_ingredients', '_category', '_rating', '_portions', '_preparation', '_video'];
+        const recipeProperties = ['_rid', '_name', '_estimatedTime', '_imageUrl', '_ingredients', '_category', '_rating', '_portions', '_preparation', '_video', '_description'];
         for (let prop in obj){
             let flag = 0;
             for(let property in recipeProperties){
