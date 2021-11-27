@@ -3,6 +3,8 @@
 const express = require('express');
 const router = express.Router();
 const recipeHandler = require('../../BackEnd/Receta/recipeHandler');
+const Receta = require("../../Server/models/recipes"); //require("./recipe");
+Receta.find({}, res => console.log(res))
 
 router.route('/')//Post
 .post(validateAdmin, (req, res) => {
@@ -16,23 +18,24 @@ router.route('/')//Post
     }
 })
 .get((req, res) =>{
-     if(req.query.time == undefined && req.query.type == undefined && req.query.rate == undefined){
-          res.status(200).json(recipeHandler.getRecipes());
-     }
-     else{
-          let filteredArray = recipeHandler.firltRecipes(req.query.time,  req.query.type,  req.query.rate);
-          res.status(200).json(filteredArray);
-     }
+    //  if(req.query.time == undefined && req.query.type == undefined && req.query.rate == undefined){
+          recipeHandler.getRecipes(req,res);
+    //  }
+    //  else{
+    //       let filteredArray = recipeHandler.firltRecipes(req.query.time,  req.query.type,  req.query.rate);
+    //       res.status(200).json(filteredArray);
+    //  }
 })
 
  router.route('/:rid',)
  .get((req, res) => {
       let  rid = req.params.rid;
-      let recipe = recipeHandler.getRecipeById(rid);
-      if(typeof recipe != 'undefined') res.status(200).json(recipe);
-      else{
-          res.status(404).type('text/plain').send(`Error 404 Recipe with id: ${rid} not found`);
-      }
+      recipeHandler.getRecipeById(rid,res);
+    //   let recipe = recipeHandler.getRecipeById(rid,req,res);
+    //   if(typeof recipe != 'undefined') res.status(200).json(recipe);
+    //   else{
+    //       res.status(404).type('text/plain').send(`Error 404 Recipe with id: ${rid} not found`);
+    //   }
  })
  .put(validateAdmin, (req, res) => {
      let rid = req.params.rid;

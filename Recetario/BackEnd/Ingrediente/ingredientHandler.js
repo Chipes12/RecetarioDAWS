@@ -1,9 +1,9 @@
 "use strcit";
 
-const fs = require("fs");
-const Ingrediente = require("./ingredient");
-let content = fs.readFileSync("./BackEnd/Ingrediente/data.json");
-const ingredients = JSON.parse(content).map(Ingrediente.createFromObject);
+// const fs = require("fs");
+// const Ingrediente = require("./ingredient");
+// let content = fs.readFileSync("./BackEnd/Ingrediente/data.json");
+// const ingredients = JSON.parse(content).map(Ingrediente.createFromObject);
 
 function getIngredients(){
     return ingredients;
