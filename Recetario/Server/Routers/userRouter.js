@@ -5,7 +5,6 @@ const router = express.Router();
 const userHandler = require('../../BackEnd/Usuario/user_handler');
 const recipeHandler = require('../../BackEnd/Receta/recipeHandler');
 const User = require("../../BackEnd/Usuario/user");
-console.log(userHandler.getUsers());
 
 router.route('/')
     .post((req, res) => {
@@ -59,26 +58,28 @@ router.route('/:uid/favourites').post((req, res) => {
         let user = userHandler.getUserById(uid);
 
 
-        let recipe = recipeHandler.getRecipeById(recipeId.rid);
+        let recipe = recipeHandler.getRecipeById(recipeId[0].rid);
         if (recipe != undefined) {
-            user.User.addItem(recipeId.rid);
+            user.addItem(recipeId[0].rid);
 
         } else {
             res.status(404)
                 .type('text/plain')
-                .send(`No recipe with ID  ${recipeId.rid} found`);
+                .send(`No recipe with ID  ${recipeId[0].rid} found`);
             return;
         }
 
-        res.status(200).json(user.User._favouriteRecipes);
+        res.status(200).json(user._favouriteRecipes);
     })
     .get((req, res) => {
         let uid = req.params.uid;
         let user = userHandler.getUserById(uid);
         let recipes = []
 
-        for (let recipeID of user.User._favouriteRecipes) {
-            let recipe = recipeHandler.getRecipeById(recipeID);
+
+        for (let recipeID of user._favouriteRecipes) {
+
+            let recipe = recipeHandler.getRecipeById(recipeID.rid);
             if (recipe != undefined) {
                 recipes.push(recipe)
             } else {
@@ -96,14 +97,14 @@ router.route('/:uid/favourites/:rid').get((req, res) => {
         let user = userHandler.getUserById(uid);
         let recId = req.params.rid;
 
-        for (let recipeID of user.User._favouriteRecipes) {
-            let recipe = recipeHandler.getRecipeById(recipeID);
-            if (typeof recipe != 'undefined' && recipeID == recId) {
-                res.status(200).json(recipe);
-                break;
-            } else {
-                res.status(404).type('text/plain').send(`Error 404 Recipe with id: ${recId} not found`);
-            }
+        let idToFind = user._favouriteRecipes.find(favRecipe => favRecipe.rid == recId)
+
+        if (idToFind != undefined) {
+            let recipe = recipeHandler.getRecipeById(recId);
+            res.type('text/plain; charset=utf-8');
+            res.status(200).json(recipe);
+        } else {
+            res.status(404).send(`Error 404 Recipe with id: ${recId} not found`)
         }
     })
     .delete((req, res) => {
@@ -111,12 +112,12 @@ router.route('/:uid/favourites/:rid').get((req, res) => {
         let user = userHandler.getUserById(uid);
         let recId = req.params.rid;
 
-        let idToDelete = user.User._favouriteRecipes.find(favRecipe => favRecipe._rid == recId)
+        let idToDelete = user._favouriteRecipes.find(favRecipe => favRecipe.rid == recId)
 
         if (idToDelete != undefined) {
             res.type('text/plain; charset=utf-8');
             res.status(200).send(`Recipe ${recId} was deleted :c`);
-            user.User.removeItem(recId);
+            user.removeItem(recId);
         } else {
             res.status(404).send("Recipe not found, impossible to delete")
         }

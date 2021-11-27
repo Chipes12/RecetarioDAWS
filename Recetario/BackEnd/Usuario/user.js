@@ -180,7 +180,7 @@ class User {
     //Falta ver si lo hacemos como los proxies
     addItem(recipeId) {
 
-        //find existing item and update or create new 
+        //find existing item and  create new 
         if (!this._favouriteRecipes.find(element => element.rid == recipeId) && Receta.getRecipeById(recipeId) != undefined) {
             this._favouriteRecipes.push(new RecipeProxy(recipeId));
 
