@@ -1,12 +1,1 @@
-[{
-    "_rid": "f7d0-af5b-4c41-a7cb",
-    "_name": "Ensalada",
-    "_estimatedTime": "20 - 60 min",
-    "_ingredients": ["Lechuga", "Aguacate"],
-    "_category": "Bebida",
-    "_rating": 5,
-    "_portions": 10,
-    "_imageUrl": "https://www.hola.com/imagenes/cocina/noticiaslibros/20210805194067/ensaladas-con-tres-cuatro-ingredientes/0-981-971/ingredientes-adobe-m.jpg",
-    "_preparation": "Muchos pasos",
-    "_video": "a"
-}]
+[{"_rid":"ab59-0118-46f1-a6dc","_name":"Ensalada","_estimatedTime":"5 - 20 min","_ingredients":["Lechuga","Aguacate"],"_category":"Entrada","_rating":5,"_portions":10,"_imageUrl":"https://estaticos.miarevista.es/media/cache/760x570_thumb/uploads/images/recipe/5d1de76b5bafe804b488438c/ensaladamediterranea-int.jpg","_preparation":"Muchos pasos","_video":"https://www.youtube.com/watch?v=w70sHOeq64s","_description":"Receta muy bonita"},{"_rid":"35d6-4a27-44ad-a116","_name":"Ensalada verde","_estimatedTime":"5 - 20 min","_ingredients":["Lechuga","Aguacate"],"_category":"Entrada","_rating":5,"_portions":10,"_imageUrl":"https://estaticos.miarevista.es/media/cache/760x570_thumb/uploads/images/recipe/5d1de76b5bafe804b488438c/ensaladamediterranea-int.jpg","_preparation":"Muchos pasos","_video":"https://www.youtube.com/watch?v=w70sHOeq64s","_description":"Receta muy bonita"}]

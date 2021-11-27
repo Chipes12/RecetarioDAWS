@@ -9,52 +9,53 @@ function recipeToHTML(recipe){
 <span class="container" id= "tituloReceta">
             <h1 id="recipeName" class="mt-5">${recipe._name}</h1>
         </span>
+        <div class="d-flex justify-content-center">
         <img id="recipeImg"
             src="${recipe._imageUrl}"
-            alt="recipe-img" class="align-self-center img-fluid m-4" width="800px">
+            alt="recipe-img" class="imgRounded" width="600px">
+        </div>
         <form class="form-inline">
             <div class="form-group">
                 <h4 id="recipePortion" class="pr-5"><i class="fas fa-users"></i> Porciones: ${recipe._portions}</h4>
-                <h4 id="recipeCategory" class="pr-5"><i class="far fa-list-alt"></i> Tipo: </h4>
-                <h4 class="pr-5">Dificultad: <i id="recipeDificult" class="far fa-sad-tear"></i></h4>
-                <h4 class="pr-5"><i class="far fa-clock"></i> Tiempo: </h4>
-                <h4 class="pr-5"><i class="fas fa-star" style="color: rgba(255, 200, 0, 0.82);"></i> Calificación: </h4>
+                <h4 id="recipeCategory" class="pr-5"><i class="far fa-list-alt"></i> Tipo: ${recipe._category}</h4>
+                <h4 class="pr-5"><i class="far fa-clock"></i> Tiempo: ${recipe._estimatedTime}</h4>
+                <h4 class="pr-5"><i class="fas fa-star" style="color: rgba(255, 200, 0, 0.82);"></i> Calificación: ${recipe._rating}</h4>
                 <h4 id="recipeFav" class="pr-5"><i class="fas fa-heart fa-2x"></i></h4>
             </div>
         </form>
         <span id="recipeCalif" class="form-inline container m-5">
             <div class="form-group">
                 <h4 class="mr-5">Calificación:</h4>
-                <span><i class="1 fas fa-star fa-2x"></i></span>
-                <span><i class="2 fas fa-star fa-2x"></i></span>
-                <span><i class="3 fas fa-star fa-2x"></i></span>
-                <span><i class="4 fas fa-star fa-2x"></i></span>
-                <span><i class="5 fas fa-star fa-2x"></i></span>
+                <span><i class="1 fas fa-star fa-2x" onclick="updateStars(event)"></i></span>
+                <span><i class="2 fas fa-star fa-2x" onclick="updateStars(event)"></i></span>
+                <span><i class="3 fas fa-star fa-2x" onclick="updateStars(event)"></i></span>
+                <span><i class="4 fas fa-star fa-2x" onclick="updateStars(event)"></i></span>
+                <span><i class="5 fas fa-star fa-2x" onclick="updateStars(event)"></i></span>
                 <button type="button" name="" id="btnCalif" class="btn btn-light ml-5">Calificar</button>
             </div>
         </span>
         <span class="container">
-            <h3 class="mt-5">Descripción</h3>
-            <p id="recipeDescription" class="pt-5">Richard McClintock, a Latin professor at Hampden-Sydney College in
-                Virginia, looked up one of the more
-                obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in
-                classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and
-                1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.
-                This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of
-                Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
+            <h3 class="mt-5">Descripción:</h3>
+            <p id="recipeDescription" class="pt-5">${recipe._description}</p>
         </span>
         <span class="container">
             <h3 class="mt-5">Procedimiento</h3>
-            <p id="recipeProcedure" class="pt-5">Richard McClintock, a Latin professor at Hampden-Sydney College in
-                Virginia, looked up one of the more
-                obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in
-                classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and
-                1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.
-                This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of
-                Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
+            <p id="recipeProcedure" class="pt-5">${recipe._preparation}</p>
         </span>
         <div class="embed-responsive embed-responsive-16by9">
-            <iframe id="recipeVideo" class="embed-responsive-item" src="https://www.youtube.com/embed/fH7_c_TR-rU"
+            <iframe id="recipeVideo" class="embed-responsive-item" src="${recipe._video}"
                 allowfullscreen></iframe>
         </div>`
+}
+
+function updateStars(event){
+    let starsContainer = infoContainer.getElementsByTagName("span");
+    let clickedStar = event.target.parentNode;  
+    let found = false;
+    let  starsArray = [starsContainer[2], starsContainer[3], starsContainer[4], starsContainer[5], starsContainer[6]];
+    for(let i = 0; i < 5; i++){
+        if(!found) starsArray[i].setAttribute("style", "color: rgba(255, 200, 0, 0.82);");
+        else  starsArray[i].setAttribute("style", "color: rgba(38, 37, 44, 1);");
+        if(starsArray[i] == clickedStar) found = true;
+    }
 }
