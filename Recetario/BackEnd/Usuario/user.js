@@ -53,11 +53,11 @@ class User {
         throw new UserException("Unable to modify recipes directly, use corresponding method instead.");
     }
 
-    get uuid() {
+    get uid() {
         return this._uid;
     }
 
-    set uuid(value) {
+    set uid(value) {
         throw new UserException("User uuuid is auto-generated.");
     }
 
@@ -73,14 +73,14 @@ class User {
     }
 
     get lastName() {
-        return this._lastname;
+        return this._lastName;
     }
 
     set lastName(value) {
         if (typeof value !== "string" || value === "") {
             throw new UserException("User lastname cannot be empty");
         }
-        this._lastname = value;
+        this._lastName = value;
     }
 
     get email() {
@@ -132,9 +132,14 @@ class User {
     }
 
     set status(value) {
-        if (value > 2 || typeof value != "number" || value < 1) throw new RecipeException("The user's status must be a number between 1 y 2");
-        let type = "User" + value;
-        this._status = userTypes[type];
+        if (typeof value == "number" && (value < 1 || value > 2)) throw new UserException("the user's status must be a number between 1 and 2");
+        else if (typeof value == "number") {
+            let type = "User" + value;
+            this._status = userTypes[type];
+        } else {
+            if (Object.values(userTypes).indexOf(value) == -1) throw new UserException("the users's status must be one of the valid strings");
+            else this._status = value;
+        }
     }
 
     //Methods for creation
@@ -157,13 +162,14 @@ class User {
     }
 
     static cleanObject(obj) {
-        const userProps = ['_uid', '_name', '_lastname', '_email', '_password', '_registerDate', '_sex', '_status'];
+        const userProps = ['_uid', '_name', '_lastName', '_email', '_password', '_registerDate', '_sex', '_status'];
         for (let prop in obj) {
             let flag = 0;
             for (let property in userProps) {
                 if (prop == userProps[property]) flag = 1;
-                if (prop = "_status") {
-                    if (obj[prop] < 1 || obj[prop] > 2) flag = 0;
+                if (prop == "_status") {
+                    if (typeof obj[prop] == "number" && (obj[prop] > 2 || obj[prop] < 1)) flag = 0;
+                    else if (Object.values(userTypes).indexOf(obj[prop]) == -1 && typeof obj[prop] == "string") flag = 0;
                 }
             }
             if (!flag) delete obj[prop];
@@ -174,7 +180,7 @@ class User {
     //Falta ver si lo hacemos como los proxies
     addItem(recipeId) {
 
-        //find existing item and update or create new 
+        //find existing item and  create new 
         if (!this._favouriteRecipes.find(element => element.rid == recipeId) && Receta.getRecipeById(recipeId) != undefined) {
             this._favouriteRecipes.push(new RecipeProxy(recipeId));
 

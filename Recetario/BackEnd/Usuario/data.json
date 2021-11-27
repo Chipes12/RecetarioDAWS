@@ -1,9 +1,21 @@
 [{
+    "_uid": "1c3c825f-16eb-4f18-98cd-2c1ab407922f",
     "_name": "Carlos",
     "_lastName": "Paez",
     "_email": "is728099@iteso.mx",
     "_password": "Contra",
+    "_registerDate": "1980-10-11",
+    "_sex": "Hombre",
+    "_status": "Comun",
+    "_favouriteRecipes": []
+}, {
+    "_uid": "9f1aa6e0-cb22-4a2b-b718-08683774bba3",
+    "_name": "Axel",
+    "_lastName": "Albarran",
+    "_email": "is728099@iteso.mx",
+    "_password": "Contrase",
     "_registerDate": "1980-10-10",
     "_sex": "Hombre",
-    "_status": 1
+    "_status": "Comun",
+    "_favouriteRecipes": []
 }]

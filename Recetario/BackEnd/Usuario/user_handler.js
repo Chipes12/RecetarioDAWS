@@ -22,7 +22,7 @@ function createUser(user) {
         p = User.User.createFromObject(user);
     }
     users.push(p);
-    let newUser = JSON.stringify(user)
+    let newUser = JSON.stringify(users)
     fs.writeFileSync("./BackEnd/Usuario/data.json", newUser);
     return p;
 }
@@ -32,9 +32,9 @@ function updateUser(uid, updatedUser) {
         User.User.cleanObject(updatedUser);
         let index = users.findIndex(user => user._uid == uid);
         if (index > -1) {
-            Object.assign(users[index], updateUser);
+            Object.assign(users[index], updatedUser);
+            users[index]._status = typeof users[index]._status == "number" ? User.userTypes[`User${users[index]['_status']}`] : users[index]._status;
             let newUser = JSON.stringify(users);
-            console.log(users);
             fs.writeFileSync("./BackEnd/Usuario/data.json", newUser);
         }
     }
