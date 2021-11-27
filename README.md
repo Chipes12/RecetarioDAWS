@@ -31,3 +31,4 @@ Es necesario que descargues express, cors, y nodemon así:
 - npm i -nodemon
 - npm i -S mongoose
 - npm i -S mongodb
+- npm i -S dotenv
