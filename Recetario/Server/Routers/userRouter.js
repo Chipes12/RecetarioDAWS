@@ -3,9 +3,6 @@
 const express = require('express');
 const router = express.Router();
 const userHandler = require('../../BackEnd/Usuario/user_handler');
-const recipeHandler = require('../../BackEnd/Receta/recipeHandler');
-const User = require("../../Server/models/users");
-User.find({}, res => console.log(res))
 
 router.route('/')
     .post((req, res) => {
