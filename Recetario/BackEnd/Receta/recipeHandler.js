@@ -15,7 +15,7 @@ function getRecipes(req, res) {
 
 function getRecipeById(rid, res) {
     Receta.find({
-            "_rid": rid
+            "_id": rid
         }).then(recipe => res.status(200).json(recipe))
         .catch(err => {
             res.status(400).send(err)
@@ -76,9 +76,9 @@ function updateRecipe(req, res) {
 function deleteRecipe(req, res) {
     let rid = req.params.rid;
     Receta.findByIdAndRemove(rid)
-    .then(recipe => {
-        res.status(200).send('Recipe deleted successfully');
-    }).catch(err => res.status(400).send(`Unable to update recipe with id ${rid}: ${err}`));
+        .then(recipe => {
+            res.status(200).send('Recipe deleted successfully');
+        }).catch(err => res.status(400).send(`Unable to update recipe with id ${rid}: ${err}`));
 
     // let index = recipes.findIndex(recipe => recipe._rid == rid);
     // if (index > -1) recipes.splice(index, 1);

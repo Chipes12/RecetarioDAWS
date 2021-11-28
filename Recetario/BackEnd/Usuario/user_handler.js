@@ -15,7 +15,7 @@ function getUsers(req, res) {
 
 function getUserById(uid, res) {
     User.find({
-            "_uid": uid
+            "_id": uid
         }).then(user => res.status(200).json(user))
         .catch(err => {
             res.status(400).send(err)
