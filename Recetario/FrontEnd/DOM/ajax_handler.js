@@ -1,6 +1,6 @@
 "use strict";
 
-const recipeBookRoute = process.env.RECIPE_BOOK_ROUTE;
+const recipeBookRoute = `http://localhost:8080/recipebook/recipes/`;
 
 async function loadRecipes(url){
     let response = await fetch(url);

@@ -1,13 +1,13 @@
 "use strict";
 
-let recipe = JSON.parse(sessionStorage.getItem("Recipe"));
+let recipe = JSON.parse(sessionStorage.getItem("Recipe"))[0];
 let infoContainer = document.getElementById("infoContainer");
 infoContainer.innerHTML = recipeToHTML(recipe);
 
 function recipeToHTML(recipe){
     return `
 <span class="container" id= "tituloReceta">
-            <h1 id="recipeName" class="mt-5">${recipe._name}</h1>
+            <h1 id="recipeName" class="mt-5">${recipe.name}</h1>
         </span>
         <div class="d-flex justify-content-center">
         <img id="recipeImg"

@@ -3,8 +3,6 @@
 const express = require('express');
 const router = express.Router();
 const recipeHandler = require('../../BackEnd/Receta/recipeHandler');
-const Receta = require("../../Server/models/recipes"); //require("./recipe");
-Receta.find({}, res => console.log(res))
 
 router.route('/')//Post
 .post(validateAdmin, (req, res) => {
