@@ -11,15 +11,15 @@ function recipeToHTML(recipe){
         </span>
         <div class="d-flex justify-content-center">
         <img id="recipeImg"
-            src="${recipe._imageUrl}"
+            src="${recipe.imageUrl}"
             alt="recipe-img" class="imgRounded" width="600px">
         </div>
         <form class="form-inline">
             <div class="form-group">
-                <h4 id="recipePortion" class="pr-5"><i class="fas fa-users"></i> Porciones: ${recipe._portions}</h4>
-                <h4 id="recipeCategory" class="pr-5"><i class="far fa-list-alt"></i> Tipo: ${recipe._category}</h4>
-                <h4 class="pr-5"><i class="far fa-clock"></i> Tiempo: ${recipe._estimatedTime}</h4>
-                <h4 class="pr-5"><i class="fas fa-star" style="color: rgba(255, 200, 0, 0.82);"></i> Calificación: ${recipe._rating}</h4>
+                <h4 id="recipePortion" class="pr-5"><i class="fas fa-users"></i> Porciones: ${recipe.portions}</h4>
+                <h4 id="recipeCategory" class="pr-5"><i class="far fa-list-alt"></i> Tipo: ${recipe.category}</h4>
+                <h4 class="pr-5"><i class="far fa-clock"></i> Tiempo: ${recipe.estimatedTime}</h4>
+                <h4 class="pr-5"><i class="fas fa-star" style="color: rgba(255, 200, 0, 0.82);"></i> Calificación: ${recipe.rating}</h4>
                 <h4 id="recipeFav" class="pr-5"><i class="fas fa-heart fa-2x"></i></h4>
             </div>
         </form>
@@ -36,14 +36,14 @@ function recipeToHTML(recipe){
         </span>
         <span class="container">
             <h3 class="mt-5">Descripción:</h3>
-            <p id="recipeDescription" class="pt-5">${recipe._description}</p>
+            <p id="recipeDescription" class="pt-5">${recipe.description}</p>
         </span>
         <span class="container">
             <h3 class="mt-5">Procedimiento</h3>
-            <p id="recipeProcedure" class="pt-5">${recipe._preparation}</p>
+            <p id="recipeProcedure" class="pt-5">${recipe.preparation}</p>
         </span>
         <div class="embed-responsive embed-responsive-16by9">
-            <iframe id="recipeVideo" class="embed-responsive-item" src="${recipe._video}"
+            <iframe id="recipeVideo" class="embed-responsive-item" src="${recipe.video}"
                 allowfullscreen></iframe>
         </div>`
 }
