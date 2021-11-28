@@ -44,7 +44,7 @@ const schemaRecipe = mongoose.Schema({
         type: String,
         required: true
     },
-    videoUrl: {
+    video: {
         type: String,
         required: true
     }
