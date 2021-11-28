@@ -32,3 +32,6 @@ Es necesario que descargues express, cors, y nodemon así:
 - npm i -S mongoose
 - npm i -S mongodb
 - npm i -S dotenv
+- npm i -S bcryptjs
+- npm i -S bcrypt
+- npm i -S jsonwebtoken
