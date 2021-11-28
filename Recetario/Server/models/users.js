@@ -31,11 +31,11 @@ const schemaUser = mongoose.Schema({
     },
     sex: {
         type: String,
-        enum: ['H','M']
+        enum: ['H', 'M']
     },
     status: {
         type: String,
-        enum: ['User1','User2'],
+        enum: ['User1', 'User2'],
         required: true
     },
     favouriteRecipes: {
@@ -43,16 +43,21 @@ const schemaUser = mongoose.Schema({
     }
 });
 
-schemaUser.pre('save', function(next) {
+schemaUser.pre('save', function (next) {
     let user = this;
     user.password = bcrypt.hashSync(user.password, 10);
     next();
 })
 
-userSchema.methods.generateToken = function(password) {
+schemaUser.methods.generateToken = function (password) {
     let user = this;
-    let payload = {_id: user._id, role: user.role};
-    let options = { expiresIn: 60 * 60 }
+    let payload = {
+        _id: user._id,
+        role: user.role
+    };
+    let options = {
+        expiresIn: 60 * 60
+    }
     if (bcrypt.compareSync(password, user.password)) {
         try {
             user.token = jwt.sign(payload, privateKey, options);
@@ -63,6 +68,6 @@ userSchema.methods.generateToken = function(password) {
     }
 }
 
-let User = mongoose.model('userSch',schemaUser);
+let User = mongoose.model('userSch', schemaUser);
 
 module.exports = User;
