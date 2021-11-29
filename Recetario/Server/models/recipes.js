@@ -1,14 +1,11 @@
 "use strict";
 
 const mongoose = require('mongoose');
+require('dotenv').config({path: 'env'});
 mongoose.connect(process.env.URI,{ useNewUrlParser: true, useUnifiedTopology: true });
 
 
 const schemaRecipe = mongoose.Schema({
-    rid: {
-        type: String,
-        required: true
-    },
     name: {
         type: String,
         required: true
@@ -45,6 +42,10 @@ const schemaRecipe = mongoose.Schema({
         required: true
     },
     video: {
+        type: String,
+        required: true
+    },
+    description: {
         type: String,
         required: true
     }

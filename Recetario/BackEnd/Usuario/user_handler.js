@@ -23,6 +23,16 @@ function getUserById(uid, res) {
         })
     //return users.find(user => user._uid == uid);
 }
+function getUserByEmail(mail, res) {
+    User.find({
+            "_email": mail
+        }).then(user => res.status(200).json(user))
+        .catch(err => {
+            res.status(400).send(err)
+            // return;
+        })
+    //return users.find(user => user._email == mail);
+}
 
 function createUser(req, res) {
     let user = User(req.body);
@@ -95,3 +105,4 @@ exports.getUserById = getUserById;
 exports.getUsers = getUsers;
 exports.updateUser = updateUser;
 exports.deleteUser = deleteUser;
+exports.getUserByEmail = getUserByEmail;

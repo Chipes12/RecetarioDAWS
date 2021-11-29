@@ -3,6 +3,8 @@
 const express = require('express');
 const router = express.Router();
 const userHandler = require('../../BackEnd/Usuario/user_handler');
+const User = require('../models/users');
+const jwt = require('jsonwebtoken');
 
 router.route('/')
     .post((req, res) => {
@@ -131,5 +133,6 @@ router.route('/:uid/favourites/:rid').get((req, res) => {
         }
 
     });
+
 
 module.exports = router;

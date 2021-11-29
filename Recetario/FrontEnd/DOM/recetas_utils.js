@@ -17,8 +17,8 @@ function recipeToHTML(recipe){
         <form class="form-inline">
             <div class="form-group">
                 <h4 id="recipePortion" class="pr-5"><i class="fas fa-users"></i> Porciones: ${recipe.portions}</h4>
-                <h4 id="recipeCategory" class="pr-5"><i class="far fa-list-alt"></i> Tipo: ${recipe.category}</h4>
-                <h4 class="pr-5"><i class="far fa-clock"></i> Tiempo: ${recipe.estimatedTime}</h4>
+                <h4 id="recipeCategory" class="pr-5"><i class="far fa-list-alt"></i> Tipo: ${Category[recipe.category]}</h4>
+                <h4 class="pr-5"><i class="far fa-clock"></i> Tiempo: ${Times[recipe.estimatedTime]}</h4>
                 <h4 class="pr-5"><i class="fas fa-star" style="color: rgba(255, 200, 0, 0.82);"></i> Calificación: ${recipe.rating}</h4>
                 <h4 id="recipeFav" class="pr-5"><i class="fas fa-heart fa-2x"></i></h4>
             </div>
