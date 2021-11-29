@@ -133,29 +133,29 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="">
+                    <form action="" method="POST">
                         <div class="row">
                             <div class="col-6">
-                                <input type="text" name="" id="" class="form-control" placeholder="Nombre o nombres"
+                                <input type="text" name="name" id="" class="form-control" placeholder="Nombre o nombres"
                                     aria-describedby="helpId" required>
                             </div>
                             <div class="col-6">
-                                <input type="text" name="" id="" class="form-control" placeholder="Apellidos"
+                                <input type="text" name="lastName" id="" class="form-control" placeholder="Apellidos"
                                     aria-describedby="helpId" required>
                             </div>
                         </div>
 
-                        <input type="mail" name="" id="" class="form-control mt-3" placeholder="Tu correo"
+                        <input type="mail" name="email" id="" class="form-control mt-3" placeholder="Tu correo"
                             aria-describedby="helpId" required>
 
-                        <input type="password" name="" id="" class="form-control mt-3" placeholder="Contraseña"
+                        <input type="password" name="password" id="" class="form-control mt-3" placeholder="Contraseña"
                             aria-describedby="helpId" required>
 
                         <input type="password" name="" id="" class="form-control mt-3"
                             placeholder="Confirmar contraseña" aria-describedby="helpId" required>
 
                         <div class="input-group mt-3">
-                            <input type="date" class="form-control" value="2000-01-01" name="" id=""
+                            <input type="date" class="form-control" value="2000-01-01" name="registerDate" id=""
                                 style="border-right: none;">
                             <div class="input-group-append">
                                 <span class="input-group-text bg-white" id="basic-addon3"><i class="fa fa-calendar"
@@ -179,7 +179,7 @@
                         </div>
                         <div class="from-group">
                             <div class="controls">
-                                <button type="submit" class="btn btn-success mt-3">Registrarse</button>
+                                <button type="submit" class="btn btn-success mt-3" onclick="register()">Registrarse</button>
                                 <button type="button" class="btn btn-secondary mt-3" data-dismiss="modal">Close</button>
                             </div>
                         </div>
