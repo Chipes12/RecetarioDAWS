@@ -25,7 +25,7 @@ function getUserById(uid, res) {
 }
 function getUserByEmail(mail, res) {
     User.find({
-            "_email": mail
+            "email": mail
         }).then(user => res.status(200).json(user))
         .catch(err => {
             res.status(400).send(err)
@@ -35,7 +35,7 @@ function getUserByEmail(mail, res) {
 }
 
 function createUser(req, res) {
-    let user = User(req.body);
+    let user = User(req);
     user.save().then(user => {
         res.set('Content-Type', 'text/plain;charset=utf8');
         res.send(`User ${user.name} was created`);

@@ -6,10 +6,6 @@ const jwt = require('jsonwebtoken');
 let privateKey = process.env.TOKEN_KEY;
 
 const schemaUser = new mongoose.Schema({
-    uid: {
-        type: String,
-        required: true
-    },
     name: {
         type: String,
         required: true

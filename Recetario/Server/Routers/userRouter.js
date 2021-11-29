@@ -3,16 +3,12 @@
 const express = require('express');
 const router = express.Router();
 const userHandler = require('../../BackEnd/Usuario/user_handler');
-const Receta = require("../../Server/models/recipes");
-const User = require("../../Server/models/users");
-User.find({}, res => console.log(res))
+const User = require('../models/users');
+const jwt = require('jsonwebtoken');
 
 router.route('/')
     .post((req, res) => {
-        userHandler.createUser(req, res);
-
-
-
+        userHandler.createUser(req.body, res);
         /*let user = req.body;
         try {
             user = userHandler.createUser(user);
@@ -63,49 +59,13 @@ router.route('/:uid').get((req, res) => {
         }*/
     });
 
-router.route('/:uid/favourites').put(async (req, res) => {
+router.route('/:uid/favourites').post((req, res) => {
         let recipeId = req.body;
         let uid = req.params.uid;
-        let user = await User.findById(
-            uid
-        )
-
-        if (user) {
-            for (let recipes of recipeId) {
-                let recipe = await Receta.findById(
-                    recipes.rid
-                )
+        let user = userHandler.getUserById(uid);
 
 
-                if (recipe) {
-
-                    //user.addItem(recipes.rid);
-                    if (!user.favouriteRecipes.includes(recipe._id)) {
-                        user.favouriteRecipes.push(recipe._id)
-                        await User.findByIdAndUpdate(uid, {
-                            favouriteRecipes: user.favouriteRecipes
-                        })
-                    }
-
-                } else {
-                    res.status(404)
-                        .type('text/plain')
-                        .send(`No recipe with ID  ${recipes.rid} found`);
-                    return;
-                }
-            }
-            res.status(200).json(user.favouriteRecipes);
-
-        } else {
-            res.status(404).type('text/plain')
-                .send(`No user with ID  ${uid} found`);
-        }
-
-        /*let recipe = recipeHandler.getRecipeById(recipeId[0].rid);
-        let recipe = JSON.parse(Receta.find({
-            "_rid": recipeId[0].rid
-        }))
-
+        let recipe = recipeHandler.getRecipeById(recipeId[0].rid);
         if (recipe != undefined) {
             user.addItem(recipeId[0].rid);
 
@@ -114,84 +74,57 @@ router.route('/:uid/favourites').put(async (req, res) => {
                 .type('text/plain')
                 .send(`No recipe with ID  ${recipeId[0].rid} found`);
             return;
-        }*/
-    })
-    .get(async (req, res) => {
-        let uid = req.params.uid;
-        let user = await User.findById(
-            uid
-        )
-        let recipes = []
-        let notFoundRecipes = 0
-
-        if (user) {
-            for (let recipeID of user.favouriteRecipes) {
-
-                let recipe = await Receta.findById(
-                    recipeID
-                )
-                if (recipe) {
-                    recipes.push(recipe)
-                } else {
-                    notFoundRecipes++;
-                }
-            }
-            res.status(200).json({
-                recipes,
-                notFoundRecipes
-            });
-
-        } else {
-            res.status(404).type('text/plain')
-                .send(`No user with ID  ${uid} found`);
         }
+
+        res.status(200).json(user._favouriteRecipes);
+    })
+    .get((req, res) => {
+        let uid = req.params.uid;
+        let user = userHandler.getUserById(uid);
+        let recipes = []
+
+
+        for (let recipeID of user._favouriteRecipes) {
+
+            let recipe = recipeHandler.getRecipeById(recipeID.rid);
+            if (recipe != undefined) {
+                recipes.push(recipe)
+            } else {
+                res.status(404)
+                    .type('text/plain')
+                    .send(`No recipe with ID  ${recipeID} found`);
+                return;
+            }
+        }
+        res.status(200).json(recipes);
     });
 
-router.route('/:uid/favourites/:rid').get(async (req, res) => {
+router.route('/:uid/favourites/:rid').get((req, res) => {
         let uid = req.params.uid;
-        let user = await User.findById(
-            uid
-        )
-        if (user) {
-            let recId = req.params.rid;
+        let user = userHandler.getUserById(uid);
+        let recId = req.params.rid;
 
+        let idToFind = user._favouriteRecipes.find(favRecipe => favRecipe.rid == recId)
 
-            let idToFind = user.favouriteRecipes.find(favRecipe => favRecipe.toString() === recId)
-
-
-
-            if (idToFind) {
-                let recipe = await Receta.findById(
-                    recId
-                )
-
-                res.status(200).json(recipe);
-            } else {
-                res.status(404).send(`Error 404 Recipe with id: ${recId} not found`)
-            }
+        if (idToFind != undefined) {
+            let recipe = recipeHandler.getRecipeById(recId);
+            res.type('text/plain; charset=utf-8');
+            res.status(200).json(recipe);
         } else {
-            res.status(404).type('text/plain')
-                .send(`No user with ID  ${uid} found`);
+            res.status(404).send(`Error 404 Recipe with id: ${recId} not found`)
         }
     })
-    .delete(async (req, res) => {
+    .delete((req, res) => {
         let uid = req.params.uid;
-        let user = await User.findById(
-            uid
-        )
+        let user = userHandler.getUserById(uid);
         let recId = req.params.rid;
-        console.log(user.favouriteRecipes)
 
+        let idToDelete = user._favouriteRecipes.find(favRecipe => favRecipe.rid == recId)
 
-        let index = user.favouriteRecipes.findIndex(p => p.toString() === recId);
-
-        if (index !== -1) {
-            user.favouriteRecipes.splice(index, 1);
-            await User.findByIdAndUpdate(uid, {
-                favouriteRecipes: user.favouriteRecipes
-            });
+        if (idToDelete != undefined) {
+            res.type('text/plain; charset=utf-8');
             res.status(200).send(`Recipe ${recId} was deleted :c`);
-
+            user.removeItem(recId);
         } else {
             res.status(404).send("Recipe not found, impossible to delete")
         }
