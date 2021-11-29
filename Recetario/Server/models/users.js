@@ -2,7 +2,8 @@
 
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const saltRounds = 10;
+const jwt = require('jsonwebtoken');
+let privateKey = process.env.TOKEN_KEY;
 
 const schemaUser = new mongoose.Schema({
     uid: {
@@ -30,11 +31,11 @@ const schemaUser = new mongoose.Schema({
     },
     sex: {
         type: String,
-        enum: ['H','M']
+        enum: ['H', 'M']
     },
     status: {
         type: String,
-        enum: ['User1','User2'],
+        enum: ['User1', 'User2'],
         required: true
     },
     favouriteRecipes: {
@@ -42,35 +43,31 @@ const schemaUser = new mongoose.Schema({
     }
 });
 
-schemaUser.pre('save', function(next){
-    if(this.isNew || this.isModified('password')){
-        const document = this;
-        bcrypt.hash(document.password, saltRounds, (err, hashedPassword)=>{
-            if(err) next(err);
-            else document.password = hashedPassword;
-            next();
-        });
-    }
-    else next();
-});
-
-schemaUser.methods.isCorrectPassword = function(password, callback){
-    bcrypt.compare(password, this.password, function(err, same){
-        if(err) callback(err);
-        else callback(err, same);
-    });
-}
-schemaUser.methods.generateToken = function() {
+schemaUser.pre('save', function (next) {
     let user = this;
-    let token = jwt.sign({
-        id: user.id.toHexString(),
-        status: user.status},
-        'claveSecreta',
-        {expiresIn: 60*60}).toString();
-    return token;
+    user.password = bcrypt.hashSync(user.password, 10);
+    next();
+})
+
+schemaUser.methods.generateToken = function (password) {
+    let user = this;
+    let payload = {
+        _id: user._id,
+        role: user.role
+    };
+    let options = {
+        expiresIn: 60 * 60
+    }
+    if (bcrypt.compareSync(password, user.password)) {
+        try {
+            user.token = jwt.sign(payload, privateKey, options);
+            return user.token;
+        } catch (err) {
+            console.log(err);
+        }
+    }
 }
 
-
-let User = mongoose.model('userSch',schemaUser);
+let User = mongoose.model('userSch', schemaUser);
 
 module.exports = User;
