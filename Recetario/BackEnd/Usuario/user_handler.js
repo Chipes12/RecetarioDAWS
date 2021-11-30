@@ -99,6 +99,29 @@ function deleteUser(req, res) {
     let newUser = JSON.stringify(users)
     fs.writeFileSync("./BackEnd/Usuario/data.json", newUser);*/
 }
+function login(req, res) {
+    let email = req.email;
+    let password = req.password;
+    User.findOne({ email: `${email}` })
+        .then(user => {
+            let token = user.generateToken(password);
+            if (token != undefined) {
+                res.status(200);
+                res.set('Content-Type', 'text/plain; charset=utf-8');
+                res.send(token);
+                console.log(token);
+            } else {
+                res.status(404);            
+                res.set('Content-Type', 'text/plain; charset=utf-8');
+                res.send(`Wrong email or password`);
+            }
+        })
+        .catch(err => {
+            res.status(404);            
+            res.set('Content-Type', 'text/plain; charset=utf-8');
+            res.send(`Wrong email or password`);
+        });
+}
 
 exports.createUser = createUser;
 exports.getUserById = getUserById;
@@ -106,3 +129,4 @@ exports.getUsers = getUsers;
 exports.updateUser = updateUser;
 exports.deleteUser = deleteUser;
 exports.getUserByEmail = getUserByEmail;
+exports.logIn = login;

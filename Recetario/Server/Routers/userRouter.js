@@ -129,6 +129,9 @@ router.route('/:uid/favourites/:rid').get((req, res) => {
             res.status(404).send("Recipe not found, impossible to delete")
         }
     });
+router.route('/login').post((req, res) => {
+    userHandler.logIn(req.body, res);
+});
 
 
 module.exports = router;

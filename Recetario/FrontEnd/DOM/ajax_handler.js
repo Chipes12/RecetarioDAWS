@@ -2,6 +2,7 @@
 
 const recipeBookRoute = `http://localhost:8080/recipebook/recipes/`;
 const userPost = 'http://localhost:8080/recipebook/user';
+const logInPost =  'http://localhost:8080/recipebook/user/login';
 
 const Category = {
 	"type1": "Platillo",
@@ -31,17 +32,34 @@ async function loadRecipeData(url, rid){
 
 function signUp(){
     let xhr = new XMLHttpRequest();
-   let obj =  {
-        name:document.getElementById('name').value,
-        lastName:document.getElementById('lastName').value,
-        email: document.getElementById('mail').value,
-        password: document.getElementById('password').value,
-        registerDate:document.getElementById('regDate').value,
-        sex :document.querySelector('input[name="sexo"]:checked').value,
-        status: 'User1',
-        favouriteRecipes: [],
+    let obj =  {
+            name:document.getElementById('name').value,
+            lastName:document.getElementById('lastName').value,
+            email: document.getElementById('mail').value,
+            password: document.getElementById('password').value,
+            registerDate:document.getElementById('regDate').value,
+            sex :document.querySelector('input[name="sexo"]:checked').value,
+            status: 'User1',
+            favouriteRecipes: [],
+        };
+        xhr.open('POST', userPost);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify(obj));
+        xhr.onreadystatechange = function(){
+            if(this.status == 200 && this.readyState ==4){
+                document.getElementById('close').click();
+            }
+        }
+        return false;
+}
+
+function logIn(){
+    let xhr = new XMLHttpRequest();
+    let obj = {
+        email: document.getElementById('logInEmail').value,
+        password: document.getElementById('logInPassword').value
     };
-    xhr.open('POST', userPost);
+    xhr.open('POST', logInPost);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify(obj));
     xhr.onreadystatechange = function(){
