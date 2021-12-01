@@ -18,18 +18,18 @@ function writeRecipeStorage(recipe){
 
 function initUserStorage(){
     let init = {"Hola" : "Mundo"};
-    if(sessionStorage.getItem("User") == null){
+    if(localStorage.getItem("User") == null){
         writeUserStorage(init);
     }
 }
 
 function readUserStorage(){
-    let storage = JSON.parse(sessionStorage.getItem("User"));
+    let storage = JSON.parse(localStorage.getItem("User"));
     return storage;
 }
 
 function writeUserStorage(user){
-    sessionStorage.setItem("User", JSON.stringify(user));
+    localStorage.setItem("User", JSON.stringify(user));
 }
 initUserStorage();
 initRecipeStorage();

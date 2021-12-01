@@ -28,7 +28,7 @@ router.route('/')
         }*/
     });
 
-router.route(tokenUtils.verifyToken, '/:uid').get((req, res) => {
+router.route('/:uid').get((req, res) => {
         let uid = req.params.uid;
         userHandler.getUserById(uid, res);
         /*let uid = req.params.uid;
@@ -60,7 +60,7 @@ router.route(tokenUtils.verifyToken, '/:uid').get((req, res) => {
         }*/
     });
 
-router.route(tokenUtils.verifyToken, '/:uid/favourites').put(async (req, res) => {
+router.route('/:uid/favourites').put(async (req, res) => {
         let recipeId = req.body;
         let uid = req.params.uid;
         let user = await User.findById(
@@ -122,16 +122,12 @@ router.route(tokenUtils.verifyToken, '/:uid/favourites').put(async (req, res) =>
         }
     });
 
-router.route(tokenUtils.verifyToken, '/:uid/favourites/:rid').get(async (req, res) => {
+router.route('/:uid/favourites/:rid').get(tokenUtils.verifyToken, async (req, res) => {
         let uid = req.params.uid;
-        let user = await User.findById(
-            uid
-        )
+        let user = await User.findById(uid);
         if (user) {
             let recId = req.params.rid;
-
             let idToFind = user.favouriteRecipes.find(favRecipe => favRecipe.toString() === recId)
-
             if (idToFind) {
                 let recipe = await Receta.findById(
                     recId
@@ -146,7 +142,7 @@ router.route(tokenUtils.verifyToken, '/:uid/favourites/:rid').get(async (req, re
                 .send(`No user with ID  ${uid} found`);
         }
     })
-    .delete(async (req, res) => {
+    .delete(tokenUtils.verifyToken, async (req, res) => {
         let uid = req.params.uid;
         let user = await User.findById(
             uid
@@ -173,5 +169,8 @@ router.route('/login').post((req, res) => {
     userHandler.logIn(req.body, res);
 });
 
+router.route('/prueba').post(tokenUtils.verifyToken, (req, res) =>{
+    res.json({mensaje: "Prueba completada"});
+});
 
 module.exports = router;
