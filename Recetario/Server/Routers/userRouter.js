@@ -5,7 +5,7 @@ const router = express.Router();
 const userHandler = require('../../BackEnd/Usuario/user_handler');
 const User = require('../models/users');
 const Receta = require('../models/recipes');
-const jwt = require('jsonwebtoken');
+const tokenUtils = require('../models/tokenUtils');
 
 router.route('/')
     .post((req, res) => {
@@ -28,7 +28,7 @@ router.route('/')
         }*/
     });
 
-router.route('/:uid').get((req, res) => {
+router.route(tokenUtils.verifyToken, '/:uid').get((req, res) => {
         let uid = req.params.uid;
         userHandler.getUserById(uid, res);
         /*let uid = req.params.uid;
@@ -60,30 +60,25 @@ router.route('/:uid').get((req, res) => {
         }*/
     });
 
-router.route('/:uid/favourites').put(async (req, res) => {
+router.route(tokenUtils.verifyToken, '/:uid/favourites').put(async (req, res) => {
         let recipeId = req.body;
         let uid = req.params.uid;
         let user = await User.findById(
             uid
-        )
-
+        );
         if (user) {
             for (let recipes of recipeId) {
                 let recipe = await Receta.findById(
                     recipes.rid
-                )
-
-
+                );
                 if (recipe) {
-
                     //user.addItem(recipes.rid);
                     if (!user.favouriteRecipes.includes(recipe._id)) {
                         user.favouriteRecipes.push(recipe._id)
                         await User.findByIdAndUpdate(uid, {
                             favouriteRecipes: user.favouriteRecipes
-                        })
+                        });
                     }
-
                 } else {
                     res.status(404)
                         .type('text/plain')
@@ -92,7 +87,6 @@ router.route('/:uid/favourites').put(async (req, res) => {
                 }
             }
             res.status(200).json(user.favouriteRecipes);
-
         } else {
             res.status(404).type('text/plain')
                 .send(`No user with ID  ${uid} found`);
@@ -128,7 +122,7 @@ router.route('/:uid/favourites').put(async (req, res) => {
         }
     });
 
-router.route('/:uid/favourites/:rid').get(async (req, res) => {
+router.route(tokenUtils.verifyToken, '/:uid/favourites/:rid').get(async (req, res) => {
         let uid = req.params.uid;
         let user = await User.findById(
             uid
@@ -158,13 +152,8 @@ router.route('/:uid/favourites/:rid').get(async (req, res) => {
             uid
         )
         let recId = req.params.rid;
-
         if (user) {
-
             let index = user.favouriteRecipes.findIndex(p => p.toString() === recId);
-
-
-
             if (index !== -1) {
                 user.favouriteRecipes.splice(index, 1);
                 await User.findByIdAndUpdate(uid, {

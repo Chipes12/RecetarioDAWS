@@ -109,7 +109,6 @@ function login(req, res) {
                 res.status(200);
                 res.set('Content-Type', 'text/plain; charset=utf-8');
                 res.send(token);
-                console.log(token);
             } else {
                 res.status(404);            
                 res.set('Content-Type', 'text/plain; charset=utf-8');

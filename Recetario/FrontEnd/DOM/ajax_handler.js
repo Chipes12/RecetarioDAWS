@@ -75,5 +75,8 @@ function logIn() {
             document.getElementById('close').click();
         }
     }
+    xhr.onload = () => {
+        writeUserStorage(xhr.response);
+    }
     return false;
 }

@@ -49,7 +49,7 @@ schemaUser.methods.generateToken = function (password) {
     let user = this;
     let payload = {
         _id: user._id,
-        role: user.role
+        role: user.status
     };
     let options = {
         expiresIn: 60 * 60
