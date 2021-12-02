@@ -136,21 +136,24 @@ label {
 }
 
 textarea {
-    width: 300px;
+    width: 335px;
     resize: none !important;
 }
 
 input,
-textarea {
+textarea, 
+select {
     background-color: rgba(224, 190, 151, 0.814);
+    width: 325px;
 }
 
 #recipeProcedure {
-    width: 300px;
     height: 200px;
 }
 
-#btnUploadImg {
+#btnUploadImg, 
+#btnUploadVideo, 
+button#addIngredient {
     background-color: rgba(226, 187, 136, 0.689);
 	border-style: none;
 	color: white;
@@ -160,6 +163,11 @@ textarea {
 	width: 150px;
 	height: 40px;
 	box-shadow: 3px 5px 10px rgba(92, 48, 31, 0.662);
+    margin-bottom: 20px;
+}
+
+a#addIngredient {
+    color: rgb(246, 246, 246);
 }
 
 /* columnas del form */

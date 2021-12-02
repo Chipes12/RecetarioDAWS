@@ -1,4 +1,4 @@
-"use strcit";
+"use strict";
 
 const Ingredient = require("../../Server/models/ingredients");
 // const fs = require("fs");

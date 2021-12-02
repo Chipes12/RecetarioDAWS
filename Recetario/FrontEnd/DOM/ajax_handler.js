@@ -1,9 +1,10 @@
 "use strict";
 
-const recipeBookRoute = `http://localhost:3000/recipebook/recipes/`;
-const userPost = 'http://localhost:3000/recipebook/user';
-const logInPost = 'http://localhost:3000/recipebook/user/login';
-const getFavs = 'http://localhost:3000/recipebook/user/61a591d8cd2deccbcd4873bd/favourites'
+const recipeBookRoute = `http://localhost:8080/recipebook/recipes/`;
+const userPost = 'http://localhost:8080/recipebook/user';
+const logInPost = 'http://localhost:8080/recipebook/user/login';
+const getFavs = 'http://localhost:8080/recipebook/user/61a591d8cd2deccbcd4873bd/favourites'
+const getIngr = 'http://localhost:8080/recipebook/ingredients';
 
 const Category = {
     "type1": "Platillo",
@@ -27,6 +28,13 @@ async function loadRecipes(url) {
 
 async function loadRecipeData(url, rid) {
     let response = await fetch(url + rid);
+    if (response.status != 200) return [];
+    return await response.json();
+}
+
+//Load ingredients
+async function loadIngredients(url) {
+    let response = await fetch(url);
     if (response.status != 200) return [];
     return await response.json();
 }

@@ -87,7 +87,7 @@
                                             class="fas fa-user    "></i></span>
                                 </div>
                                 <input type="text" class="col-10 form-control" name="" id="logInEmail" aria-describedby="helpId"
-                                    placeholder="correo registrado">
+                                    placeholder="correo registrado" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -98,7 +98,7 @@
                                             class="fas fa-key    "></i></span>
                                 </div>
                                 <input type="password" class="col-10 form-control" name="" id="logInPassword"
-                                    aria-describedby="helpId" placeholder="correo registrado">
+                                    aria-describedby="helpId" placeholder="Contraseña" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -133,7 +133,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form class="" novalidate>
                         <div class="row">
                             <div class="col-6">
                                 <input type="text" name="name" id="name" class="form-control" placeholder="Nombre o nombres"
@@ -144,13 +144,10 @@
                                     aria-describedby="helpId" required>
                             </div>
                         </div>
-
                         <input type="mail" name="email" id="mail" class="form-control mt-3" placeholder="Tu correo"
                             aria-describedby="helpId" required>
-
                         <input type="password" name="password" id="password" class="form-control mt-3" placeholder="Contraseña"
                             aria-describedby="helpId" required minlength="8">
-
                         <input type="password" name="" id="" class="form-control mt-3"
                             placeholder="Confirmar contraseña" aria-describedby="helpId" required>
 
@@ -194,7 +191,6 @@
                             </div>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>

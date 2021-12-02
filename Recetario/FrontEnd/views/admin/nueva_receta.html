@@ -63,52 +63,58 @@
                     <input type="text" name="name" placeholder="Nombre"><br>
                     <label for="description">Descripción: </label>
                     <textarea placeholder="Descripción de receta"></textarea><br>
-                    <label for="">Porciones: </label>
-                    <input type="number" value="1"><br>
-                    <label for="">Tipo: </label>
+                    <label for="portions">Porciones: </label>
+                    <input type="number" name="portions" value="1"><br>
+                    <label for="tipoReceta">Tipo: </label>
                     <select id="recipeType" name="tipoReceta">
                         <option></option>
                         <option></option>
                         <option></option>
                     </select><br>
-                    <label for="dificultad">Dificultad: </label>
-                    <select id="recipeDificult" name="dificultad">
+                    <label for="recipeTime">Tiempo: </label>
+                    <select id="recipeTiming" name="recipeTime">
                         <option></option>
                         <option></option>
                         <option></option>
                     </select><br>
-                    <label for="">Tiempo: </label>
-                    <input type="number"><br>
                 </div>
             </div>
             <div class="col border">
                 <div class="title border-bottom border-white">
                     <h4>Información preparación</h4>
                 </div>
-                <div class="content">
+                <div id="dataRecipeCont" class="content">
                     <label for="nameIngredientes">Ingredientes: </label>
                     <a id="addIngredient"><i class="fas fa-plus-circle"></i></a><br>
-                    <select id="ingredients" name="nameIngredients">
-                        <option></option>
-                        <option></option>
-                        <option></option>
-                    </select><br>
+                    <div id="ingrContainer">
+                        <select id="ingredients" name="nameIngredients">
+                        </select><br>
+                    </div>
                     <label for="cantidad">Cantidad: </label>
-                    <input id="totalIngredients" name="cantidad" type="number" value="1"><br>
+                    <input id="totalIngredients" name="cantidad" type="number" value="1" style="margin-bottom: 15px;"><br>
+                    <button id="addIngredient" onclick="" class="btn btn-primary btn-lg">Agregar</button><br>
                     <label for="procedure">Procedimiento: </label>
                     <textarea id="recipeProcedure" name="procedure"
                         placeholder="Procedimiento de receta"></textarea><br>
                 </div>
             </div>
-
             <div class="col border">
                 <div class="title border-bottom border-white">
                     <h4>Imagen</h4>
                 </div>
                 <div class="content">
                     <label for="image">Agregar imagen: </label>
-                    <button id="btnUploadImg" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#uploadImage">
+                    <button id="btnUploadImg" type="button" class="btn btn-primary btn-lg" data-toggle="modal"
+                        data-target="#uploadImage">
                         Subir Imagen
+                    </button>
+                </div>
+                <div class="content">
+                    <label for="urlVideo">URL para video</label><br>
+                    <input id="urlVid" name="urlVideo" type="text" placeholder="Ingresa url de video" style="margin-bottom: 15px;"><br>
+                    <button id="btnUploadVideo" type="button" class="btn btn-primary btn-lg" data-toggle="modal"
+                        data-target="#">
+                        Subir Video
                     </button>
                 </div>
             </div>
@@ -129,12 +135,9 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="form-group">
-                                <label for="url">URL </label>
-                                <input id="urlImg" type="text" placeholder="Ingresa url"><br>
+                                <label for="urlImgage">URL </label>
+                                <input id="urlImg" name="urlImgage" type="text" placeholder="Ingresa url"><br>
                             </div>
-                        </div>
-                        <div class="row">
-                            <input id="fileImg" type="file" accept="image/png, .jpeg, .jpg, image/gif">
                         </div>
                     </div>
                 </div>
@@ -147,6 +150,8 @@
     </div>
 
     <!-- Optional JavaScript -->
+    <script src="../../DOM/ajax_handler.js"></script>
+    <script src="../../DOM/ingredients_utils.js"></script>
     <!-- <script>
         $('#exampleModal').on('show.bs.modal', event => {
             var button = $(event.relatedTarget);
