@@ -107,6 +107,11 @@ input[type='date'] {
 	color: black;
 }
 
+.modal-content #password:invalid {
+	background-color: rgba(239, 32, 32, 0.648);
+	color: black;
+}
+
 button.btn-success {
 	background-color: rgb(56, 161, 63);
 }
