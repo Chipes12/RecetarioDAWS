@@ -23,6 +23,7 @@ function getUserById(uid, res) {
         })
     //return users.find(user => user._uid == uid);
 }
+
 function getUserByEmail(mail, res) {
     User.find({
             "email": mail
@@ -99,23 +100,29 @@ function deleteUser(req, res) {
     let newUser = JSON.stringify(users)
     fs.writeFileSync("./BackEnd/Usuario/data.json", newUser);*/
 }
+
 function login(req, res) {
     let email = req.email;
     let password = req.password;
-    User.findOne({ email: `${email}` })
+    User.findOne({
+            email: `${email}`
+        })
         .then(user => {
             let token = user.generateToken(password);
             if (token != undefined) {
                 res.status(200);
-                res.json({token});
+                res.json({
+                    token,
+                    idUser: user._id.toString()
+                });
             } else {
-                res.status(404);            
+                res.status(404);
                 res.set('Content-Type', 'text/plain; charset=utf-8');
                 res.send(`Wrong email or password`);
             }
         })
         .catch(err => {
-            res.status(404);            
+            res.status(404);
             res.set('Content-Type', 'text/plain; charset=utf-8');
             res.send(`Wrong email or password`);
         });

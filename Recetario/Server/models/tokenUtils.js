@@ -4,8 +4,8 @@ let privateKey = process.env.TOKEN_KEY;
 
 const verifyToken = (req, res, next) => {
     let auth = req.headers["authorization"];
-    if(typeof auth !=='undefined'){
-        const token = auth.split(" ")[1];
+    if (typeof auth !== 'undefined') {
+        const token = auth;
         if (token == undefined) {
             return res.status(403).send("Missing token");
         }

@@ -60,7 +60,7 @@ router.route('/:uid').get((req, res) => {
         }*/
     });
 
-router.route('/:uid/favourites').put(async (req, res) => {
+router.route('/:uid/favourites').put(tokenUtils.verifyToken, async (req, res) => {
         let recipeId = req.body;
         let uid = req.params.uid;
         let user = await User.findById(
@@ -92,7 +92,7 @@ router.route('/:uid/favourites').put(async (req, res) => {
                 .send(`No user with ID  ${uid} found`);
         }
     })
-    .get(async (req, res) => {
+    .get(tokenUtils.verifyToken, async (req, res) => {
         let uid = req.params.uid;
         let user = await User.findById(
             uid
@@ -169,8 +169,10 @@ router.route('/login').post((req, res) => {
     userHandler.logIn(req.body, res);
 });
 
-router.route('/prueba').post(tokenUtils.verifyToken, (req, res) =>{
-    res.json({mensaje: "Prueba completada"});
+router.route('/prueba').post(tokenUtils.verifyToken, (req, res) => {
+    res.json({
+        mensaje: "Prueba completada"
+    });
 });
 
 module.exports = router;
