@@ -3,8 +3,9 @@
 let recipe = JSON.parse(sessionStorage.getItem("Recipe"))[0];
 let infoContainer = document.getElementById("infoContainer");
 infoContainer.innerHTML = recipeToHTML(recipe);
+let corazon = document.getElementById("heart");
 
-function recipeToHTML(recipe){
+function recipeToHTML(recipe) {
     return `
 <span class="container" id= "tituloReceta">
             <h1 id="recipeName" class="mt-5">${recipe.name}</h1>
@@ -20,7 +21,7 @@ function recipeToHTML(recipe){
                 <h4 id="recipeCategory" class="pr-5"><i class="far fa-list-alt"></i> Tipo: ${Category[recipe.category]}</h4>
                 <h4 class="pr-5"><i class="far fa-clock"></i> Tiempo: ${Times[recipe.estimatedTime]}</h4>
                 <h4 class="pr-5"><i class="fas fa-star" style="color: rgba(255, 200, 0, 0.82);"></i> Calificación: ${recipe.rating}</h4>
-                <h4 id="recipeFav" class="pr-5"><i class="fas fa-heart fa-2x"></i></h4>
+                <h4 id="recipeFav" class="pr-5"><i onclick = "isInFavs()" id= "heart" class="fas fa-heart fa-2x"></i></h4>
             </div>
         </form>
         <span id="recipeCalif" class="form-inline container m-5">
@@ -48,14 +49,62 @@ function recipeToHTML(recipe){
         </div>`
 }
 
-function updateStars(event){
+function updateStars(event) {
     let starsContainer = infoContainer.getElementsByTagName("span");
-    let clickedStar = event.target.parentNode;  
+    let clickedStar = event.target.parentNode;
     let found = false;
-    let  starsArray = [starsContainer[2], starsContainer[3], starsContainer[4], starsContainer[5], starsContainer[6]];
-    for(let i = 0; i < 5; i++){
-        if(!found) starsArray[i].setAttribute("style", "color: rgba(255, 200, 0, 0.82);");
-        else  starsArray[i].setAttribute("style", "color: rgba(38, 37, 44, 1);");
-        if(starsArray[i] == clickedStar) found = true;
+    let starsArray = [starsContainer[2], starsContainer[3], starsContainer[4], starsContainer[5], starsContainer[6]];
+    for (let i = 0; i < 5; i++) {
+        if (!found) starsArray[i].setAttribute("style", "color: rgba(255, 200, 0, 0.82);");
+        else starsArray[i].setAttribute("style", "color: rgba(38, 37, 44, 1);");
+        if (starsArray[i] == clickedStar) found = true;
     }
 }
+
+async function updateHeart() {
+    let idReceta = recipe._id;
+    let url = getFavs + idReceta;
+    console.log(url);
+
+    let chequeo = await checkFav(url);
+    console.log(chequeo);
+
+    if (chequeo == 200) {
+        corazon.style.color = "red";
+    }
+}
+
+async function addFavorites() {
+    let id = []
+    id.push({
+        rid: recipe._id
+    })
+
+    addFavRecipe(getFavs, id);
+    corazon.style.color = "red";
+
+}
+
+async function deleteRecipe(id) {
+
+    let urlDelete = getFavs + id;
+
+
+    await deleteFavRecipe(urlDelete);
+    corazon.style.color = "white";
+
+}
+
+async function isInFavs() {
+    let idReceta = recipe._id;
+    let url = getFavs + idReceta;
+    let chequeo = await checkFav(url);
+
+    if (chequeo == 200) {
+        deleteRecipe(idReceta);
+    } else {
+        addFavorites();
+    }
+}
+
+updateHeart();

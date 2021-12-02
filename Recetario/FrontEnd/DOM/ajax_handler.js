@@ -1,10 +1,16 @@
 "use strict";
 
-const recipeBookRoute = `http://localhost:8080/recipebook/recipes/`;
-const userPost = 'http://localhost:8080/recipebook/user';
-const logInPost = 'http://localhost:8080/recipebook/user/login';
-const getFavs = 'http://localhost:8080/recipebook/user/61a591d8cd2deccbcd4873bd/favourites'
-const getIngr = 'http://localhost:8080/recipebook/ingredients';
+
+
+const recipeBookRoute = `http://localhost:3000/recipebook/recipes/`;
+const userPost = 'http://localhost:3000/recipebook/user';
+const logInPost = 'http://localhost:3000/recipebook/user/login';
+const getFavs = `http://localhost:3000/recipebook/user/${JSON.parse(JSON.parse(localStorage.getItem("User"))).idUser}/favourites/`
+
+console.log(getFavs);
+console.log(JSON.parse(JSON.parse(localStorage.getItem("User"))))
+
+//getFavs.replace("USERID", JSON.parse(JSON.parse(localStorage.getItem("User"))).idUser)
 
 const Category = {
     "type1": "Platillo",
@@ -41,9 +47,52 @@ async function loadIngredients(url) {
 
 //Puede que se necesite mandar el id
 async function loadFavouriteRecipes(url) {
-    let response = await fetch(url);
+    let response = await fetch(url, {
+        headers: {
+            authorization: JSON.parse(JSON.parse(localStorage.getItem("User"))).token
+        }
+    });
     if (response.status != 200) return [];
     return await response.json();
+}
+
+async function deleteFavRecipe(url) {
+
+    let response = await fetch(url, {
+        method: "DELETE",
+        headers: {
+            authorization: JSON.parse(JSON.parse(localStorage.getItem("User"))).token
+        }
+    })
+
+    return response.status;
+}
+
+async function addFavRecipe(url, body) {
+    console.log(body);
+    let response = await fetch(url, {
+        method: "PUT",
+        body: JSON.stringify(
+            body
+        ),
+        headers: {
+            'Content-Type': 'application/json',
+            authorization: JSON.parse(JSON.parse(localStorage.getItem("User"))).token
+        }
+    })
+    if (response.status != 200) return [];
+    return await response.json();
+}
+
+async function checkFav(url) {
+    let response = await fetch(url, {
+        headers: {
+            authorization: JSON.parse(JSON.parse(localStorage.getItem("User"))).token
+        }
+    })
+
+
+    return response.status;
 }
 
 function signUp() {
