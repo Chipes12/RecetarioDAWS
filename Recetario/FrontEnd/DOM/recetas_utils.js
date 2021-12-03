@@ -62,44 +62,59 @@ function updateStars(event) {
 }
 
 async function updateHeart() {
+    if(JSON.parse(JSON.parse(localStorage.getItem("User"))) == "undefined")return;
+    let uid = JSON.parse(JSON.parse(localStorage.getItem("User"))).idUser;
+    let urlverify = 'http://localhost:3000/recipebook/user/login' + "/" + uid;
+    let response = fetch(urlverify);
+    if(response.status == 200)return;
+
     let idReceta = recipe._id;
     let url = getFavs + idReceta;
     console.log(url);
-
     let chequeo = await checkFav(url);
     console.log(chequeo);
-
     if (chequeo == 200) {
         corazon.style.color = "red";
     }
 }
 
 async function addFavorites() {
+    if(JSON.parse(JSON.parse(localStorage.getItem("User"))) == "undefined")return;
+    let uid = JSON.parse(JSON.parse(localStorage.getItem("User"))).idUser;
+    let url = 'http://localhost:3000/recipebook/user/login' + "/" + uid;
+    let response = fetch(url);
+    if(response.status == 200)return;
+
     let id = []
     id.push({
         rid: recipe._id
-    })
-
+    });
     addFavRecipe(getFavs, id);
     corazon.style.color = "red";
-
 }
 
 async function deleteRecipe(id) {
+    if(JSON.parse(JSON.parse(localStorage.getItem("User"))) == "undefined")return;
+    let uid = JSON.parse(JSON.parse(localStorage.getItem("User"))).idUser;
+    let url = 'http://localhost:3000/recipebook/user/login' + "/" + uid;
+    let response = fetch(url);
+    if(response.status == 200)return;
 
     let urlDelete = getFavs + id;
-
-
     await deleteFavRecipe(urlDelete);
     corazon.style.color = "white";
-
 }
 
 async function isInFavs() {
+    if(JSON.parse(JSON.parse(localStorage.getItem("User"))) == "undefined")return;
+    let uid = JSON.parse(JSON.parse(localStorage.getItem("User"))).idUser;
+    let urlverify = 'http://localhost:3000/recipebook/user/login' + "/" + uid;
+    let response = fetch(urlverify);
+    if(response.status == 200)return;
+
     let idReceta = recipe._id;
     let url = getFavs + idReceta;
     let chequeo = await checkFav(url);
-
     if (chequeo == 200) {
         deleteRecipe(idReceta);
     } else {

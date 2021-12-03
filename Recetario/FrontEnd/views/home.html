@@ -35,25 +35,32 @@
                     <a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item" id="signupBar">
-                    <a class="nav-link" href="#" data-toggle="modal" data-target="#registro">Sign Up</a>
+                    <div id="signupInBar">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#registro">Sign Up</a>
+                    </div>
                 </li>
                 <li class="nav-item" id="loginBar">
-                    <a class="nav-link" href="#" data-toggle="modal" data-target="#login">Log in</a>
+                    <div id="loginInBar">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#login">Log in</a>
+                    </div>
                 </li>
                 <li class="nav-item dropdown" id="adminBar">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">Administración</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownId">
-                        <a class="dropdown-item" href="login">Iniciar sesión</a>
-                        <a class="dropdown-item" href="#">Editar recetas</a>
+                    <div id="adminBar">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">Administración</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownId">
+                            <a class="dropdown-item" href="#">Agregar recetas</a>
+                        </div>
                     </div>
                 </li>
                 <li class="nav-item dropdown" id="userBar">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">Mi Cuenta</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownId">
-                        <a class="dropdown-item" href="favoritos.html">Favoritos</a>
-                        <a class="dropdown-item" href="historial.html">Historial</a>
+                    <div id="myAccount">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">Mi Cuenta</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownId">
+                            <a class="dropdown-item" href="favoritos.html">Favoritos</a>
+                            <a class="dropdown-item" href="#" onclick="deleteUserStorage()">Cerrar Sesión</a>
+                        </div>
                     </div>
                 </li>
             </ul>
