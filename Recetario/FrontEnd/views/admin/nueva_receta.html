@@ -60,22 +60,18 @@
                 </div>
                 <div class="content">
                     <label for="name">Nombre: </label>
-                    <input type="text" name="name" placeholder="Nombre"><br>
+                    <input id="nameRecipe" type="text" name="name" placeholder="Nombre" required><br>
                     <label for="description">Descripción: </label>
-                    <textarea placeholder="Descripción de receta"></textarea><br>
+                    <textarea id="descrRecipe" placeholder="Descripción de receta" required></textarea><br>
                     <label for="portions">Porciones: </label>
-                    <input type="number" name="portions" value="1"><br>
+                    <input id="portionsRecipe" type="number" name="portions" value="1" required><br>
                     <label for="tipoReceta">Tipo: </label>
-                    <select id="recipeType" name="tipoReceta">
-                        <option></option>
-                        <option></option>
-                        <option></option>
+                    <select id="recipeType" name="tipoReceta" required>
+                        <option selected>Selecciona una opción</option>
                     </select><br>
                     <label for="recipeTime">Tiempo: </label>
-                    <select id="recipeTiming" name="recipeTime">
-                        <option></option>
-                        <option></option>
-                        <option></option>
+                    <select id="recipeTiming" name="recipeTime" required>
+                        <option selected>Selecciona una opción</option>
                     </select><br>
                 </div>
             </div>
@@ -85,18 +81,19 @@
                 </div>
                 <div id="dataRecipeCont" class="content">
                     <label for="nameIngredientes">Ingredientes: </label>
-                    <a id="addIngredient"><i class="fas fa-plus-circle"></i></a><br>
-                    <div id="ingrContainer">
-                        <select id="ingredients" name="nameIngredients">
-                        </select><br>
-                    </div>
+                    <a id="addIngredient" onclick="addInputIngr()"><i class="fas fa-plus-circle"></i></a><br>
+                    <select id="ingredients" name="nameIngredients" required>
+                        <option selected>Selecciona una opción</option>
+                    </select><br>
                     <label for="cantidad">Cantidad: </label>
-                    <input id="totalIngredients" name="cantidad" type="number" value="1" style="margin-bottom: 15px;"><br>
-                    <button id="addIngredient" onclick="" class="btn btn-primary btn-lg">Agregar</button><br>
-                    <label for="procedure">Procedimiento: </label>
-                    <textarea id="recipeProcedure" name="procedure"
-                        placeholder="Procedimiento de receta"></textarea><br>
+                    <input id="totalIngredients" name="cantidad" type="number" value="1" style="margin-bottom: 15px;"
+                        required><br>
                 </div>
+                <button id="addIngredient" type="submit" onclick="addIngrToRecipe()"
+                    class="btn btn-primary btn-lg">Cargar</button><br>
+                <label for="procedure">Procedimiento: </label>
+                <textarea id="recipeProcedure" name="procedure" placeholder="Procedimiento de receta"
+                    required></textarea><br>
             </div>
             <div class="col border">
                 <div class="title border-bottom border-white">
@@ -104,52 +101,21 @@
                 </div>
                 <div class="content">
                     <label for="image">Agregar imagen: </label>
-                    <button id="btnUploadImg" type="button" class="btn btn-primary btn-lg" data-toggle="modal"
-                        data-target="#uploadImage">
-                        Subir Imagen
-                    </button>
+                    <input id="urlVid" name="urlVideo" type="text" placeholder="Ingresa url de imagen"
+                        style="margin-bottom: 15px;" required><br>
                 </div>
                 <div class="content">
                     <label for="urlVideo">URL para video</label><br>
-                    <input id="urlVid" name="urlVideo" type="text" placeholder="Ingresa url de video" style="margin-bottom: 15px;"><br>
-                    <button id="btnUploadVideo" type="button" class="btn btn-primary btn-lg" data-toggle="modal"
-                        data-target="#">
-                        Subir Video
-                    </button>
+                    <input id="urlVid" name="urlVideo" type="text" placeholder="Ingresa url de video"
+                        style="margin-bottom: 15px;" required><br>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Modal upload image -->
-    <div class="modal fade" id="uploadImage" tabindex="-1" role="dialog" aria-labelledby="uploadImage"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Seleccionar imagen</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="form-group">
-                                <label for="urlImgage">URL </label>
-                                <input id="urlImg" name="urlImgage" type="text" placeholder="Ingresa url"><br>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button id="btnSaveImg" type="button" class="btn btn-success">Save</button>
-                </div>
-            </div>
-        </div>
+        <button id="addIngredient" type="submit" onclick="addRecipe()" class="btn btn-primary btn-lg">Agregar Receta</button><br>
     </div>
 
     <!-- Optional JavaScript -->
+    <script src="../../DOM/utils.js"></script>
     <script src="../../DOM/ajax_handler.js"></script>
     <script src="../../DOM/ingredients_utils.js"></script>
     <!-- <script>

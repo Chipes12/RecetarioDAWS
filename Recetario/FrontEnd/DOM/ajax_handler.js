@@ -2,29 +2,16 @@
 
 
 
-const recipeBookRoute = `http://localhost:3000/recipebook/recipes/`;
-const userPost = 'http://localhost:3000/recipebook/user';
-const logInPost = 'http://localhost:3000/recipebook/user/login';
-const getFavs = `http://localhost:3000/recipebook/user/${JSON.parse(JSON.parse(localStorage.getItem("User"))).idUser}/favourites/`
+const recipeBookRoute = `http://localhost:8080/recipebook/recipes/`;
+const userPost = 'http://localhost:8080/recipebook/user';
+const logInPost = 'http://localhost:8080/recipebook/user/login';
+const getIngr = `http://localhost:8080/recipebook/ingredients/`;
+const getFavs = `http://localhost:8080/recipebook/user/${JSON.parse(JSON.parse(localStorage.getItem("User"))).idUser}/favourites/`
 
 console.log(getFavs);
 console.log(JSON.parse(JSON.parse(localStorage.getItem("User"))))
 
 //getFavs.replace("USERID", JSON.parse(JSON.parse(localStorage.getItem("User"))).idUser)
-
-const Category = {
-    "type1": "Platillo",
-    "type2": "Bebida",
-    "type3": "Postre",
-    "type4": "Aperitivo",
-    "type5": "Entrada",
-};
-
-const Times = {
-    "Time1": "5 - 20 min",
-    "Time2": "20 - 60 min",
-    "Time3": "60+ min",
-};
 
 async function loadRecipes(url) {
     let response = await fetch(url);

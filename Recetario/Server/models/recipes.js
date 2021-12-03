@@ -10,6 +10,19 @@ const schemaRecipe = mongoose.Schema({
         type: String,
         required: true
     },
+    description: {
+        type: String,
+        required: true
+    },
+    portions: {
+        type: Number,
+        required: true
+    },
+    category: {
+        type: String,
+        enum: ["type1","type2","type3","type4","type5"],
+        required: true
+    },
     estimatedTime: {
         type: String,
         enum: ["Time1","Time2","Time3"],
@@ -19,25 +32,11 @@ const schemaRecipe = mongoose.Schema({
         type: Array,
         required: true
     },
-    category: {
+    preparation: {
         type: String,
-        enum: ["type1","type2","type3","type4","type5"],
-        required: true
-    },
-    rating: {
-        type: Number,
-        min: 0,
-        max: 5
-    },
-    portions: {
-        type: Number,
         required: true
     },
     imageUrl: {
-        type: String,
-        required: true
-    },
-    preparation: {
         type: String,
         required: true
     },
@@ -45,10 +44,11 @@ const schemaRecipe = mongoose.Schema({
         type: String,
         required: true
     },
-    description: {
-        type: String,
-        required: true
-    }
+    rating: {
+        type: Number,
+        min: 0,
+        max: 5
+    } 
 });
 
 let Receta = mongoose.model('recipeSch',schemaRecipe,'recipes');
