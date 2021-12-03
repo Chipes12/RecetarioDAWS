@@ -5,6 +5,7 @@
 const recipeBookRoute = `http://localhost:3000/recipebook/recipes/`;
 const userPost = 'http://localhost:3000/recipebook/user';
 const logInPost = 'http://localhost:3000/recipebook/user/login';
+const getIngr = 'http://localhost:3000/recipebook/ingredients';
 const getFavs = `http://localhost:3000/recipebook/user/${JSON.parse(JSON.parse(localStorage.getItem("User"))).idUser}/favourites/`;
 
 console.log(getFavs);
