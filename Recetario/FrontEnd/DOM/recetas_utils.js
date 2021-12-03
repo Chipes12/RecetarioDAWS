@@ -20,7 +20,7 @@ function recipeToHTML(recipe) {
                 <h4 id="recipePortion" class="pr-5"><i class="fas fa-users"></i> Porciones: ${recipe.portions}</h4>
                 <h4 id="recipeCategory" class="pr-5"><i class="far fa-list-alt"></i> Tipo: ${Category[recipe.category]}</h4>
                 <h4 class="pr-5"><i class="far fa-clock"></i> Tiempo: ${Times[recipe.estimatedTime]}</h4>
-                <h4 class="pr-5"><i class="fas fa-star" style="color: rgba(255, 200, 0, 0.82);"></i> Calificación: ${recipe.rating}</h4>
+                <a href="../views/admin/editar_receta.html">Actualizar</a>
                 <h4 id="recipeFav" class="pr-5"><i onclick = "isInFavs()" id= "heart" class="fas fa-heart fa-2x"></i></h4>
             </div>
         </form>
@@ -62,11 +62,11 @@ function updateStars(event) {
 }
 
 async function updateHeart() {
-    if(JSON.parse(JSON.parse(localStorage.getItem("User"))) == "undefined")return;
+    if (JSON.parse(JSON.parse(localStorage.getItem("User"))) == "undefined") return;
     let uid = JSON.parse(JSON.parse(localStorage.getItem("User"))).idUser;
     let urlverify = 'http://localhost:3000/recipebook/user/login' + "/" + uid;
     let response = fetch(urlverify);
-    if(response.status == 200)return;
+    if (response.status == 200) return;
 
     let idReceta = recipe._id;
     let url = getFavs + idReceta;
@@ -79,11 +79,11 @@ async function updateHeart() {
 }
 
 async function addFavorites() {
-    if(JSON.parse(JSON.parse(localStorage.getItem("User"))) == "undefined")return;
+    if (JSON.parse(JSON.parse(localStorage.getItem("User"))) == "undefined") return;
     let uid = JSON.parse(JSON.parse(localStorage.getItem("User"))).idUser;
     let url = 'http://localhost:3000/recipebook/user/login' + "/" + uid;
     let response = fetch(url);
-    if(response.status == 200)return;
+    if (response.status == 200) return;
 
     let id = []
     id.push({
@@ -94,11 +94,11 @@ async function addFavorites() {
 }
 
 async function deleteRecipe(id) {
-    if(JSON.parse(JSON.parse(localStorage.getItem("User"))) == "undefined")return;
+    if (JSON.parse(JSON.parse(localStorage.getItem("User"))) == "undefined") return;
     let uid = JSON.parse(JSON.parse(localStorage.getItem("User"))).idUser;
     let url = 'http://localhost:3000/recipebook/user/login' + "/" + uid;
     let response = fetch(url);
-    if(response.status == 200)return;
+    if (response.status == 200) return;
 
     let urlDelete = getFavs + id;
     await deleteFavRecipe(urlDelete);
@@ -106,11 +106,11 @@ async function deleteRecipe(id) {
 }
 
 async function isInFavs() {
-    if(JSON.parse(JSON.parse(localStorage.getItem("User"))) == "undefined")return;
+    if (JSON.parse(JSON.parse(localStorage.getItem("User"))) == "undefined") return;
     let uid = JSON.parse(JSON.parse(localStorage.getItem("User"))).idUser;
     let urlverify = 'http://localhost:3000/recipebook/user/login' + "/" + uid;
     let response = fetch(urlverify);
-    if(response.status == 200)return;
+    if (response.status == 200) return;
 
     let idReceta = recipe._id;
     let url = getFavs + idReceta;

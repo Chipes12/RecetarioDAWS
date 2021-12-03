@@ -92,8 +92,8 @@
                                     <span class="input-group-text" id="basic-addon1"><i
                                             class="fas fa-user    "></i></span>
                                 </div>
-                                <input type="text" class="col-10 form-control" name="" id="logInEmail" aria-describedby="helpId"
-                                    placeholder="correo registrado">
+                                <input type="text" class="col-10 form-control" name="" id="logInEmail"
+                                    aria-describedby="helpId" placeholder="correo registrado">
                             </div>
                         </div>
                         <div class="form-group">
@@ -109,7 +109,8 @@
                         </div>
                         <div class="form-group">
                             <div class="controls">
-                                <button type="button" class="btn btn-success" data-dismiss="modal" onclick="logIn()">Login</button>
+                                <button type="button" class="btn btn-success" data-dismiss="modal"
+                                    onclick="logIn()">Login</button>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
                         </div>
@@ -142,20 +143,20 @@
                     <form>
                         <div class="row">
                             <div class="col-6">
-                                <input type="text" name="name" id="name" class="form-control" placeholder="Nombre o nombres"
-                                    aria-describedby="helpId" required>
+                                <input type="text" name="name" id="name" class="form-control"
+                                    placeholder="Nombre o nombres" aria-describedby="helpId" required>
                             </div>
                             <div class="col-6">
-                                <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Apellidos"
-                                    aria-describedby="helpId" required>
+                                <input type="text" name="lastName" id="lastName" class="form-control"
+                                    placeholder="Apellidos" aria-describedby="helpId" required>
                             </div>
                         </div>
 
                         <input type="mail" name="email" id="mail" class="form-control mt-3" placeholder="Tu correo"
                             aria-describedby="helpId" required>
 
-                        <input type="password" name="password" id="password" class="form-control mt-3" placeholder="Contraseña"
-                            aria-describedby="helpId" required minlength="8">
+                        <input type="password" name="password" id="password" class="form-control mt-3"
+                            placeholder="Contraseña" aria-describedby="helpId" required minlength="8">
 
                         <input type="password" name="" id="" class="form-control mt-3"
                             placeholder="Confirmar contraseña" aria-describedby="helpId" required>
@@ -185,8 +186,10 @@
                         </div>
                         <div class="from-group">
                             <div class="controls">
-                                <button type="button" class="btn btn-success mt-3" onclick="signUp()">Registrarse</button>
-                                <button type="button" class="btn btn-secondary mt-3" data-dismiss="modal" id="close">Close</button>
+                                <button type="button" class="btn btn-success mt-3"
+                                    onclick="signUp()">Registrarse</button>
+                                <button type="button" class="btn btn-secondary mt-3" data-dismiss="modal"
+                                    id="close">Close</button>
                             </div>
                         </div>
                         <div class="form-group pt-3">
@@ -205,8 +208,8 @@
         </div>
     </div>
     <!-- Cuerpo de receta -->
-    <div class="container" id = "infoContainer">
-        <span class="container" id= "tituloReceta">
+    <div class="container" id="infoContainer">
+        <span class="container" id="tituloReceta">
             <h1 id="recipeName" class="mt-5">Receta 1</h1>
         </span>
         <img id="recipeImg"
@@ -218,7 +221,7 @@
                 <h4 id="recipeCategory" class="pr-5"><i class="far fa-list-alt"></i> Tipo: </h4>
                 <h4 class="pr-5">Dificultad: <i id="recipeDificult" class="far fa-sad-tear"></i></h4>
                 <h4 class="pr-5"><i class="far fa-clock"></i> Tiempo: </h4>
-                <h4 class="pr-5"><i class="fas fa-star" style="color: rgba(255, 200, 0, 0.82);"></i> Calificación: </h4>
+                <button href="editar_receta.html" id="updateRecipe"> Actualizar</button>
                 <h4 id="recipeFav" class="pr-5"><i class="fas fa-heart fa-2x"></i></h4>
             </div>
         </form>

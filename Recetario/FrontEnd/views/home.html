@@ -49,7 +49,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">Administración</a>
                         <div class="dropdown-menu" aria-labelledby="dropdownId">
-                            <a class="dropdown-item" href="#">Agregar recetas</a>
+                            <a class="dropdown-item" href="./admin/nueva_receta.html">Agregar recetas</a>
                         </div>
                     </div>
                 </li>
@@ -93,8 +93,8 @@
                                     <span class="input-group-text" id="basic-addon1"><i
                                             class="fas fa-user    "></i></span>
                                 </div>
-                                <input type="text" class="col-10 form-control" name="" id="logInEmail" aria-describedby="helpId"
-                                    placeholder="correo registrado" required>
+                                <input type="text" class="col-10 form-control" name="" id="logInEmail"
+                                    aria-describedby="helpId" placeholder="correo registrado" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -110,7 +110,8 @@
                         </div>
                         <div class="form-group">
                             <div class="controls">
-                                <button type="button" class="btn btn-success" data-dismiss="modal" onclick="logIn()">Login</button>
+                                <button type="button" class="btn btn-success" data-dismiss="modal"
+                                    onclick="logIn()">Login</button>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
                         </div>
@@ -143,18 +144,18 @@
                     <form class="" novalidate>
                         <div class="row">
                             <div class="col-6">
-                                <input type="text" name="name" id="name" class="form-control" placeholder="Nombre o nombres"
-                                    aria-describedby="helpId" required>
+                                <input type="text" name="name" id="name" class="form-control"
+                                    placeholder="Nombre o nombres" aria-describedby="helpId" required>
                             </div>
                             <div class="col-6">
-                                <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Apellidos"
-                                    aria-describedby="helpId" required>
+                                <input type="text" name="lastName" id="lastName" class="form-control"
+                                    placeholder="Apellidos" aria-describedby="helpId" required>
                             </div>
                         </div>
                         <input type="mail" name="email" id="mail" class="form-control mt-3" placeholder="Tu correo"
                             aria-describedby="helpId" required>
-                        <input type="password" name="password" id="password" class="form-control mt-3" placeholder="Contraseña"
-                            aria-describedby="helpId" required minlength="8">
+                        <input type="password" name="password" id="password" class="form-control mt-3"
+                            placeholder="Contraseña" aria-describedby="helpId" required minlength="8">
                         <input type="password" name="" id="" class="form-control mt-3"
                             placeholder="Confirmar contraseña" aria-describedby="helpId" required>
 
@@ -183,8 +184,10 @@
                         </div>
                         <div class="from-group">
                             <div class="controls">
-                                <button type="button" class="btn btn-success mt-3" onclick="signUp()">Registrarse</button>
-                                <button type="button" class="btn btn-secondary mt-3" data-dismiss="modal" id="close">Close</button>
+                                <button type="button" class="btn btn-success mt-3"
+                                    onclick="signUp()">Registrarse</button>
+                                <button type="button" class="btn btn-secondary mt-3" data-dismiss="modal"
+                                    id="close">Close</button>
                             </div>
                         </div>
                         <div class="form-group pt-3">
@@ -275,11 +278,11 @@
             <li class="page-item disabled">
                 <a class="page-link" href="#" aria-label="Previous" onclick="changePage(event)">
                     <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only" >Previous</span>
+                    <span class="sr-only">Previous</span>
                 </a>
             </li>
             <li class="page-item active"><a class="page-link" href="#" onclick="changePage(event)">1</a></li>
-            <li class="page-item"><a class="page-link" href="#" onclick="changePage(event)" >2</a></li>
+            <li class="page-item"><a class="page-link" href="#" onclick="changePage(event)">2</a></li>
             <li class="page-item"><a class="page-link" href="#" onclick="changePage(event)">3</a></li>
             <li class="page-item">
                 <a class="page-link" href="#" aria-label="Next" onclick="changePage(event)">
@@ -289,7 +292,7 @@
             </li>
         </ul>
     </nav>
-    <!-- Optional JavaScript -->    
+    <!-- Optional JavaScript -->
     <script src="../DOM/utils.js"></script>
     <script src="../DOM/ajax_handler.js"></script>
     <script src="../DOM/home_utils.js"></script>

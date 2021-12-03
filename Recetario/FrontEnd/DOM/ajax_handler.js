@@ -82,6 +82,55 @@ async function checkFav(url) {
     return response.status;
 }
 
+async function createRec(url) {
+    let obj = {
+        name: document.getElementById('nameRecipe').value,
+        description: document.getElementById('descrRecipe').value,
+        portions: document.getElementById('portionsRecipe').value,
+        category: document.getElementById('recipeType').value,
+        estimatedTime: document.getElementById('recipeTiming').value,
+        preparation: document.getElementById('recipeProcedure').value,
+        imageUrl: document.getElementById('urlImg').value,
+        video: document.getElementById('urlVid').value,
+        ingredients: ingrArr
+    };
+    console.log(obj)
+    let response = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify(obj),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    if (response.status != 200) return [];
+    return await response.json();
+}
+
+async function updateRec(url) {
+    let obj = {
+        name: document.getElementById('nameRecipe').value,
+        description: document.getElementById('descrRecipe').value,
+        portions: document.getElementById('portionsRecipe').value,
+        category: document.getElementById('recipeType').value,
+        estimatedTime: document.getElementById('recipeTiming').value,
+        preparation: document.getElementById('recipeProcedure').value,
+        imageUrl: document.getElementById('urlImg').value,
+        video: document.getElementById('urlVid').value,
+        ingredients: ingrArr
+    };
+    console.log(obj)
+    let response = await fetch(url, {
+        method: "PUT",
+        body: JSON.stringify(obj),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    console.log(response.status)
+    if (response.status != 200) return [];
+    return await response.json();
+}
+
 function signUp() {
     let xhr = new XMLHttpRequest();
     let obj = {

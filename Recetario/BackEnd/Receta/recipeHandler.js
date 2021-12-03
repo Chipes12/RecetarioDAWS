@@ -47,7 +47,7 @@ function updateRecipe(req, res) {
     let recipeUpdated = req.body;
     //clean object
     for (let property in recipeUpdated) {
-        if (['rid', 'name', 'estimatedTime', 'ingredients', 'category', 'rating', 'preparation', 'portions', 'imageUrl', 'videoUrl'].includes(property)) continue;
+        if (['name', 'description', 'estimatedTime', 'ingredients', 'category', 'rating', 'preparation', 'portions', 'imageUrl', 'video'].includes(property)) continue;
         delete recipeUpdated[property];
     }
     //find and update
@@ -58,7 +58,9 @@ function updateRecipe(req, res) {
             recipe.save();
             res.status(200).send('Updated successfully')
         })
-        .catch(err => res.status(400).send(`Unable to update recipe with id ${rid}: ${err}`));
+        .catch(err => {
+            res.status(400).send(`Unable to update recipe with id ${rid}: ${err}`)
+        });
 
     // if (getRecipeById(rid) != undefined) {
     //     Receta.Recipe.cleanObject(updatedRecipe);

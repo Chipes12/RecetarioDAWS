@@ -56,9 +56,71 @@
         </div>
     </nav>
 
+    <!-- Datos a agregar -->
+    <div class="container">
+        <div class="row">
+            <div class="col border">
+                <div class="title border-bottom border-white">
+                    <h4>Información básica</h4>
+                </div>
+                <div class="content">
+                    <label for="name">Nombre: </label>
+                    <input id="nameRecipe" type="text" name="name" placeholder="Nombre" required><br>
+                    <label for="description">Descripción: </label>
+                    <textarea id="descrRecipe" placeholder="Descripción de receta" required></textarea><br>
+                    <label for="portions">Porciones: </label>
+                    <input id="portionsRecipe" type="number" name="portions" value="1" required><br>
+                    <label for="tipoReceta">Tipo: </label>
+                    <select id="recipeType" name="tipoReceta" required>
+                        <option selected>Selecciona una opción</option>
+                    </select><br>
+                    <label for="recipeTime">Tiempo: </label>
+                    <select id="recipeTiming" name="recipeTime" required>
+                        <option selected>Selecciona una opción</option>
+                    </select><br>
+                </div>
+            </div>
+            <div class="col border">
+                <div class="title border-bottom border-white">
+                    <h4>Información preparación</h4>
+                </div>
+                <div id="dataRecipeCont" class="content">
+                    <label for="nameIngredientes">Ingredientes: </label>
+                    <a id="addIngredient" onclick="addInputIngr()"><i class="fas fa-plus-circle"></i></a><br>
+
+                </div>
+
+                <label for="procedure">Procedimiento: </label>
+                <textarea id="recipeProcedure" name="procedure" placeholder="Procedimiento de receta"
+                    required></textarea><br>
+            </div>
+            <div class="col border">
+                <div class="title border-bottom border-white">
+                    <h4>Imagen</h4>
+                </div>
+                <div class="content">
+                    <label for="image">Agregar imagen: </label>
+                    <input id="urlImg" name="urlVideo" type="text" placeholder="Ingresa url de imagen"
+                        style="margin-bottom: 15px;" required><br>
+                </div>
+                <div class="content">
+                    <label for="urlVideo">URL para video</label><br>
+                    <input id="urlVid" name="urlVideo" type="text" placeholder="Ingresa url de video"
+                        style="margin-bottom: 15px;" required><br>
+                </div>
+            </div>
+        </div>
+        <button id="addIngredient" type="submit" onclick="updateRecipe()" class="btn btn-primary btn-lg">Actualizar
+            Receta</button><br>
+    </div>
+
     <!-- Contenido de receta -->
     <!-- Optional JavaScript -->
+    <script src="../../DOM/utils.js"></script>
+    <script src="../../DOM/ajax_handler.js"></script>
+    <script src="../../DOM/edit_utils.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>

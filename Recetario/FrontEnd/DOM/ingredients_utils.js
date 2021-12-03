@@ -18,7 +18,7 @@ function optionToHtml(valueIngr) {
 function ingredientsListToHTML(ingrList) {
     let ingredientsOptions = mainContainer.getElementsByTagName("select");
     for (let i = 0; i < ingredientsOptions.length; i++) {
-        ingredientsOptions[i].innerHTML += ingrList.map(optionToHtml).join("\n");
+        ingredientsOptions[i].innerHTML = ingrList.map(optionToHtml).join("\n");
     }
     /*
     let ingredientsOptions = document.getElementById("ingredients");
@@ -29,6 +29,7 @@ function loadRecipeType() {
     let typeSelector = document.getElementById('recipeType');
     for (let type in Category) {
         let option = document.createElement('option');
+        option.value = type;
         typeSelector.appendChild(option).innerText = Category[type];
     }
 }
@@ -38,6 +39,7 @@ function loadRecipeTime() {
     let typeSelector = document.getElementById('recipeTiming');
     for (let type in Times) {
         let option = document.createElement('option');
+        option.value = type;
         typeSelector.appendChild(option).innerText = Times[type];
     }
 }
@@ -66,7 +68,13 @@ function addInputIngr() {
 //guardar valores en base de datos
 function addRecipe() {
     addIngrToRecipe();
-    
+
+    let url = recipeBookRoute;
+    createRec(url);
+
 }
+
+
+
 
 load();
