@@ -33,26 +33,33 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" data-toggle="modal" data-target="#registro">Sign Up</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" data-toggle="modal" data-target="#login">Log in</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">Administración</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownId">
-                        <a class="dropdown-item" href="login">Iniciar sesión</a>
-                        <a class="dropdown-item" href="#">Editar recetas</a>
+                <li class="nav-item" id="signupBar">
+                    <div id="signupInBar">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#registro">Sign Up</a>
                     </div>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">Mi Cuenta</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownId">
-                        <a class="dropdown-item" href="favoritos.html">Favoritos</a>
-                        <a class="dropdown-item" href="historial.html">Historial</a>
+                <li class="nav-item" id="loginBar">
+                    <div id="loginInBar">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#login">Log in</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown" id="adminBar">
+                    <div id="adminBar">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">Administración</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownId">
+                            <a class="dropdown-item" href="#">Agregar recetas</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item dropdown" id="userBar">
+                    <div id="myAccount">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">Mi Cuenta</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownId">
+                            <a class="dropdown-item" href="favoritos.html">Favoritos</a>
+                            <a class="dropdown-item" href="#" onclick="deleteUserStorage()">Cerrar Sesión</a>
+                        </div>
                     </div>
                 </li>
             </ul>
@@ -85,7 +92,7 @@
                                     <span class="input-group-text" id="basic-addon1"><i
                                             class="fas fa-user    "></i></span>
                                 </div>
-                                <input type="text" class="col-10 form-control" name="" id="" aria-describedby="helpId"
+                                <input type="text" class="col-10 form-control" name="" id="logInEmail" aria-describedby="helpId"
                                     placeholder="correo registrado">
                             </div>
                         </div>
@@ -96,13 +103,13 @@
                                     <span class="input-group-text" id="basic-addon2"><i
                                             class="fas fa-key    "></i></span>
                                 </div>
-                                <input type="password" class="col-10 form-control" name="" id=""
+                                <input type="password" class="col-10 form-control" name="" id="logInPassword"
                                     aria-describedby="helpId" placeholder="correo registrado">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="controls">
-                                <button type="button" class="btn btn-success" data-dismiss="modal">Login</button>
+                                <button type="button" class="btn btn-success" data-dismiss="modal" onclick="logIn()">Login</button>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
                         </div>
@@ -148,7 +155,7 @@
                             aria-describedby="helpId" required>
 
                         <input type="password" name="password" id="password" class="form-control mt-3" placeholder="Contraseña"
-                            aria-describedby="helpId" required>
+                            aria-describedby="helpId" required minlength="8">
 
                         <input type="password" name="" id="" class="form-control mt-3"
                             placeholder="Confirmar contraseña" aria-describedby="helpId" required>

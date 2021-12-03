@@ -28,7 +28,7 @@ router.route('/')
         }*/
     });
 
-router.route('/:uid').get((req, res) => {
+router.route('/:uid').get(tokenUtils.verifyToken, (req, res) => {
         let uid = req.params.uid;
         userHandler.getUserById(uid, res);
         /*let uid = req.params.uid;

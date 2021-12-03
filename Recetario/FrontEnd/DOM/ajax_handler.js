@@ -2,14 +2,13 @@
 
 
 
-const recipeBookRoute = `http://localhost:8080/recipebook/recipes/`;
-const userPost = 'http://localhost:8080/recipebook/user';
-const logInPost = 'http://localhost:8080/recipebook/user/login';
-const getIngr = `http://localhost:8080/recipebook/ingredients/`;
-const getFavs = `http://localhost:8080/recipebook/user/${JSON.parse(JSON.parse(localStorage.getItem("User"))).idUser}/favourites/`
+const recipeBookRoute = `http://localhost:3000/recipebook/recipes/`;
+const userPost = 'http://localhost:3000/recipebook/user';
+const logInPost = 'http://localhost:3000/recipebook/user/login';
+const getFavs = `http://localhost:3000/recipebook/user/${JSON.parse(JSON.parse(localStorage.getItem("User"))).idUser}/favourites/`;
 
 console.log(getFavs);
-console.log(JSON.parse(JSON.parse(localStorage.getItem("User"))))
+console.log(JSON.parse(JSON.parse(localStorage.getItem("User"))));
 
 //getFavs.replace("USERID", JSON.parse(JSON.parse(localStorage.getItem("User"))).idUser)
 
@@ -121,6 +120,7 @@ function logIn() {
     }
     xhr.onload = () => {
         writeUserStorage(xhr.response);
+        window.location.reload();
     }
     return false;
 }
