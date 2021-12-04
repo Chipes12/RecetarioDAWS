@@ -1,16 +1,10 @@
 "use strcit";
 
-// const fs = require("fs");
-const Receta = require("../../Server/models/recipes"); //require("./recipe");
-// let content = fs.readFileSync("./BackEnd/Receta/data.json");
-// const recipes = JSON.parse(content).map(Receta.Recipe.createFromObject);
+const Receta = require("../../Server/models/recipes"); 
 
 function getRecipes(req, res) {
-    // await Receta.findById('f7d0-af5b-4c41-a7cb').then(recipes => console.log(recipes)).catch(err => console.log(err));
-    // Receta.db('Recetario');
     Receta.find({}).then(recipe => res.status(200).json(recipe))
         .catch(err => res.status(400).send(err));
-    // return recipes;
 }
 
 function getRecipeById(rid, res) {
@@ -18,12 +12,7 @@ function getRecipeById(rid, res) {
             "_id": rid
         }).then(recipe => res.status(200).json(recipe))
         .catch(err => {
-            res.status(400).send(err)
-            // return;
-        })
-    // Receta.findOne({_rid: rid}).then(recipe => res.status(200).json(recipe))
-    //     .catch(err => res.status(400).send(err));
-    // return recipes.find(recipe => recipe._rid == rid);
+            res.status(400).send(err)});
 }
 
 function createRecipe(req, res) {
@@ -33,13 +22,7 @@ function createRecipe(req, res) {
         res.send(`Receta ${recipe.name} was created`);
         res.status(200);
     }).catch(err => res.status(400).send('Unable to create: ' + err));
-    // let p = undefined;
-    // if (typeof recipe == "string") p = Receta.Recipe.createFromJSON(recipe);
-    // else p = Receta.Recipe.createFromObject(recipe);
-    // recipes.push(p);
-    // let newRecipes = JSON.stringify(recipes)
-    // fs.writeFileSync("./BackEnd/Receta/data.json", newRecipes);
-    // return p;
+
 }
 
 function updateRecipe(req, res) {
@@ -61,18 +44,6 @@ function updateRecipe(req, res) {
         .catch(err => {
             res.status(400).send(`Unable to update recipe with id ${rid}: ${err}`)
         });
-
-    // if (getRecipeById(rid) != undefined) {
-    //     Receta.Recipe.cleanObject(updatedRecipe);
-    //     let index = recipes.findIndex(recipe => recipe._rid == rid);
-    //     if (index > -1) {
-    //         Object.assign(recipes[index], updatedRecipe);
-    //         recipes[index]._estimatedTime = typeof recipes[index]._estimatedTime == "number" ? Receta.Times[`Time${recipes[index]['_estimatedTime']}`] : recipes[index]._estimatedTime;
-    //         recipes[index]._category = typeof recipes[index]._category == "number" ? Receta.Category[`type${recipes[index]['_category']}`] : recipes[index]._category;
-    //         let newRecipes = JSON.stringify(recipes);
-    //         fs.writeFileSync("./BackEnd/Receta/data.json", newRecipes);
-    //     }
-    // }
 }
 
 function deleteRecipe(req, res) {
@@ -81,11 +52,6 @@ function deleteRecipe(req, res) {
         .then(recipe => {
             res.status(200).send('Recipe deleted successfully');
         }).catch(err => res.status(400).send(`Unable to update recipe with id ${rid}: ${err}`));
-
-    // let index = recipes.findIndex(recipe => recipe._rid == rid);
-    // if (index > -1) recipes.splice(index, 1);
-    // let newRecipes = JSON.stringify(recipes);
-    // fs.writeFileSync("./BackEnd/Receta/data.json", newRecipes);
 }
 
 function firltRecipes(time, type, rate) {

@@ -6,8 +6,6 @@ const logInPost = 'http://localhost:3000/recipebook/user/login';
 const getIngr = 'http://localhost:3000/recipebook/ingredients';
 const getFavs = `http://localhost:3000/recipebook/user/${JSON.parse(JSON.parse(localStorage.getItem("User"))).idUser}/favourites/`;
 
-//getFavs.replace("USERID", JSON.parse(JSON.parse(localStorage.getItem("User"))).idUser)
-
 const Category = {
     "type1": "Platillo",
     "type2": "Bebida",
@@ -60,12 +58,10 @@ async function deleteFavRecipe(url) {
             authorization: JSON.parse(JSON.parse(localStorage.getItem("User"))).token
         }
     })
-
     return response.status;
 }
 
 async function addFavRecipe(url, body) {
-    console.log(body);
     let response = await fetch(url, {
         method: "PUT",
         body: JSON.stringify(
@@ -103,7 +99,6 @@ async function createRec(url) {
         video: document.getElementById('urlVid').value,
         ingredients: ingrArr
     };
-    console.log(obj)
     let response = await fetch(url, {
         method: "POST",
         body: JSON.stringify(obj),
@@ -127,7 +122,6 @@ async function updateRec(url) {
         video: document.getElementById('urlVid').value,
         ingredients: ingrArr
     };
-    console.log(obj)
     let response = await fetch(url, {
         method: "PUT",
         body: JSON.stringify(obj),
@@ -135,7 +129,6 @@ async function updateRec(url) {
             'Content-Type': 'application/json',
         }
     })
-    console.log(response.status)
     if (response.status != 200) return [];
     return await response.json();
 }

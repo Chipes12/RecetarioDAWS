@@ -14,21 +14,6 @@ function readRecipeStorage() {
     return storage;
 }
 
-
-/* const Category = {
-    "type1": "Platillo",
-    "type2": "Bebida",
-    "type3": "Postre",
-    "type4": "Aperitivo",
-    "type5": "Entrada",
-};
-
-const Times = {
-    "Time1": "5 - 20 min",
-    "Time2": "20 - 60 min",
-    "Time3": "60+ min",
-}; */
-
 function writeRecipeStorage(recipe) {
     sessionStorage.setItem("Recipe", JSON.stringify(recipe));
 }
@@ -65,7 +50,7 @@ function verifyUser() {
         document.getElementById("myAccount").setAttribute("class", "d-none");
     } else {
         let uid = JSON.parse(JSON.parse(localStorage.getItem("User"))).idUser;
-        let url = 'http://localhost:3000/recipebook/user/login' + "/" + uid;
+        let url = 'http://localhost:3000/recipebook/user' + "/" + uid;
         let response = fetch(url);
         if (response.status != 200) {
             document.getElementById("signupInBar").setAttribute("class", "d-none");
