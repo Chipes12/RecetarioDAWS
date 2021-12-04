@@ -3,13 +3,11 @@ let mainContainer = document.getElementById('dataRecipeCont');
 let ingrArr = [];
 
 function addInputIngr() {
-
     let opciones;
-
     loadIngredients(getIngr).then(ingredients => {
         ingredients.forEach((element) => {
-            opciones += optionToHtml(element)
-        })
+            opciones += optionToHtml(element);
+        });
         mainContainer.innerHTML += `<label for="nameIngredientes">Ingredientes: </label>
         <select id="ingredients" name="nameIngredients" required>
         ${opciones}
@@ -18,9 +16,7 @@ function addInputIngr() {
         <input id="totalIngredients" name="cantidad" type="number" value="1" style="margin-bottom: 15px;"
             required><br>`;
     });
-
-
-
+    setSelectionValues();
 }
 
 function optionToHtml(valueIngr) {
@@ -30,11 +26,8 @@ function optionToHtml(valueIngr) {
 function ingredientsListToHTML(ingrList) {
     let ingredientsOptions = mainContainer.getElementsByTagName("select");
     for (let i = 0; i < ingredientsOptions.length; i++) {
-        ingredientsOptions[i].innerHTML += ingrList.map(optionToHtml).join("\n");
+        ingredientsOptions[i].innerHTML = ingrList.map(optionToHtml).join("\n");
     }
-    /*
-    let ingredientsOptions = document.getElementById("ingredients");
-    ingredientsOptions.innerHTML = ingrList.map(optionToHtml).join("\n");*/
 }
 
 function loadRecipeType() {
@@ -61,8 +54,6 @@ function loadInfo() {
     loadRecipeTime();
     loadRecipeType();
 
-
-    console.log(JSON.parse(sessionStorage.getItem("Recipe"))[0])
     document.getElementById('nameRecipe').value = JSON.parse(sessionStorage.getItem("Recipe"))[0].name;
     document.getElementById('descrRecipe').value = JSON.parse(sessionStorage.getItem("Recipe"))[0].description;
     document.getElementById('portionsRecipe').value = JSON.parse(sessionStorage.getItem("Recipe"))[0].portions;
@@ -73,7 +64,6 @@ function loadInfo() {
     document.getElementById('urlVid').value = JSON.parse(sessionStorage.getItem("Recipe"))[0].video;
 
     JSON.parse(sessionStorage.getItem("Recipe"))[0].ingredients.forEach((element, index) => {
-        console.log(element)
         document.getElementById("dataRecipeCont").innerHTML +=
             `<select id="${index}" name="nameIngredients" required>
             <option selected>Selecciona una opción</option>
@@ -82,40 +72,32 @@ function loadInfo() {
             <input id="totalIngredients" name="cantidad" type="number" value="${element.cantidad}" style="margin-bottom: 15px;"
             required><br></br>`
     });
+    setSelectionValues();
+}
+
+function setSelectionValues(){
     loadIngredients(getIngr).then(ingredients => {
         ingredientsListToHTML(ingredients);
         JSON.parse(sessionStorage.getItem("Recipe"))[0].ingredients.forEach((element, index) => {
             document.getElementById(index).value = element.name;
         });
     });
-
-
 }
-
 function addIngrToRecipe() {
-    let ingr = {};
     let selects = document.getElementById('dataRecipeCont').querySelectorAll("select");
     let inputs = document.getElementById('dataRecipeCont').querySelectorAll("input");
-    selects.forEach((element) => {
-
-    })
     for (let i = 0; i < selects.length; i++) {
-
+        let ingr = {};
         ingr.name = selects[i].value;
         ingr.cantidad = Number(inputs[i].value);
-        console.log(ingr)
         ingrArr.push(ingr);
     }
-    console.log(ingrArr);
 }
 
 function updateRecipe() {
     addIngrToRecipe();
-
     let url = recipeBookRoute + JSON.parse(sessionStorage.getItem("Recipe"))[0]._id;
-    console.log(url)
     updateRec(url);
-
 }
 
 loadInfo();

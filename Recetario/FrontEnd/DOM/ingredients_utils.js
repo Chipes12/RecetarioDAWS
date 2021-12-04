@@ -45,10 +45,10 @@ function loadRecipeTime() {
 }
 //push obj ingr to arr
 function addIngrToRecipe() {
-    let ingr = {};
     let selects = document.getElementById('dataRecipeCont').querySelectorAll("select");
     let inputs = document.getElementById('dataRecipeCont').querySelectorAll("input");
     for (let i = 0; i < selects.length; i++) {
+        let ingr = {};
         ingr.name = selects[i].value;
         ingr.cantidad = Number(inputs[i].value);
         ingrArr.push(ingr);
@@ -73,8 +73,4 @@ function addRecipe() {
     createRec(url);
 
 }
-
-
-
-
 load();

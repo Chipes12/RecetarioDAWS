@@ -24,20 +24,14 @@ function recipeToHTML(recipe) {
                 <h4 id="recipeFav" class="pr-5"><i onclick = "isInFavs()" id= "heart" class="fas fa-heart fa-2x"></i></h4>
             </div>
         </form>
-        <span id="recipeCalif" class="form-inline container m-5">
-            <div class="form-group">
-                <h4 class="mr-5">Calificación:</h4>
-                <span><i class="1 fas fa-star fa-2x" onclick="updateStars(event)"></i></span>
-                <span><i class="2 fas fa-star fa-2x" onclick="updateStars(event)"></i></span>
-                <span><i class="3 fas fa-star fa-2x" onclick="updateStars(event)"></i></span>
-                <span><i class="4 fas fa-star fa-2x" onclick="updateStars(event)"></i></span>
-                <span><i class="5 fas fa-star fa-2x" onclick="updateStars(event)"></i></span>
-                <button type="button" name="" id="btnCalif" class="btn btn-light ml-5">Calificar</button>
-            </div>
-        </span>
         <span class="container">
             <h3 class="mt-5">Descripción:</h3>
             <p id="recipeDescription" class="pt-5">${recipe.description}</p>
+        </span>
+        <span class="container">
+            <h3 class="mt-5">Ingredientes:</h3>
+            <div id = "ingredients">
+            </div>
         </span>
         <span class="container">
             <h3 class="mt-5">Procedimiento</h3>
@@ -49,6 +43,7 @@ function recipeToHTML(recipe) {
         </div>`
 }
 
+/*
 function updateStars(event) {
     let starsContainer = infoContainer.getElementsByTagName("span");
     let clickedStar = event.target.parentNode;
@@ -59,7 +54,7 @@ function updateStars(event) {
         else starsArray[i].setAttribute("style", "color: rgba(38, 37, 44, 1);");
         if (starsArray[i] == clickedStar) found = true;
     }
-}
+}*/
 
 async function updateHeart() {
     if (JSON.parse(JSON.parse(localStorage.getItem("User"))) == "undefined") return;
@@ -70,7 +65,6 @@ async function updateHeart() {
 
     let idReceta = recipe._id;
     let url = getFavs + idReceta;
-    console.log(url);
     let chequeo = await checkFav(url);
     console.log(chequeo);
     if (chequeo == 200) {
@@ -122,4 +116,14 @@ async function isInFavs() {
     }
 }
 
+function ingToHTML(ing){
+    return  `<li>${ing['name']} &nbsp;&nbsp;&nbsp;&nbsp; Cantidad: ${ing['cantidad']}</li>`;
+}
+function addIngredients(){
+    document.getElementById("ingredients").innerHTML = `<ul>`;
+    document.getElementById("ingredients").innerHTML += recipe.ingredients.map(ingToHTML).join("\n");
+    document.getElementById("ingredients").innerHTML += `</ul>`;
+}
+
+addIngredients();
 updateHeart();
