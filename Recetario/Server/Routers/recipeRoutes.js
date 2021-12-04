@@ -3,9 +3,10 @@
 const express = require('express');
 const router = express.Router();
 const recipeHandler = require('../../BackEnd/Receta/recipeHandler');
+const tokenUtils = require('../models/tokenUtils');
 
 router.route('/') //Post
-    .post((req, res) => {
+    .post(tokenUtils.verifyToken, (req, res) => {
         recipeHandler.createRecipe(req, res);
     })
     .get((req, res) => {
@@ -17,19 +18,11 @@ router.route('/:rid', )
         let rid = req.params.rid;
         recipeHandler.getRecipeById(rid, res);
     })
-    .put((req, res) => {
+    .put(tokenUtils.verifyToken, (req, res) => {
         recipeHandler.updateRecipe(req, res);
     })
-    .delete(validateAdmin, (req, res) => {
+    .delete(tokenUtils.verifyToken, (req, res) => {
         recipeHandler.deleteRecipe(req, res);
-    })
-
-
-
-function validateAdmin(req, res, next) {
-    let auth = req.header('x-auth');
-    if (auth == 'admin') next();
-    else res.status(403).type('text/plain').send("Access unauthorized, no admin privileges");
-}
+    });
 
 module.exports = router;

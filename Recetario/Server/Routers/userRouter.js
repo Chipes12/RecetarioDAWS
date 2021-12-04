@@ -16,8 +16,7 @@ router.route('/')
     });
 
 router.route('/:uid').get(tokenUtils.verifyToken, (req, res) => {
-        let uid = req.params.uid;
-        userHandler.getUserById(uid, res);
+        userHandler.getUserById(req.params.uid, res);
     })
     .put((req, res) => {
         userHandler.updateUser(req, res);
@@ -29,9 +28,7 @@ router.route('/:uid').get(tokenUtils.verifyToken, (req, res) => {
 router.route('/:uid/favourites').put(tokenUtils.verifyToken, async (req, res) => {
     let recipeId = req.body;
     let uid = req.params.uid;
-    let user = await User.findById(
-        uid
-    );
+    let user = await User.findById(uid);
     if (user) {
         for (let recipes of recipeId) {
             let recipe = await Receta.findById(

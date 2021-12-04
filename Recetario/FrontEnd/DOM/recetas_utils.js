@@ -46,7 +46,7 @@ function recipeToHTML(recipe) {
 async function updateHeart() {
     if (JSON.parse(JSON.parse(localStorage.getItem("User"))) == "undefined") return;
     let uid = JSON.parse(JSON.parse(localStorage.getItem("User"))).idUser;
-    let urlverify = 'http://localhost:3000/recipebook/user/login' + "/" + uid;
+    let urlverify = 'http://localhost:3000/recipebook/user' + "/" + uid;
     let response = fetch(urlverify);
     if (response.status == 200) return;
 
@@ -103,7 +103,7 @@ async function isInFavs() {
 }
 
 function ingToHTML(ing){
-    return  `<li>${ing['name']} &nbsp;&nbsp;&nbsp;&nbsp; Cantidad: ${ing['cantidad']}</li>`;
+    return  `<li>${ing['name']}&nbsp;&nbsp;&nbsp;&nbsp;Cantidad: ${ing['cantidad']}</li>`;
 }
 function addIngredients(){
     document.getElementById("ingredients").innerHTML = `<ul>`;
@@ -111,5 +111,12 @@ function addIngredients(){
     document.getElementById("ingredients").innerHTML += `</ul>`;
 }
 
+function isAdmin(){
+    if (JSON.parse(JSON.parse(localStorage.getItem("User"))).role == "User2"){
+        document.getElementById("editThisRecipe").setAttribute("class", "");
+    }else document.getElementById("editThisRecipe").setAttribute("class", "d-none");
+}
+
+isAdmin();
 addIngredients();
 updateHeart();
