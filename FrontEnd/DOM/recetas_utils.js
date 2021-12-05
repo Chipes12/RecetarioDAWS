@@ -128,6 +128,7 @@ function formatProcedure() {
     }
 }
 
+verifyUser();
 isAdmin();
 addIngredients();
 formatProcedure();

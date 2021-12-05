@@ -45,6 +45,7 @@ function load() {
         console.log(recipes)
         recipesListToHTML(recipes.slice(4 * (page - 1), 4 * page));
     });
+    verifyUser();
 }
 
 async function deleteRecipe(id) {
