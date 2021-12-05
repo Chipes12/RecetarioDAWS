@@ -13,6 +13,7 @@ router.use('/ingredients', ingredientRouter);
 
 router.use(express.static(path.join(__dirname,'../../FrontEnd/views/'))); //to use css
 router.use(express.static(path.join(__dirname,'../../FrontEnd/views/admin'))); //to use css
+router.use(express.static(path.join(__dirname,'../../FrontEnd/'))); //to use css
 
 
 router.get('/',(req,res) => {

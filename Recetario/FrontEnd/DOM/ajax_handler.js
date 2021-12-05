@@ -1,10 +1,10 @@
 "use strict";
 
-const recipeBookRoute = `http://localhost:8080/recipebook/recipes/`;
-const userPost = 'http://localhost:8080/recipebook/user';
-const logInPost = 'http://localhost:8080/recipebook/user/login';
-const getIngr = 'http://localhost:8080/recipebook/ingredients';
-const getFavs = `http://localhost:8080/recipebook/user/${JSON.parse(JSON.parse(localStorage.getItem("User"))).idUser}/favourites/`;
+const recipeBookRoute = `http://localhost:8080/recipes/`;
+const userPost = 'http://localhost:8080/user';
+const logInPost = 'http://localhost:8080/user/login';
+const getIngr = 'http://localhost:8080/ingredients';
+const getFavs = `http://localhost:8080/user/${JSON.parse(JSON.parse(localStorage.getItem("User"))).idUser}/favourites/`;
 
 
 
