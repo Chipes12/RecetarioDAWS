@@ -104,6 +104,7 @@ async function createRec(url) {
         body: JSON.stringify(obj),
         headers: {
             'Content-Type': 'application/json',
+            authorization: JSON.parse(JSON.parse(localStorage.getItem("User"))).token
         }
     })
     if (response.status != 200) return [];
@@ -127,10 +128,22 @@ async function updateRec(url) {
         body: JSON.stringify(obj),
         headers: {
             'Content-Type': 'application/json',
+            authorization: JSON.parse(JSON.parse(localStorage.getItem("User"))).token
         }
     })
     if (response.status != 200) return [];
     return await response.json();
+}
+
+async function deleteRecipe(url) {
+    let response = await fetch(url, {
+        method: "DELETE",
+        headers: {
+            authorization: JSON.parse(JSON.parse(localStorage.getItem("User"))).token
+        }
+    })
+
+    return response.status;
 }
 
 function signUp() {

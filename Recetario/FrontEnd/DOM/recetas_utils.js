@@ -20,8 +20,9 @@ function recipeToHTML(recipe) {
                 <h4 id="recipePortion" class="pr-5"><i class="fas fa-users"></i> Porciones: ${recipe.portions}</h4>
                 <h4 id="recipeCategory" class="pr-5"><i class="far fa-list-alt"></i> Tipo: ${Category[recipe.category]}</h4>
                 <h4 class="pr-5"><i class="far fa-clock"></i> Tiempo: ${Times[recipe.estimatedTime]}</h4>
-                <a href = "../views/admin/editar_receta.html" class = "btn btn-outline-info w-100" id="editThisRecipe"> Actualizar </a> </div> <br>
-                <h4 id="recipeFav" class="pr-5"><i onclick = "isInFavs()" id= "heart" class="fas fa-heart fa-2x"></i></h4>
+                <a href = "../views/admin/editar_receta.html" class = "btn btn-outline-info w-100 " id="editThisRecipe"> <button   type="button" class="btn btn-outline-light">Actualizar</button> </a><br>
+                
+                <h4 id="recipeFav" class="pr-5 ml-5"><i onclick = "isInFavs()" id= "heart" class="fas fa-heart fa-2x"></i></h4>
             </div>
         </form>
         <span class="container">
@@ -35,7 +36,7 @@ function recipeToHTML(recipe) {
         </span>
         <span class="container">
             <h3 class="mt-5">Procedimiento</h3>
-            <p id="recipeProcedure" class="pt-5">${recipe.preparation}</p>
+            <p id="recipeProcedure" class="pt-5"></p>
         </span>
         <div class="embed-responsive embed-responsive-16by9">
             <iframe id="recipeVideo" class="embed-responsive-item" src="${recipe.video}"
@@ -102,21 +103,37 @@ async function isInFavs() {
     }
 }
 
-function ingToHTML(ing){
-    return  `<li>${ing['name']}&nbsp;&nbsp;&nbsp;&nbsp;Cantidad: ${ing['cantidad']}</li>`;
+function ingToHTML(ing) {
+    return `<li>${ing['name']}&nbsp;&nbsp;&nbsp;&nbsp;Cantidad: ${ing['cantidad']}</li>`;
 }
-function addIngredients(){
+
+function addIngredients() {
     document.getElementById("ingredients").innerHTML = `<ul>`;
     document.getElementById("ingredients").innerHTML += recipe.ingredients.map(ingToHTML).join("\n");
     document.getElementById("ingredients").innerHTML += `</ul>`;
 }
 
-function isAdmin(){
-    if (JSON.parse(JSON.parse(localStorage.getItem("User"))).role == "User2"){
+function isAdmin() {
+    if (JSON.parse(JSON.parse(localStorage.getItem("User"))).role == "User2") {
         document.getElementById("editThisRecipe").setAttribute("class", "");
-    }else document.getElementById("editThisRecipe").setAttribute("class", "d-none");
+    } else document.getElementById("editThisRecipe").setAttribute("class", "d-none");
+}
+
+function formatProcedure() {
+    let procedimiento = recipe.preparation;
+    let contenido = procedimiento.split(".");
+
+    for (let oracion of contenido) {
+        document.getElementById("recipeProcedure").innerHTML += `<p> ${oracion}</p>`
+    }
+
+
+
+
+
 }
 
 isAdmin();
 addIngredients();
+formatProcedure();
 updateHeart();

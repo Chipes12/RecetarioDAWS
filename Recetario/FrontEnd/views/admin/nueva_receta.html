@@ -43,13 +43,6 @@
                 </li>
             </ul>
         </div>
-        <div class="flex-grow-1">
-            <form class="form-inline">
-                <input id="inputSearch" class="form-control col-sm-4 col-lg-10" type="text"
-                    placeholder="Busca una receta">
-                <button id="btnSearch" class="btn btn-outline-light col-sm-5 col-lg-2" type="submit">Buscar</button>
-            </form>
-        </div>
     </nav>
     <!-- Datos a agregar -->
     <div class="container">
@@ -110,8 +103,13 @@
                 </div>
             </div>
         </div>
-        <button id="addIngredient" type="submit" onclick="addRecipe()" class="btn btn-primary btn-lg">Agregar
-            Receta</button><br>
+
+        <div class="row mt-2">
+            <div><button id="addIngredient" type="submit" onclick="addRecipe()" class="btn btn-primary btn-lg">Agregar
+                    Receta</button><br></div>
+            <div><a href="../home.html"> <button type="button" class="btn btn-warning ml-3">Regresar</button>
+                </a></div>
+        </div>
     </div>
 
     <!-- Optional JavaScript -->

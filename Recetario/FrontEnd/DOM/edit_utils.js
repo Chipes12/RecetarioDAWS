@@ -75,7 +75,7 @@ function loadInfo() {
     setSelectionValues();
 }
 
-function setSelectionValues(){
+function setSelectionValues() {
     loadIngredients(getIngr).then(ingredients => {
         ingredientsListToHTML(ingredients);
         JSON.parse(sessionStorage.getItem("Recipe"))[0].ingredients.forEach((element, index) => {
@@ -83,6 +83,7 @@ function setSelectionValues(){
         });
     });
 }
+
 function addIngrToRecipe() {
     let selects = document.getElementById('dataRecipeCont').querySelectorAll("select");
     let inputs = document.getElementById('dataRecipeCont').querySelectorAll("input");
@@ -98,6 +99,11 @@ function updateRecipe() {
     addIngrToRecipe();
     let url = recipeBookRoute + JSON.parse(sessionStorage.getItem("Recipe"))[0]._id;
     updateRec(url);
+}
+
+function deleteRec() {
+    let url = recipeBookRoute + JSON.parse(sessionStorage.getItem("Recipe"))[0]._id;
+    deleteRecipe(url);
 }
 
 loadInfo();
