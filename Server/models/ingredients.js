@@ -15,7 +15,6 @@ const schemaIngredient = mongoose.Schema({
         type: String,
         required: true
     }
-
 });
 
 let Ingredient = mongoose.model('ingredienteSch', schemaIngredient, 'ingredients');
