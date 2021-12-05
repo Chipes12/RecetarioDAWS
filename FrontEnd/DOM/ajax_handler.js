@@ -1,10 +1,11 @@
 "use strict";
 
-const recipeBookRoute = `http://localhost:8080/recipes/`;
+const recipeBookRoute = 'https://recetarioweb.herokuapp.com/recipes/';
 const userPost = 'http://localhost:8080/user';
-const logInPost = 'http://localhost:8080/user/login';
-const getIngr = 'http://localhost:8080/ingredients';
-let  getFavs = `http://localhost:8080/user/`
+const logInPost ='https://recetarioweb.herokuapp.com/user/login';
+const getIngr = 'https://recetarioweb.herokuapp.com/ingredients';
+let  getFavs = 'https://recetarioweb.herokuapp.com/user/'
+
 if(JSON.parse(localStorage.getItem("User")) == "Wrong email or password"){
     getFavs += "undefined/favourites";
 }
