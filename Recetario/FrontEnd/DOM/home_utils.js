@@ -68,4 +68,18 @@ function viewRecipe(event){
      }); 
 }
 
+function searchRecipe(){
+    let recipeToSearch = document.getElementById("inputSearch").value;
+    if(recipeToSearch == "") load();
+    else{
+        let array = [];
+        loadRecipes(recipeBookRoute).then(recipes => {
+            recipes.forEach(r =>{
+                console.log(r.name);
+                if(r.name.trim() == recipeToSearch.trim()) array.push(r);
+            });
+            recipesListToHTML(array);
+        });
+    }
+}
 load();

@@ -22,7 +22,7 @@
         <a class="navbar-brand">
             <img id="page-icon" src="https://static.thenounproject.com/png/98767-200.png" alt="icon-page">
         </a>
-        <a class="navbar-brand" href="home.html">
+        <a class="navbar-brand" href="home">
             <h1>Recetario</h1>
         </a>
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
@@ -49,7 +49,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">Administración</a>
                         <div class="dropdown-menu" aria-labelledby="dropdownId">
-                            <a class="dropdown-item" href="./admin/nueva_receta.html">Agregar recetas</a>
+                            <a class="dropdown-item" href="new-recipe">Agregar recetas</a>
                         </div>
                     </div>
                 </li>
@@ -58,7 +58,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">Mi Cuenta</a>
                         <div class="dropdown-menu" aria-labelledby="dropdownId">
-                            <a class="dropdown-item" href="favoritos.html">Favoritos</a>
+                            <a class="dropdown-item" href="favoritos">Favoritos</a>
                             <a class="dropdown-item" href="#" onclick="deleteUserStorage()">Cerrar Sesión</a>
                         </div>
                     </div>
@@ -69,7 +69,7 @@
             <form class="form-inline">
                 <input id="inputSearch" class="form-control col-sm-4 col-lg-10" type="text"
                     placeholder="Busca una receta">
-                <button id="btnSearch" class="btn btn-outline-light col-sm-5 col-lg-2" type="submit">Buscar</button>
+                <button id="btnSearch" class="btn btn-outline-light col-sm-5 col-lg-2" type="button" onclick="searchRecipe()">Buscar</button>
             </form>
         </div>
     </nav>

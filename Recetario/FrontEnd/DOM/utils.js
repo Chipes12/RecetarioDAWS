@@ -1,5 +1,19 @@
 "use strict";
 
+const Category = {
+    "type1": "Platillo",
+    "type2": "Bebida",
+    "type3": "Postre",
+    "type4": "Aperitivo",
+    "type5": "Entrada",
+};
+
+const Times = {
+    "Time1": "5 - 20 min",
+    "Time2": "20 - 60 min",
+    "Time3": "60+ min",
+};
+
 function initRecipeStorage() {
     let init = {
         "Hola": "Mundo"
