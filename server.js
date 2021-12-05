@@ -1,7 +1,7 @@
 "use strict";
 
 const cors = require('cors');
-const dotenv = require('dotenv').config();
+const dotenv = require('dotenv').config({path: 'env'});
 const express = require("express");
 const router = require("./Server/Routers/mainRouter");
 const app = express();
