@@ -41,7 +41,6 @@ function recipesListToHTML(recipesList) {
 let page = 1;
 
 function load() {
-
     loadFavouriteRecipes(getFavs).then(recipes => {
         console.log(recipes)
         recipesListToHTML(recipes.slice(4 * (page - 1), 4 * page));
@@ -49,7 +48,6 @@ function load() {
 }
 
 async function deleteRecipe(id) {
-
     console.log(id)
     let urlDelete = getFavs + id;
 

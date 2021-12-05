@@ -47,7 +47,7 @@ function recipeToHTML(recipe) {
 async function updateHeart() {
     if (JSON.parse(JSON.parse(localStorage.getItem("User"))) == "undefined") return;
     let uid = JSON.parse(JSON.parse(localStorage.getItem("User"))).idUser;
-    let urlverify = 'http://localhost:3000/recipebook/user' + "/" + uid;
+    let urlverify = 'http://localhost:8080/user' + "/" + uid;
     let response = fetch(urlverify);
     if (response.status == 200) return;
 
@@ -62,7 +62,7 @@ async function updateHeart() {
 async function addFavorites() {
     if (JSON.parse(JSON.parse(localStorage.getItem("User"))) == "undefined") return;
     let uid = JSON.parse(JSON.parse(localStorage.getItem("User"))).idUser;
-    let url = 'http://localhost:3000/recipebook/user' + "/" + uid;
+    let url = 'http://localhost:8080/user' + "/" + uid;
     let response = fetch(url);
     if (response.status == 200) return;
 
@@ -77,7 +77,7 @@ async function addFavorites() {
 async function deleteRecipe(id) {
     if (JSON.parse(JSON.parse(localStorage.getItem("User"))) == "undefined") return;
     let uid = JSON.parse(JSON.parse(localStorage.getItem("User"))).idUser;
-    let url = 'http://localhost:3000/recipebook/user' + "/" + uid;
+    let url = 'http://localhost:8080/user' + "/" + uid;
     let response = fetch(url);
     if (response.status == 200) return;
 
@@ -89,7 +89,7 @@ async function deleteRecipe(id) {
 async function isInFavs() {
     if (JSON.parse(JSON.parse(localStorage.getItem("User"))) == "undefined") return;
     let uid = JSON.parse(JSON.parse(localStorage.getItem("User"))).idUser;
-    let urlverify = 'http://localhost:3000/recipebook/user' + "/" + uid;
+    let urlverify = 'http://localhost:8080/user' + "/" + uid;
     let response = fetch(urlverify);
     if (response.status == 200) return;
 

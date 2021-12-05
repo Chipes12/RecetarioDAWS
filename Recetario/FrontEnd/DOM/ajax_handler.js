@@ -4,7 +4,11 @@ const recipeBookRoute = `http://localhost:8080/recipes/`;
 const userPost = 'http://localhost:8080/user';
 const logInPost = 'http://localhost:8080/user/login';
 const getIngr = 'http://localhost:8080/ingredients';
-const getFavs = `http://localhost:8080/user/${JSON.parse(JSON.parse(localStorage.getItem("User"))).idUser}/favourites/`;
+let  getFavs = `http://localhost:8080/user/`
+if(JSON.parse(localStorage.getItem("User")) == "Wrong email or password"){
+    getFavs += "undefined/favourites";
+}
+else{ getFavs += `${JSON.parse(JSON.parse(localStorage.getItem("User"))).idUser}/favourites/`;}
 
 
 

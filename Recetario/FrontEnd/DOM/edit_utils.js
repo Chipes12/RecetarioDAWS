@@ -50,7 +50,6 @@ function loadRecipeTime() {
 }
 
 function loadInfo() {
-
     loadRecipeTime();
     loadRecipeType();
 

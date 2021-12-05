@@ -20,9 +20,6 @@ function ingredientsListToHTML(ingrList) {
     for (let i = 0; i < ingredientsOptions.length; i++) {
         ingredientsOptions[i].innerHTML = ingrList.map(optionToHtml).join("\n");
     }
-    /*
-    let ingredientsOptions = document.getElementById("ingredients");
-    ingredientsOptions.innerHTML = ingrList.map(optionToHtml).join("\n");*/
 }
 //load recipe category in select
 function loadRecipeType() {
