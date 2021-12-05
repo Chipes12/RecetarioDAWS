@@ -6,7 +6,6 @@ const express = require("express");
 const router = require("./Server/Routers/mainRouter");
 const app = express();
 // const port = process.env.PORT;
-
 app.use(cors());
 app.use(express.json());
 
