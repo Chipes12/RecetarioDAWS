@@ -32,6 +32,7 @@ function recipeToHTML(recipe) {
         <span class="container">
             <h3 class="mt-5">Ingredientes:</h3>
             <div id = "ingredients">
+                ${addIngredients()}
             </div>
         </span>
         <span class="container">
