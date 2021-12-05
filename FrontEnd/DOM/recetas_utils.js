@@ -48,7 +48,7 @@ function recipeToHTML(recipe) {
 async function updateHeart() {
     if (JSON.parse(JSON.parse(localStorage.getItem("User"))) == "undefined") return;
     let uid = JSON.parse(JSON.parse(localStorage.getItem("User"))).idUser;
-    let urlverify = 'https://recetarioweb.herokuapp.com//user' + "/" + uid;
+    let urlverify = 'https://recetarioweb.herokuapp.com/user' + "/" + uid;
     let response = fetch(urlverify);
     if (response.status == 200) return;
 
@@ -129,6 +129,7 @@ function formatProcedure() {
     }
 }
 
+recipeToHTML(recipe);
 verifyUser();
 isAdmin();
 addIngredients();
