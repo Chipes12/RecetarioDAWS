@@ -108,7 +108,6 @@ function ingToHTML(ing) {
 }
 
 function addIngredients() {
-    console.log(recipe.ingredients);
     document.getElementById("ingredients").innerHTML   =  `<ul>`;
     document.getElementById("ingredients").innerHTML += recipe.ingredients.map(ingToHTML).join("\n");
     document.getElementById("ingredients").innerHTML += `</ul>`;
@@ -129,6 +128,7 @@ function formatProcedure() {
     }
 }
 
+addIngredients();
 verifyUser();
 isAdmin();
 formatProcedure();
