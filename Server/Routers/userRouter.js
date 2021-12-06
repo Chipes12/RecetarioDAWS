@@ -9,6 +9,7 @@ const tokenUtils = require('../models/tokenUtils');
 
 router.route('/')
     .post((req, res) => {
+        console.log(req);
         userHandler.createUser(req.body, res);
     })
     .get((req, res) => {

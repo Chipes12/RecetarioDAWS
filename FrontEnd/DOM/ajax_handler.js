@@ -1,7 +1,7 @@
 "use strict";
 
 const recipeBookRoute = 'https://recetarioweb.herokuapp.com/recipes/';
-const userPost = 'http://recetarioweb.herokuapp.com/user';
+const userPost = 'https://recetarioweb.herokuapp.com/user';
 const logInPost ='https://recetarioweb.herokuapp.com/user/login';
 const getIngr = 'https://recetarioweb.herokuapp.com/ingredients';
 let  getFavs = 'https://recetarioweb.herokuapp.com/user/'
