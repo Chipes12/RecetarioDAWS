@@ -2,7 +2,6 @@
 
 let favContainer = document.getElementById("mainContainerFavs");
 
-//Función para html
 function recipeToHTML(recipe) {
     return `
     <div class="media mt-5 mb-5 p-3 border" id=${recipe._id}">
@@ -30,7 +29,6 @@ function recipeToHTML(recipe) {
         </div>
     </div>
     </div>
-
     `
 }
 
@@ -42,21 +40,17 @@ let page = 1;
 
 function load() {
     loadFavouriteRecipes(getFavs).then(recipes => {
-        console.log(recipes)
         recipesListToHTML(recipes.slice(4 * (page - 1), 4 * page));
     });
     verifyUser();
 }
 
 async function deleteRecipe(id) {
-    console.log(id)
     let urlDelete = getFavs + id;
-
     console.log(urlDelete);
     let recetaBorrada = await deleteFavRecipe(urlDelete);
     console.log(recetaBorrada);
     load();
-
 }
 
 load();
