@@ -3,6 +3,7 @@
 let recipe = JSON.parse(sessionStorage.getItem("Recipe"))[0];
 let infoContainer = document.getElementById("infoContainer");
 infoContainer.innerHTML = recipeToHTML(recipe);
+addIngredients();
 let corazon = document.getElementById("heart");
 
 function recipeToHTML(recipe) {
@@ -128,7 +129,6 @@ function formatProcedure() {
     }
 }
 
-addIngredients();
 verifyUser();
 isAdmin();
 formatProcedure();
