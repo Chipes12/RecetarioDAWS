@@ -3,7 +3,6 @@
 let recipe = JSON.parse(sessionStorage.getItem("Recipe"))[0];
 let infoContainer = document.getElementById("infoContainer");
 infoContainer.innerHTML = recipeToHTML(recipe);
-addIngredients();
 let corazon = document.getElementById("heart");
 
 function recipeToHTML(recipe) {
@@ -109,9 +108,10 @@ function ingToHTML(ing) {
 }
 
 function addIngredients() {
-    document.getElementById("ingredients").innerHTML =   `<ul>`;
-    document.getElementById("ingredients").innerHTML + recipe.ingredients.map(ingToHTML).join("\n");
-    document.getElementById("ingredients").innerHTML + `</ul>`;
+    console.log(recipe.ingredients);
+    document.getElementById("ingredients").innerHTML   =  `<ul>`;
+    document.getElementById("ingredients").innerHTML += recipe.ingredients.map(ingToHTML).join("\n");
+    document.getElementById("ingredients").innerHTML += `</ul>`;
 }
 
 function isAdmin() {
