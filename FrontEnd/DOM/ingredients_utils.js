@@ -65,9 +65,7 @@ function addInputIngr() {
 //guardar valores en base de datos
 function addRecipe() {
     addIngrToRecipe();
-
     let url = recipeBookRoute;
     createRec(url);
-
 }
 load();

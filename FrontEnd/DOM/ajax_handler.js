@@ -44,7 +44,6 @@ async function loadFavouriteRecipes(url) {
 }
 
 async function deleteFavRecipe(url) {
-
     let response = await fetch(url, {
         method: "DELETE",
         headers: {
@@ -100,7 +99,10 @@ async function createRec(url) {
             authorization: JSON.parse(JSON.parse(localStorage.getItem("User"))).token
         }
     })
-    if (response.status != 200) return [];
+    if (response.status != 200) {
+        alert("No se pudo crear la receta");
+        return [];
+    }
     return await response.json();
 }
 
@@ -123,8 +125,11 @@ async function updateRec(url) {
             'Content-Type': 'application/json',
             authorization: JSON.parse(JSON.parse(localStorage.getItem("User"))).token
         }
-    })
-    if (response.status != 200) return [];
+    });
+    if (response.status != 200) {
+        alert("Actualización incorrecta");
+        return [];
+    }
     return await response.json();
 }
 
@@ -134,7 +139,8 @@ async function deleteRecipe(url) {
         headers: {
             authorization: JSON.parse(JSON.parse(localStorage.getItem("User"))).token
         }
-    })
+    });
+    if(response.status != 200) alert("No se pudo borrar la receta");
 
     return response.status;
 }
@@ -157,6 +163,8 @@ function signUp() {
     xhr.onreadystatechange = function () {
         if (this.status == 200 && this.readyState == 4) {
             document.getElementById('close').click();
+        }else{
+            alert("No se puede crear el usuario, rellene correctamente todos los campos");
         }
     }
     return false;
@@ -174,7 +182,7 @@ function logIn() {
     xhr.onreadystatechange = function () {
         if (this.status == 200 && this.readyState == 4) {
             document.getElementById('close').click();
-        }
+        }else{alert("Credenciales incorrectas");}
     }
     xhr.onload = () => {
         writeUserStorage(xhr.response);
