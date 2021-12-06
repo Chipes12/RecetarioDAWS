@@ -65,7 +65,7 @@ function viewRecipe(event){
      let recipe = loadRecipeData(recipeBookRoute, recipeButton.getAttribute("id"));
      recipe.then(element => {
         writeRecipeStorage(element);
-        window.location.href = 'recetas.html';
+        window.location.href = 'recetas';
      }); 
 }
 
