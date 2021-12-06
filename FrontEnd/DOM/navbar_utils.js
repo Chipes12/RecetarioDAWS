@@ -14,7 +14,7 @@ function verifyUser() {
         document.getElementById("myAccount").setAttribute("class", "d-none");
     } else {
         let uid = JSON.parse(JSON.parse(localStorage.getItem("User"))).idUser;
-        let url = 'http://recetarioweb.herokuapp.com/user' + "/" + uid;
+        let url = 'https://recetarioweb.herokuapp.com//user' + "/" + uid;
         let response = fetch(url, {headers : {autorizathion: JSON.parse(JSON.parse(localStorage.getItem("User"))).token}});
         if (response.status != 200) {
             document.getElementById("signupInBar").setAttribute("class", "d-none");
