@@ -20,7 +20,7 @@ function recipeToHTML(recipe) {
                 <h4 id="recipePortion" class="pr-5"><i class="fas fa-users"></i> Porciones: ${recipe.portions}</h4>
                 <h4 id="recipeCategory" class="pr-5"><i class="far fa-list-alt"></i> Tipo: ${Category[recipe.category]}</h4>
                 <h4 class="pr-5"><i class="far fa-clock"></i> Tiempo: ${Times[recipe.estimatedTime]}</h4>
-                <a href = "../views/admin/editar_receta.html" class = "btn btn-outline-info w-100 " id="editThisRecipe"> <button   type="button" class="btn btn-outline-light">Actualizar</button> </a><br>
+                <a href = "/edit-recipe" class = "btn btn-outline-info w-100 " id="editThisRecipe"> <button   type="button" class="btn btn-outline-light">Actualizar</button> </a><br>
                 
                 <h4 id="recipeFav" class="pr-5 ml-5"><i onclick = "isInFavs()" id= "heart" class="fas fa-heart fa-2x"></i></h4>
             </div>
